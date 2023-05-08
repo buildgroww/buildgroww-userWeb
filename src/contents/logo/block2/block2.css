@@ -1,0 +1,8 @@
+.MuiOutlinedInput-notchedOutline{
+
+    border: none !important;
+}
+.MuiOutlinedInput-notchedOutline:focus{
+    border: 1px solid teal !important;
+}
+

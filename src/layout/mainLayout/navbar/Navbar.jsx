@@ -13,7 +13,10 @@ import {
     IconButton,
     useTheme,
     Button,
-    Zoom
+    Zoom,
+    Popover,
+    Dialog,
+    Avatar
 } from "@mui/material";
 
 import { ShoppingCart, Menu,} from '@mui/icons-material';
@@ -28,6 +31,8 @@ import { useSnackbar } from 'notistack';
 import { selectUser, updateLocation } from '../../../redux/userRedux';
 import axios from 'axios';
 import {HiExternalLink} from 'react-icons/hi'
+import Signup from '../../../pages/auth/Signup';
+import Login from '../../../pages/auth/Login';
 
   const StyleToolbar = styled(Toolbar)(({theme}) => ({
       display: 'flex',
@@ -95,6 +100,8 @@ const Paragraph = styled(Typography)(({theme})=>({
 export default function Navbar(props) {
 
     const [open, setOpen] = useState(false);
+    const [drawer,setDrawer] = useState(false);
+    const [login,setLogin] = useState(false);
     const user = useSelector(selectUser);
     const [res,setRes] = useState({});
     const {enqueueSnackbar} = useSnackbar();
@@ -102,6 +109,21 @@ export default function Navbar(props) {
     const handleOpen = ()=>{
         setOpen(true);
     };
+
+    const handleDrawer = ()=>{
+        setDrawer(true);
+    };
+    const handleLoginOpen = ()=>{
+        setLogin(true);
+    };
+
+    // const handleLoginClose = ()=>{
+    //     setLogin(false);
+    // };
+
+    // const handleDrawerClose = ()=>{
+    //     setDrawer(false);
+    // };
 
     const handleClose = ()=>{
         setOpen(false);
@@ -115,71 +137,7 @@ export default function Navbar(props) {
         // handleCurrLocation();
       }, [])
   
-    //   const getPosition = async (latitude,longitude)=>{
-    //     await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${process.env.REACT_APP_GOOGLE_CLIENTID}`).then((res)=>{
-    //       console.log(res)
-    //       if(res?.data?.status==='OK'){
-    //         const locality = res.data?.results[0]?.address_components.filter((item)=>{ return item.types.includes('sublocality_level_1')})
-    //         const city = res.data?.results[0]?.address_components.filter((item)=> item.types.includes('locality'))
-    //         const state = res.data?.results[0]?.address_components.filter((item)=> item.types.includes('administrative_area_level_1'))
-    //         const country = res.data?.results[0]?.address_components.filter((item)=> item.types.includes('country'))
-    //         const pin = res.data?.results[0]?.address_components.filter((item)=> item.types.includes('postal_code'))
-    //         console.log(locality)
-    //         setRes({city:city.length !==0? city[0].long_name:"",pincode:pin!==0 ? parseFloat(pin[0].long_name):"",country:country.length!==0 ? country[0].short_name :""})
-    //       }
-    //       else{
-    //         enqueueSnackbar('Some Error Occured', {
-    //           variant: 'error',
-    //           anchorOrigin: {
-    //             vertical: 'top',
-    //             horizontal: 'center'
-    //           },
-    //           TransitionComponent: Zoom
-    //           });
-    //       }
-    //     }).catch((e)=>{
-    //       console.log(e)
-    //       enqueueSnackbar('Some Error Occured '+e, {
-    //         variant: 'error',
-    //         anchorOrigin: {
-    //           vertical: 'top',
-    //           horizontal: 'center'
-    //         },
-    //         TransitionComponent: Zoom
-    //         });
-    //     })
-    //   }
-  
-    //  const handleCurrLocation = async ()=>{
-    //     if(user.currentLocation===null){
-    //         if(navigator.geolocation){
-    //             navigator.geolocation.getCurrentPosition((position)=>{
-    //               const {latitude,longitude} = position.coords;
-    //               dispatch(updateLocation({latitude,longitude}))
-    //               getPosition(latitude,longitude)
-    //             },(error)=>{
-    //               dispatch(updateLocation({code:error.code,message:error.message}))
-    //               console.log(error)
-    //             })
-    //           }
-    //           else{
-    //             alert('Your Browser is not supporting geoLocation, Please Update your browser');
-    //           }
-    //     }
-    //     else if(user.currentLocation.latitude!==undefined&&user.currentLocation.longitude!==undefined){
-    //         getPosition(user.currentLocation.latitude,user.currentLocation.longitude)
-    //     }
-    //     else{
-    //         enqueueSnackbar(`${user.currentLocation.code}`===1?'User Blocked Loaction, Please unblocked and reload ':`${user.currentLocation.message}`, {
-    //             variant: 'error',
-    //             anchorOrigin: {
-    //               vertical: 'top',
-    //               horizontal: 'center'
-    //             },
-    //             TransitionComponent: Zoom
-    //             });
-    //     }
-    //  }
+
   return (
       <NavBar  sx={{paddingLeft: '27px',paddingRight: '27px'}} position="fixed">
         <StyleToolbar sx={{height:{sm:'95px',xs:'100px',},top:{sm:'0',xs:'-21px',},}}>
@@ -211,23 +169,35 @@ export default function Navbar(props) {
                 </Badge> */}
                 {/* <NavButton/> */}
             </NavLeft>
-            <Box onClick={()=> navigate('/login')} sx={{color:'#000000',cursor:'pointer',fontSize:'18px',display:'flex',gap:'10px',justifyContent:'flex-end',alignItems:'center'}}>
-                <HiExternalLink style={{fontSize:'30px'}}/>
-                Login / Sign up
+
+            <Box>
+                <Avatar onClick={()=>{navigate('/account')}}/>
             </Box>
-            {/* <Cart sx={{flex:'2'}}>
-                <Box sx={{display:{md:'flex',xs:'none'},justifyContent:'flex-start',alignItems:'center',paddingLeft:'20px',flex:'2',color:`#000000`}}>
-                    <PhoneIcon/>
-                    <Paragraph sx={{paddingLeft:'5px',fontSize:'20px',fontWeight:'400',color:`#000000`}}>+91-7300639790</Paragraph>
+            <Box  sx={{color:'#000000',cursor:'pointer',fontSize:'18px',display:'flex',gap:'10px',justifyContent:'flex-end',alignItems:'center'}}>
+                <HiExternalLink style={{fontSize:'30px'}}/>
+
+                <Box>
+                <Typography onClick={handleLoginOpen} sx={{fontSize:'20px'}}>Login /</Typography>
+
+
+                <Dialog open={login}>
+                <Login setLogin={setLogin}/>
+    
+                </Dialog>
+
                 </Box>
-                <CartButton sx={{display:'flex',}}>
-                    <Link to={'/cart'} style={{textDecoration:'none'}}>
-                        <Badge anchorOrigin={{vertical:'top',horizontal:'right'}} badgeContent={cartVal.quantity===null?0:cartVal.quantity} color="warning" sx={{cursor: {md:'pointer',sm:'none'}}}>
-                            <ShoppingCart sx={{color:`#000000`}}/>
-                        </Badge>
-                    </Link>
-                </CartButton>
-            </Cart> */}
+                <Box>
+                <Typography onClick={handleDrawer} sx={{fontSize:'20px'}}>Sign Up</Typography>
+
+                <Dialog open={drawer}>
+                <Signup setDrawer={setDrawer}/>
+    
+                </Dialog>
+                </Box>
+
+
+            </Box>
+           
         </StyleToolbar>
       </NavBar>
 

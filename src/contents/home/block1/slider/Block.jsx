@@ -19,14 +19,12 @@ const Item = styled(Card)(({theme}) => ({
 //   margin:'35px 15px!important',
 //   // textAlign:'center',
   
-//   [theme.breakpoints.down('md')]: {
-//     height: '350px',
-//     margin:'24px 12px!important',
-// },
-// [theme.breakpoints.down('sm')]: {
-//   height: '200px!important',
-//   margin:'16px 8px!important',
-// },
+  [theme.breakpoints.down('md')]: {
+    height: '200px',
+},
+[theme.breakpoints.down('sm')]: {
+  height: '180px',
+},
 }));
 const Img = styled("img")(({theme}) => ({
   objectFit: "cover",

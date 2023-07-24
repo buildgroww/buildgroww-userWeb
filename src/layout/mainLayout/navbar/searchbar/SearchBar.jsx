@@ -109,7 +109,7 @@ import {
     };
     document.addEventListener("mousedown", closeOpenMenus);
     return (
-      <Search sx={{ height: 50, display: "flex" }}>
+      <Search sx={{  display: "flex" }}>
         
         <SearchLink to={"/search"} style={{ textDecoration: "none" }}>
           <SearchField
@@ -146,9 +146,10 @@ import {
             </InputAdornment>,
           }}
           sx={{
+            borderColor:'#3E96DF',
             boxShadow:'0px 4px 4px rgba(0, 0, 0, 0.25)',
             borderRadius:'21px',
-              "& fieldset": { borderRadius:'21px', },
+              "& fieldset": { borderRadius:'21px',},
               background: `${theme.colors.alpha.black[10]}`,
             display: { sm: "block", xs: "none" },
             width:'70%',
@@ -158,24 +159,27 @@ import {
           //   },
             "& .MuiOutlinedInput-root": { width: "100%",height:'100%' },
           }}
+          placeholder="search here... "
           variant="outlined"
           onChange={(e) => handleChange(e)}
           onKeyDown={(e) => handleEnter(e)}
           onClick={searchHandler}
           ref={catMenu}
         />
-        <SearchList
+        {((searchProducts && searchProducts.searchList && searchProducts.searchList.length!==0) || (list!==null && list.data)) && <SearchList
           color="secondary"
           sx={{
               width:'70%',
             display: { sm: showSearch, xs: "none" },
             flexDirection: "column",
-            marginTop: "36px",
+            marginTop: "54px",
             bgcolor: "#fff",
             position: "absolute",
             left: "0",
             right: "0",
             zIndex: "100",
+            borderColor:'#3E96DF',
+            borderRadius:'21px'
           }}
           component="nav"
           aria-label="mailbox folders"
@@ -230,7 +234,7 @@ import {
               <StyledListItem button>
                   <ListItemText primary="Spam" />
               </StyledListItem> */}
-        </SearchList>
+        </SearchList>}
       </Search>
     );
   }

@@ -1,21 +1,36 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, styled } from "@mui/material";
 import React from "react";
+
+const Image = styled('img')(({theme})=>({
+  width:'100%',
+  height:'220px',
+  objectFit:'cover',
+  [theme.breakpoints.down('md')]:{
+    height:'180px',
+  },
+  [theme.breakpoints.down('sm')]:{
+    height:'150px',
+  },
+}))
 
 function Block6() {
   return (
     <Box sx={{ width: "100%", padding: "0 58px" }}>
       <Box
         sx={{
+          width:'100%',
           display: "flex",
+          flexDirection:{sm:'row',xs:'column'},
           justifyContent: "space-between",
+          gap:'10px',
           alignItems: "center",
           marginTop: "10px",
         }}
       >
         <Box
           sx={{
-            width: "360px",
-            height: "431px",
+            width: {sm:"360px",xs:'100%'},
+            height: {md:"431px",sm:'370px',xs:'300px'},
             textAlign: "center",
             borderRadius: "19px",
             border: "1px solid #000000",
@@ -23,20 +38,19 @@ function Block6() {
         >
           {" "}
           <Typography
-            sx={{ fontSize: "40px", fontWeight: 300, margin: "10px 0" }}
+            sx={{ fontSize: {md:"40px",sm:'35px',xs:'25px'}, fontWeight: 300, margin: "10px 0" }}
           >
             Plumbing Service 
           </Typography>{" "}
-          <img
+          <Image
             alt="Our Engineer"
-            style={{ width: "100%", height: "220px", objectFit: "cover" }}
             src="/images/category/carousel/engineer.jpg"
           />
         </Box>
         <Box
           sx={{
-            width: "360px",
-            height: "431px",
+            width: {sm:"360px",xs:'100%'},
+            height: {md:"431px",sm:'370px',xs:'300px'},
             textAlign: "center",
             borderRadius: "19px",
             border: "1px solid #000000",
@@ -44,20 +58,19 @@ function Block6() {
         >
           {" "}
           <Typography
-            sx={{ fontSize: "40px", fontWeight: 300, margin: "10px 0" }}
+            sx={{ fontSize: {md:"40px",sm:'35px',xs:'25px'}, fontWeight: 300, margin: "10px 0" }}
           >
             Electrical Service
           </Typography>{" "}
-          <img
+          <Image
             alt="Our Engineer"
-            style={{ width: "100%", height: "220px", objectFit: "cover" }}
             src="/images/category/carousel/engineer.jpg"
           />
         </Box>
         <Box
           sx={{
-            width: "360px",
-            height: "431px",
+            width: {sm:"360px",xs:'100%'},
+            height: {md:"431px",sm:'370px',xs:'300px'},
             textAlign: "center",
             borderRadius: "19px",
             border: "1px solid #000000",
@@ -65,13 +78,12 @@ function Block6() {
         >
           {" "}
           <Typography
-            sx={{ fontSize: "40px", fontWeight: 300, margin: "10px 0" }}
+            sx={{ fontSize: {md:"40px",sm:'35px',xs:'25px'}, fontWeight: 300, margin: "10px 0" }}
           >
             Colouring Service
           </Typography>{" "}
-          <img
+          <Image
             alt="Our Engineer"
-            style={{ width: "100%", height: "220px", objectFit: "cover" }}
             src="/images/category/carousel/engineer.jpg"
           />
         </Box>

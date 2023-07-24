@@ -16,7 +16,9 @@ import {
     Zoom,
     Popover,
     Dialog,
-    Avatar
+    Avatar,
+    TextField,
+    InputAdornment
 } from "@mui/material";
 
 import { ShoppingCart, Menu,} from '@mui/icons-material';
@@ -104,6 +106,7 @@ export default function Navbar(props) {
     const [login,setLogin] = useState(false);
     const user = useSelector(selectUser);
     const [res,setRes] = useState({});
+    const [on,setOn] = useState(false);
     const {enqueueSnackbar} = useSnackbar();
     const dispatch = useDispatch();
     const handleOpen = ()=>{
@@ -151,30 +154,61 @@ export default function Navbar(props) {
                 <Siderbar />
             </Drawer>
             <NavLeft sx={{flex:'4'}}>
-                <Logo onClick={()=>{navigate('/')}} sx={{display:'flex',gap:'10px',cursor:{md:'pointer',xs:'none'},marginRight:'10px'}}>
-                    <Paragraph   component="div" sx={{color:'#60360F',fontSize: {md:'40px',xs:'25px'},}}>
+                <Logo onClick={()=>{navigate('/')}} sx={{display:'flex',gap:{md:'10px',xs:'7px'},cursor:{md:'pointer',xs:'none'},marginRight:'10px'}}>
+                    <Paragraph   component="div" sx={{color:'#60360F',fontSize: {md:'40px',sm:'25px',xs:'20px'},}}>
                         {props.logo.split(' ').slice(0,1)}
                     </Paragraph>
-                    <Paragraph component="div" sx={{color:'#548F25',fontSize: {md:'40px',xs:'25px'},}}>
+                    <Paragraph component="div" sx={{color:'#548F25',fontSize: {md:'40px',sm:'25px',xs:'20px'},}}>
                     {props.logo.split(' ').slice(1)}
                     </Paragraph>
                 </Logo>
 
-                {res && res.city && <Button sx={{backgroundColor:'rgba(217, 217, 217, 0.39)',color:'#000000',justifyContent:'flex-start',gap:'30px',padding:'13px 15px',boxShadow:'0px 4px 4px rgba(0, 0, 0, 0.25)',borderRadius:'21px',width:'270px',minWidth:'160px'}}><LocationOnIcon/>{res.city}</Button>}
+                {res && res.city && <Button sx={{display:{sm:'flex',xs:'none'},backgroundColor:'rgba(217, 217, 217, 0.39)',color:'#000000',justifyContent:'flex-start',gap:'30px',padding:'13px 15px',boxShadow:'0px 4px 4px rgba(0, 0, 0, 0.25)',borderRadius:'21px',width:'270px',minWidth:'160px'}}><LocationOnIcon/>{res.city}</Button>}
 
-                {user.currentLocation && user.currentLocation.code && user.currentLocation.code===1 && <Button sx={{backgroundColor:'rgba(217, 217, 217, 0.39)',color:'#000000',justifyContent:'flex-start',gap:{md:'30px',sm:'20px',xs:'10px'},padding:{md:'13px 15px'},boxShadow:'0px 4px 4px rgba(0, 0, 0, 0.25)',borderRadius:'21px',width:{md:'270px'},minWidth:'160px'}}><LocationOffIcon/>Location Off</Button>}
+                {/* {(!res || !res.city) && <Button sx={{display:{sm:'flex',xs:'none'}, backgroundColor:'rgba(217, 217, 217, 0.39)',color:'#000000',justifyContent:'flex-start',gap:{md:'30px',sm:'20px',xs:'15px'},padding:'13px 15px',boxShadow:'0px 4px 4px rgba(0, 0, 0, 0.25)',borderRadius:'21px',width:{md:'270px',sm:'230px',xs:'100px'},minWidth:'150px'}}><LocationOnIcon/>Haridwar</Button>} */}
+
+                {(!res || !res.city) && <TextField
+                    type="text"
+                    InputProps={{
+                       startAdornment: <InputAdornment position="start"><LocationOnIcon
+                    //    sx={{
+                    //      marginTop: "6px",
+                    //      marginLeft: "10px",
+                    //      color: `${theme.header.background}`,
+                    //    }}
+                     /></InputAdornment>,
+                    }}
+                      placeholder="Search For Location"
+                      defaultValue='Haridwar'
+                    //   defaultValue={on?'':'Haridwar'}
+                      sx={{
+                        background: 'rgba(217, 217, 217, 0.39)',
+                        "& fieldset": { border:'none' },
+                        boxShadow:'0px 4px 4px rgba(0, 0, 0, 0.25)',
+                        borderRadius:'21px',
+                        width:{md:'270px',sm:'230px',xs:'100px'},
+                        minWidth:'150px',
+                        padding:'7px 15px'
+                      }}
+                    //   onFocus={()=>setOn(true)}
+                      variant="outlined"
+                      size="small"
+                />}
+                
+                
+
+                {/* {user.currentLocation && user.currentLocation.code && user.currentLocation.code===1 && <Button sx={{backgroundColor:'rgba(217, 217, 217, 0.39)',color:'#000000',justifyContent:'flex-start',gap:{md:'30px',sm:'20px',xs:'10px'},padding:{md:'13px 15px'},boxShadow:'0px 4px 4px rgba(0, 0, 0, 0.25)',borderRadius:'21px',width:{md:'270px'},minWidth:'160px'}}><LocationOffIcon/>Location Off</Button>} */}
                 <SearchBar/>
                 {/* <Badge sx={{display:{sm:'block',md:'none'}, left:'48px'}}>
                     <ShoppingCart/>
                 </Badge> */}
                 {/* <NavButton/> */}
             </NavLeft>
-
             <Box>
                 <Avatar onClick={()=>{navigate('/account')}}/>
             </Box>
             <Box  sx={{color:'#000000',cursor:'pointer',fontSize:'18px',display:'flex',gap:'10px',justifyContent:'flex-end',alignItems:'center'}}>
-                <HiExternalLink style={{fontSize:'30px'}}/>
+                {/* <HiExternalLink style={{fontSize:'30px'}}/> */}
 
                 <Box>
                 <Typography onClick={handleLoginOpen} sx={{fontSize:'20px'}}>Login /</Typography>

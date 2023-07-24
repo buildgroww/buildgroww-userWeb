@@ -1,203 +1,83 @@
-import React, { useEffect } from 'react'
-import { styled } from '@mui/styles';
-import Item from './item/Item';
-// import { ChevronLeftOutlined, ChevronRightOutlined } from '@mui/icons-material';
-import Header from './header/Header';
-import "./block6.css";
-import Glider from 'glider-js';
-import "glider-js/glider.min.css";
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import { Box, Typography } from "@mui/material";
+import React from "react";
 
-const SliderContainer = styled('div')({
-width:"99%",
-height:"auto",
-margin:"0 0 10px 2px",
-overflow:"hidden",
-// boxShadow: "0 1px 5px rgba(104, 104, 104, 0.8)",
-// "@media (max-width: 1490px)": {
-//  margin:"2% -1.5%"
-
-// },
-// "@media (max-width: 1200px)": {
-//   width:"95%",
-//   margin:"1% 1rem"
- 
-//  },
-
-})
-const SliderInnerContainer = styled('div')(({ theme }) => ({
-  display: "flex",
-  justifyContent:"space-between",
-  flexDirection:"column",
-  boxShadow: "0 1px 5px rgba(104, 104, 104, 0.8)",
-  padding:"0 10px 0 20px",
-  [theme.breakpoints.down('sm')]: {
-    padding:"0 0 0 4px",
-},
-}));
-
-
-// const PreviousBtn = (props) =>{
-//   const {className,onClick} = props;
-  
-//    return (
-//          <div className={className}   onClick={onClick}>
-//           <ChevronLeftOutlined style={{color:'black',zIndex:'10',fontSize:'2.5rem' }} />
-//          </div>  
-//    )
-// }
-
-// const NextBtn = (props) =>{
-//    const {className,onClick} = props;
-//    return (
-//      <div  className={className}  onClick={onClick}>
-//        <ChevronRightOutlined style={{color:'black',  zIndex:'10',fontSize:'2.5rem'}} />
-//      </div>
-//    )
-// }
-
-export default function Block6(props) {
-
-  // const settings = {
-  //   dots: false,
-  //   arrows:true,
-  //   infinite: false,
-  //   speed: 500,
-  //   slidesToShow: 3.5,
-  //   slidesToScroll: 3,
-  //   autoplay: false,
-  //   autoplaySpeed: 2000,
-  //   cssEase: "linear",
-  //   initialSlide:0,
-  //   prevArrow:<PreviousBtn />,
-  //   nextArrow:<NextBtn />,
-  //     responsive: [
-  //       {
-  //         breakpoint: 1200,
-  //         settings: {
-  //           slidesToShow: 3.5,
-  //           slidesToScroll: 3,
-  //           speed: 300,
-  //           arrows:false,
-  //         },
-  //       },
-  //        {
-  //         breakpoint: 960,
-  //         settings: {
-  //           slidesToShow: 2.5,
-  //           slidesToScroll: 2,
-  //           speed: 300,
-  //           arrows:false,
-  //         },
-  //       },
-  //       {
-  //         breakpoint: 800,
-  //         settings: {
-  //           slidesToShow: 2.5,
-  //           slidesToScroll: 2,
-  //           speed: 300,
-  //           arrows:false,
-  //         },
-  //       },
-  //       {
-  //         breakpoint: 600,
-  //         settings: {
-  //           slidesToShow: 1.3,
-  //           slidesToScroll: 1,
-  //           speed: 300,
-  //           arrows:false,
-  //         },
-  //       },
-  //       // {
-  //       //   breakpoint: 500,
-  //       //   settings: {
-  //       //     slidesToShow: 3,
-  //       //     slidesToScroll: 2,
-  //       //     speed: 300,
-  //       //     arrows:false,
-  //       //   },
-  //       // },
-  //       // {
-  //       //   breakpoint: 365,
-  //       //   settings: {
-  //       //     slidesToShow: 3,
-  //       //     slidesToScroll: 2,
-  //       //     speed: 300,
-  //       //     arrows:false,
-  //       //   },
-  //       // },
-  //   ]
-  // };
-
-  useEffect(() => {
-    let glider = document.getElementById('glider4')
-
-    if(glider){
-      new Glider(document.getElementById('glider4'), {
-        // Optional parameters
-        slidesToShow: 1.3,
-        slidesToScroll: 1,
-        draggable: true,
-        rewind: true,
-        duration: 0.5,
-        // dots: ".pagination",
-        arrows: {
-          prev: ".glider-prev4",
-          next: ".glider-next4"
-        },
-
-        // Responsive breakpoints
-        responsive: [
-          {
-            breakpoint: 600,
-            settings: {
-              slidesToShow: 2.5,
-              draggable: true,
-              rewind: true,
-              duration: 0.5,
-            }
-          },
-          {
-            breakpoint: 960,
-            settings: {
-              slidesToShow: 3.5,
-              scrollLock: false,
-              rewind: true,
-            }
-          },
-          {
-            breakpoint: 1200,
-            settings: {
-              slidesToShow: 3.5,
-              scrollLock: false,
-              rewind: true,
-            }
-          }
-        ]
-      });
-    }
-    
-  }, [])
-
+function Block6() {
   return (
-    <>
-    <SliderContainer>         
-      <SliderInnerContainer>
-        <Header sliderH={props.sliderData.category}/>
-        <section className="section4 glider-section4">
-          <div className="container4 glider-column4">
-            <div className='glider-inner4' id='glider4'>
-              { props.sliderData?.data?.map((item,index)=>(
-                <Item posterLinks={item} key={index} />
-              ))}
-            </div>
-              <span className="glider-prev4"><ChevronLeftIcon/></span>
-              <span className="glider-next4"><ChevronRightIcon/></span>
-          </div>
-          </section>
-      </SliderInnerContainer>  
-    </SliderContainer>
-    </>
-  )
+    <Box sx={{ width: "100%", padding: "0 58px" }}>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          marginTop: "10px",
+        }}
+      >
+        <Box
+          sx={{
+            width: "360px",
+            height: "431px",
+            textAlign: "center",
+            borderRadius: "19px",
+            border: "1px solid #000000",
+          }}
+        >
+          {" "}
+          <Typography
+            sx={{ fontSize: "40px", fontWeight: 300, margin: "10px 0" }}
+          >
+            Plumbing Service 
+          </Typography>{" "}
+          <img
+            alt="Our Engineer"
+            style={{ width: "100%", height: "220px", objectFit: "cover" }}
+            src="/images/category/carousel/engineer.jpg"
+          />
+        </Box>
+        <Box
+          sx={{
+            width: "360px",
+            height: "431px",
+            textAlign: "center",
+            borderRadius: "19px",
+            border: "1px solid #000000",
+          }}
+        >
+          {" "}
+          <Typography
+            sx={{ fontSize: "40px", fontWeight: 300, margin: "10px 0" }}
+          >
+            Electrical Service
+          </Typography>{" "}
+          <img
+            alt="Our Engineer"
+            style={{ width: "100%", height: "220px", objectFit: "cover" }}
+            src="/images/category/carousel/engineer.jpg"
+          />
+        </Box>
+        <Box
+          sx={{
+            width: "360px",
+            height: "431px",
+            textAlign: "center",
+            borderRadius: "19px",
+            border: "1px solid #000000",
+          }}
+        >
+          {" "}
+          <Typography
+            sx={{ fontSize: "40px", fontWeight: 300, margin: "10px 0" }}
+          >
+            Colouring Service
+          </Typography>{" "}
+          <img
+            alt="Our Engineer"
+            style={{ width: "100%", height: "220px", objectFit: "cover" }}
+            src="/images/category/carousel/engineer.jpg"
+          />
+        </Box>
+      </Box>
+    </Box>
+  );
 }
+
+export default Block6;

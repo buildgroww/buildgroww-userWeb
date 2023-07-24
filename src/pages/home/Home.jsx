@@ -151,6 +151,8 @@ const Home = ({loading, setLoading}) => {
           <Block2/>
           <Block3/>
           <Block4/>
+          <Block5/>
+          <Block6/>
       </Box>
       {/* <TextBlock1/> */}
       {/* <Block2 key={sliderData} sliderData={sliderData[0].website}/>

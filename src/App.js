@@ -14,6 +14,8 @@ import LoadingBar from 'react-top-loading-bar'
 import Account from "./pages/myAccount/Account";
 import Product from "./pages/product/Product";
 import Company from "./pages/company/Company";
+import Search from "./pages/search/Search"
+// import { Search } from "@mui/icons-material";
 
 
 function App() {
@@ -30,7 +32,7 @@ function App() {
     <Router>
       <Routes>
         <Route exact path="/" element={<Home  />} />
-        <Route exact path="/search" element={<Search  />} />
+        <Route exact path="/search" element={<Search />} />
         <Route exact path="/account" element={<Account />} />
         <Route exact path="/company" element={<Company />} />
         <Route exact path="/product" element={<Product />} />

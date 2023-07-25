@@ -182,6 +182,7 @@ export default function Navbar(props) {
                       defaultValue='Haridwar'
                     //   defaultValue={on?'':'Haridwar'}
                       sx={{
+                        display:{sm:'block',xs:'none'},
                         background: 'rgba(217, 217, 217, 0.39)',
                         "& fieldset": { border:'none' },
                         boxShadow:'0px 4px 4px rgba(0, 0, 0, 0.25)',
@@ -207,11 +208,11 @@ export default function Navbar(props) {
             <Box>
                 <Avatar onClick={()=>{navigate('/account')}}/>
             </Box>
-            <Box  sx={{color:'#000000',cursor:'pointer',fontSize:'18px',display:'flex',gap:'10px',justifyContent:'flex-end',alignItems:'center'}}>
+            <Box  sx={{color:'#000000',cursor:'pointer',fontSize:'18px',display:'flex',justifyContent:'flex-end',alignItems:'center'}}>
                 {/* <HiExternalLink style={{fontSize:'30px'}}/> */}
 
                 <Box>
-                <Typography onClick={handleLoginOpen} sx={{fontSize:'20px'}}>Login /</Typography>
+                <Typography onClick={handleLoginOpen} sx={{fontSize:{md:'20px',sm:'17px',xs:'14px'}}}>Login /</Typography>
 
 
                 <Dialog open={login}>
@@ -221,7 +222,7 @@ export default function Navbar(props) {
 
                 </Box>
                 <Box>
-                <Typography onClick={handleDrawer} sx={{fontSize:'20px'}}>Sign Up</Typography>
+                <Typography onClick={handleDrawer} sx={{fontSize:{md:'20px',sm:'17px',xs:'14px'}}}>Sign Up</Typography>
 
                 <Dialog open={drawer}>
                 <Signup setDrawer={setDrawer}/>

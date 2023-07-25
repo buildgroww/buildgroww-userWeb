@@ -42,51 +42,51 @@ import { Box } from '@mui/material'
 {/* import { Box, Skeleton, Stack } from '@mui/material' */}
 
 const Home = ({loading, setLoading}) => {
-  const user = useSelector((state)=>state.user);
-  const dispatch = useDispatch();
-  const cart = useSelector(cartValue);
-  const order = useSelector(orderValue);
-  const [click,setClick] = useState(0)
+  // const user = useSelector((state)=>state.user);
+  // const dispatch = useDispatch();
+  // const cart = useSelector(cartValue);
+  // const order = useSelector(orderValue);
+  // const [click,setClick] = useState(0)
 
 
-  useEffect(()=>{    
-    const fetchData = async () =>{
-      let token = Cookies.get('authCookie')
-      if(token!==undefined && (user.currentUser===null||user.currentUser.data===null)){
-         const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/userapp/user/me`,{headers :{Authorization: `Bearer ${token}`}})
-           let result = res.data;
-           result.data.token = token;
-           dispatch(loginSuccess(result)) 
-           setClick(1);
-      }
-    }
-   fetchData();
-    setTimeout(()=>{
-      setLoading(false)
-    }, 1000)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  // useEffect(()=>{    
+  //   const fetchData = async () =>{
+  //     let token = Cookies.get('authCookie')
+  //     if(token!==undefined && (user.currentUser===null||user.currentUser.data===null)){
+  //        const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/userapp/user/me`,{headers :{Authorization: `Bearer ${token}`}})
+  //          let result = res.data;
+  //          result.data.token = token;
+  //          dispatch(loginSuccess(result)) 
+  //          setClick(1);
+  //     }
+  //   }
+  //  fetchData();
+  //   setTimeout(()=>{
+  //     setLoading(false)
+  //   }, 1000)
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [])
     
 
-  useEffect(() => {
-    if((user.currentUser!==null && user.currentUser?.data!==null ) || click){
-        let query = {"userId":`${user.currentUser?.data?.id}`,"isDeleted":false}
-        let sort = {"name":1}
-        cartListProduct(query,sort,dispatch)
-        orderListProduct(query,sort,dispatch)
-    }
-    getLocation();
-    dispatch(updateQuery(null));
-    addAddOns(dispatch);
+  // useEffect(() => {
+  //   if((user.currentUser!==null && user.currentUser?.data!==null ) || click){
+  //       let query = {"userId":`${user.currentUser?.data?.id}`,"isDeleted":false}
+  //       let sort = {"name":1}
+  //       cartListProduct(query,sort,dispatch)
+  //       orderListProduct(query,sort,dispatch)
+  //   }
+  //   getLocation();
+  //   dispatch(updateQuery(null));
+  //   addAddOns(dispatch);
 
-    setClick(0)
+  //   setClick(0)
     
-    // dispatch(logOut())
-    // dispatch(addProduct({"products":[],"id":null}));
-    // dispatch(clearOrders());
+  //   // dispatch(logOut())
+  //   // dispatch(addProduct({"products":[],"id":null}));
+  //   // dispatch(clearOrders());
 
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [click])
+  //     // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [click])
 
   // useEffect(() => {
   //   const timer = setTimeout(()=> setLoading(false) ,500)
@@ -95,25 +95,25 @@ const Home = ({loading, setLoading}) => {
   //   }
   // }, [])
   
-  console.table(cart.products);
-  console.log(cart.quantity)
+  // console.table(cart.products);
+  // console.log(cart.quantity)
 
-  const getLocation = async () =>{
-    if(navigator.geolocation){
-      navigator.geolocation.getCurrentPosition((position)=>{
-        const {latitude,longitude} = position.coords;
-        dispatch(updateLocation({latitude,longitude}))
-        console.log(latitude,longitude)
-        // getPosition(latitude,longitude)
-      },(error)=>{
-        dispatch(updateLocation({code:error.code,message:error.message}))
-        console.log(error)
-      })
-    }
-    else{
-      alert('Your Browser is not supporting geoLocation, Please Update your browser');
-    } 
-  }
+  // const getLocation = async () =>{
+  //   if(navigator.geolocation){
+  //     navigator.geolocation.getCurrentPosition((position)=>{
+  //       const {latitude,longitude} = position.coords;
+  //       dispatch(updateLocation({latitude,longitude}))
+  //       console.log(latitude,longitude)
+  //       // getPosition(latitude,longitude)
+  //     },(error)=>{
+  //       dispatch(updateLocation({code:error.code,message:error.message}))
+  //       console.log(error)
+  //     })
+  //   }
+  //   else{
+  //     alert('Your Browser is not supporting geoLocation, Please Update your browser');
+  //   } 
+  // }
 
   return (
     <>

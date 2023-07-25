@@ -1,10 +1,11 @@
 import { Typography } from '@mui/material'
 import React from 'react'
+import Block1 from '../../contents/account/Block1'
 
 const Account = () => {
   return (
     <>
-      <Typography>hello</Typography>
+      <Block1/>
     </>
   )
 }

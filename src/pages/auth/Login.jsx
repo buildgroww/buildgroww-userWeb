@@ -35,8 +35,8 @@ function Login({setLogin}) {
 };
   return (
 
-    <Box sx={{width:'100%'}}>
-    <Box sx={{width:{md:'500px',sm:'500px',xs:'400px'},position:'relative',height:{sm:'60vh',xs:'60vh'},padding:{md:'25px',sm:'25px',xs:'15px'}}}>
+    <Box sx={{width:'100%',display:'flex',justifyContent:'center',alignItems:'center'}}>
+    <Box sx={{width:{md:'500px',sm:'500px',xs:'350px'},position:'relative',height:{sm:'60vh',xs:'60vh'},padding:{md:'25px',sm:'25px',xs:'15px'}}}>
        <Box sx={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
         <Typography sx={{fontSize:'30px',fontWeight:'700'}}>BuildGroww</Typography>
         <Close onClick={handleDrawerClose} sx={{fontSize:'25px','&:hover':{background:'gray',borderRadius:'5px',cursor:'pointer'}}}/>

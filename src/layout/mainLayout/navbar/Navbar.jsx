@@ -1,7 +1,7 @@
 import React,{useEffect, useState} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import SearchBar from './searchbar/SearchBar'
-import NavButton from './navButton/NavButton'
+
 import {
     AppBar,
     Box,
@@ -18,21 +18,21 @@ import {
     Dialog,
     Avatar,
     TextField,
-    InputAdornment
+    InputAdornment,
+    useMediaQuery
 } from "@mui/material";
 
-import { ShoppingCart, Menu,} from '@mui/icons-material';
-import PhoneIcon from '@mui/icons-material/Phone';
+import { Menu,} from '@mui/icons-material';
+
 import WestIcon from '@mui/icons-material/West';
 import Siderbar from '../sideBar/Siderbar';
-import { useDispatch, useSelector } from 'react-redux';
-import { cartValue } from '../../../redux/cartRedux';
+
+
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import LocationOffIcon from '@mui/icons-material/LocationOff';
-import { useSnackbar } from 'notistack';
-import { selectUser, updateLocation } from '../../../redux/userRedux';
-import axios from 'axios';
-import {HiExternalLink} from 'react-icons/hi'
+
+
+
+
 import Signup from '../../../pages/auth/Signup';
 import Login from '../../../pages/auth/Login';
 
@@ -48,14 +48,14 @@ import Login from '../../../pages/auth/Login';
         alignItems:'center',
         justifyContent:'space-between',
         flex: '2',
-        color: theme.header.textColor,
+    
         [theme.breakpoints.down('md')]: {
             flex:'1',
         } 
   }));
 
   const Logo = styled(Box)(({theme}) => ({
-        color: theme.header.textColor,
+       
         [theme.breakpoints.down('md')]:{
             paddingBottom:'5px',
         }
@@ -104,11 +104,10 @@ export default function Navbar(props) {
     const [open, setOpen] = useState(false);
     const [drawer,setDrawer] = useState(false);
     const [login,setLogin] = useState(false);
-    const user = useSelector(selectUser);
-    const [res,setRes] = useState({});
-    const [on,setOn] = useState(false);
-    const {enqueueSnackbar} = useSnackbar();
-    const dispatch = useDispatch();
+   
+   
+   
+   
     const handleOpen = ()=>{
         setOpen(true);
     };
@@ -134,13 +133,11 @@ export default function Navbar(props) {
 
     const navigate = useNavigate();
     const theme = useTheme();
-    const cartVal = useSelector(cartValue);
+   
 
-    useEffect(() => {
-        // handleCurrLocation();
-      }, [])
   
-
+  
+      const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
   return (
       <NavBar  sx={{paddingLeft: '27px',paddingRight: '27px'}} position="fixed">
         <StyleToolbar sx={{height:{sm:'95px',xs:'100px',},top:{sm:'0',xs:'-21px',},}}>
@@ -163,11 +160,11 @@ export default function Navbar(props) {
                     </Paragraph>
                 </Logo>
 
-                {res && res.city && <Button sx={{display:{sm:'flex',xs:'none'},backgroundColor:'rgba(217, 217, 217, 0.39)',color:'#000000',justifyContent:'flex-start',gap:'30px',padding:'13px 15px',boxShadow:'0px 4px 4px rgba(0, 0, 0, 0.25)',borderRadius:'21px',width:'270px',minWidth:'160px'}}><LocationOnIcon/>{res.city}</Button>}
+                { <Button sx={{display:{sm:'flex',xs:'none'},backgroundColor:'rgba(217, 217, 217, 0.39)',color:'#000000',justifyContent:'flex-start',gap:'30px',padding:'13px 15px',boxShadow:'0px 4px 4px rgba(0, 0, 0, 0.25)',borderRadius:'21px',width:'270px',minWidth:'160px'}}><LocationOnIcon/></Button>}
 
-                {/* {(!res || !res.city) && <Button sx={{display:{sm:'flex',xs:'none'}, backgroundColor:'rgba(217, 217, 217, 0.39)',color:'#000000',justifyContent:'flex-start',gap:{md:'30px',sm:'20px',xs:'15px'},padding:'13px 15px',boxShadow:'0px 4px 4px rgba(0, 0, 0, 0.25)',borderRadius:'21px',width:{md:'270px',sm:'230px',xs:'100px'},minWidth:'150px'}}><LocationOnIcon/>Haridwar</Button>} */}
+               
 
-                {(!res || !res.city) && <TextField
+                {<TextField
                     type="text"
                     InputProps={{
                        startAdornment: <InputAdornment position="start"><LocationOnIcon
@@ -198,13 +195,13 @@ export default function Navbar(props) {
                 
                 
 
-                {/* {user.currentLocation && user.currentLocation.code && user.currentLocation.code===1 && <Button sx={{backgroundColor:'rgba(217, 217, 217, 0.39)',color:'#000000',justifyContent:'flex-start',gap:{md:'30px',sm:'20px',xs:'10px'},padding:{md:'13px 15px'},boxShadow:'0px 4px 4px rgba(0, 0, 0, 0.25)',borderRadius:'21px',width:{md:'270px'},minWidth:'160px'}}><LocationOffIcon/>Location Off</Button>} */}
+             
                 <SearchBar/>
-                {/* <Badge sx={{display:{sm:'block',md:'none'}, left:'48px'}}>
-                    <ShoppingCart/>
-                </Badge> */}
-                {/* <NavButton/> */}
+             
             </NavLeft>
+
+
+
             <Box>
                 <Avatar onClick={()=>{navigate('/account')}}/>
             </Box>
@@ -215,7 +212,7 @@ export default function Navbar(props) {
                 <Typography onClick={handleLoginOpen} sx={{fontSize:{md:'20px',sm:'17px',xs:'14px'}}}>Login /</Typography>
 
 
-                <Dialog open={login}>
+                <Dialog open={login} fullScreen={fullScreen}>
                 <Login setLogin={setLogin}/>
     
                 </Dialog>
@@ -224,7 +221,7 @@ export default function Navbar(props) {
                 <Box>
                 <Typography onClick={handleDrawer} sx={{fontSize:{md:'20px',sm:'17px',xs:'14px'}}}>Sign Up</Typography>
 
-                <Dialog open={drawer}>
+                <Dialog open={drawer} fullScreen={fullScreen}>
                 <Signup setDrawer={setDrawer}/>
     
                 </Dialog>

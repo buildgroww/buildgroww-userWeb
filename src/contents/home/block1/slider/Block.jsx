@@ -3,22 +3,16 @@ import React from 'react'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
-import {styled} from "@mui/styles"
 // import "./block1.css"
-import {Card } from '@mui/material';
+import {Card, useTheme,styled } from '@mui/material';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { Link } from 'react-router-dom';
 
 const Item = styled(Card)(({theme}) => ({
-  // width: '98%!important',
+ 
   height: '220px',
-  
-//   boxShadow: "0 1px 5px rgba(104, 104, 104, 0.8)",
-//   //margin:'35px 0px 20px 0px',
-//   margin:'35px 15px!important',
-//   // textAlign:'center',
-  
+
   [theme.breakpoints.down('md')]: {
     height: '200px',
 },
@@ -83,7 +77,7 @@ const PageLink = styled(Link)(({theme})=>({
 }))
 
 export default function Block() {
-
+const theme = useTheme();
     const settings1 = {
       dots: false,
       infinite: true,

@@ -5,6 +5,8 @@ import React from 'react'
 
 import { useNavigate } from 'react-router-dom';
 import { signupSchema } from '../../schemas';
+import { useDispatch } from '../../redux/store/store';
+import { register } from '../../redux/slices/auth';
 
 const initialValues = {
   name:'',
@@ -14,6 +16,8 @@ const initialValues = {
 }
 
 function Signup({setDrawer}) {
+
+  const dispatch = useDispatch();
   const {values , errors , handleBlur,handleChange,handleSubmit,touched} = useFormik({
     initialValues:initialValues,
     validationSchema:signupSchema,
@@ -21,8 +25,16 @@ function Signup({setDrawer}) {
     onSubmit : async(values,action) => {
       const{name,email,password,phone}= values
       let data = {name,email,phone,password}
-      console.log(data)
-      action.resetForm();
+
+      const result = await dispatch(register(data))
+      console.log(result)
+      if(result){
+        action.resetForm();
+
+      }
+      else{
+        return false
+      }
     
     }
 
@@ -38,8 +50,8 @@ function Signup({setDrawer}) {
 };
   return (
 
-    <Box sx={{width:'100%'}}>
-    <Box sx={{width:{md:'500px',sm:'500px',xs:'400px'},position:'relative',height:{sm:'85vh',xs:'80vh'},padding:{md:'25px',sm:'25px',xs:'15px'}}}>
+    <Box sx={{width:'100%',display:'flex',justifyContent:'center',alignItems:'center'}}>
+    <Box sx={{width:{md:'500px',sm:'500px',xs:'350px'},position:'relative',height:{sm:'85vh',xs:'80vh'},padding:{md:'25px',sm:'25px',xs:'15px'}}}>
        <Box sx={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
         <Typography sx={{fontSize:'30px',fontWeight:'700'}}>BuildGroww</Typography>
         <Close onClick={handleDrawerClose} sx={{fontSize:'25px','&:hover':{background:'gray',borderRadius:'5px',cursor:'pointer'}}}/>

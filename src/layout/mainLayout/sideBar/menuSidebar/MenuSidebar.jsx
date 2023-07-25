@@ -21,11 +21,10 @@ import {
     import GroupsIcon from '@mui/icons-material/Groups';
     import EditIcon from '@mui/icons-material/Edit';
 import { Link, useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { selectUser } from '../../../../redux/userRedux';
+
 
 export default function MenuSidebar() {
-  const user = useSelector(selectUser);
+
   const navigate = useNavigate();
   return (
     <Box sx={{fontFamily:'Roboto',display:'flex',flexDirection:'column',gap:'5px'}}>
@@ -54,12 +53,12 @@ export default function MenuSidebar() {
           <ListItemText primary="Choose Language" />
         </ListItem>
         <Divider light /> */}
-        <ListItem   button onClick={()=>{user.currentUser === null || user.currentUser.data === null ? navigate('/login'): navigate('/my-account/profile')}}>
+        <ListItem>
           <PersonIcon/>
           <ListItemText primary="My Account" />
         </ListItem>
         <Divider/>
-        <ListItem button onClick={()=>{user.currentUser === null || user.currentUser?.data === null ? navigate('/login') : navigate('/orders')}}>
+        <ListItem button>
           <FilterFramesIcon/>
           <ListItemText primary="My Orders" />
         </ListItem>

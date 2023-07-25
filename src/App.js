@@ -30,6 +30,7 @@ function App() {
     <Router>
       <Routes>
         <Route exact path="/" element={<Home  />} />
+        <Route exact path="/search" element={<Search  />} />
         <Route exact path="/account" element={<Account />} />
         <Route exact path="/company" element={<Company />} />
         <Route exact path="/product" element={<Product />} />

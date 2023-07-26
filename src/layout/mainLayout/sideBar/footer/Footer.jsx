@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Cookies from 'js-cookie';
 
 export default function Footer() {
-  const user = useSelector();
+  const user =[];
   const dispatch = useDispatch();
 
   const handleLogout = () => {
@@ -22,7 +22,7 @@ export default function Footer() {
   }
   return (
     <Box >
-      {user.currentUser === null || user.currentUser.data === null ? null : <List>
+      {((user && user.currentUser === null) || (user && user.currentUser && user.currentUser.data && user.currentUser.data === null)) ? null : <List>
       <ListItem sx={{alignItems:'center',gap:'8px'}} button onClick={handleLogout}>
                 <CgLogOut style={{fontSize:'25px'}}/>
               <ListItemText sx={{">span":{fontSize:'17px'}}} primary="Logout" />

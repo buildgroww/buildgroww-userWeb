@@ -1,6 +1,9 @@
 import { Close } from '@mui/icons-material';
 import { Box, Divider, Stack, Typography, styled, useTheme } from '@mui/material'
 import React from 'react'
+import Header from './header/Header';
+import MenuSidebar from './menuSidebar/MenuSidebar';
+import Footer from './footer/Footer';
 
 const SideBar = styled(Box)(({ theme }) => ({
     display:'flex',
@@ -27,7 +30,7 @@ export default function({setOpen,setLogin}){
         <MenuSidebar/>
         <Stack sx={{flex:'2',width:'100%',}}>
             <Divider/>
-            {/* <Footer/> */}
+            <Footer/>
         </Stack>
     </SideBar>
     </>

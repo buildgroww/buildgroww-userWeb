@@ -102,8 +102,20 @@ const Image = styled("img")(({theme})=>({
     alignItems:"center"
   }
 }))
+
+const Logo = styled(Box)(({theme}) => ({
+  color: theme.header.textColor,
+  [theme.breakpoints.down('md')]:{
+      paddingBottom:'5px',
+  }
+}));
+
+const Paragraph = styled(Typography)(({theme})=>({
+  fontFamily: 'Roboto'
+}))
+
 const Footer = () => {
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
   // const handleScrollToTop = () =>{
   //       Window.scrollTo({top:0, behaviour:"smooth"})
   // };
@@ -138,8 +150,14 @@ const Footer = () => {
        <Container>
         <Wrapper>
         <Box1>
-        <Link to="/" style={{display:"flex", width:"100%"}} >  
-        <Image src="/images/mainLogo/logo1.png" alt="logo" /> </Link>
+        <Logo onClick={()=>{navigate('/')}} sx={{display:'flex',gap:{md:'10px',xs:'7px'},cursor:{md:'pointer',xs:'none'},marginRight:'10px'}}>
+                    <Paragraph   component="div" sx={{color:'#60360F',fontSize: {md:'40px',sm:'25px',xs:'20px'},}}>
+                        Build
+                    </Paragraph>
+                    <Paragraph component="div" sx={{color:'#548F25',fontSize: {md:'40px',sm:'25px',xs:'20px'},}}>
+                      Groww
+                    </Paragraph>
+          </Logo>
           <Typography variant='body1' sx={{color:"white", textAlign:"justify"}}>Get everything digitized with us! We are a platform providing services like website, application, dashboard, UI/UX design, digital marketing, graphic designing, logo design, presentations, and content writing for stores, hotels, restaurants, hospitals, and institutes.</Typography>
           <Box sx={{color:"white", display:"flex", flexDirection:"column", gap:"8px", justifyContent:{sm:"flex-start", xs:"center"}, width:"100%" }}   >
             <Typography sx={{display:"flex", alignItems:"center", fontSize:{lg:"12px", md:"10px", sm:"8px",xs:"15px"}, justifyContent:{sm:"flex-start", xs:"center"}}} >Show some love <FavoriteOutlined sx={{fontSize:{lg:"16px", md:"12px",sm:"10px",xs:"15px"}, margin:"0px 2px", display:{md:"flex",sm:"none" }}} /> on social media </Typography>
@@ -209,7 +227,12 @@ const Footer = () => {
         </Box6>
         
         </Wrapper>
-        <Typography sx={{display:"flex", justifyContent:"center", alignItems:"center", marginTop:"10px", color:"#fff"}} >&copy; Techpyro 2023 | All right reserved.</Typography>
+        <Box>
+          <Typography sx={{display:"flex",justifyContent:"center", alignItems:"center", marginTop:"10px", color:"#fff"}} >&copy; Build Groww 2023 | All right reserved.</Typography>
+          <a href='https://techpyro.com' target='_blank' >
+            <Typography sx={{display:"flex",justifyContent:"center",textDecoration:'underline', alignItems:"center", marginTop:"10px", color:"#fff"}} >Created By TechPyro</Typography>
+          </a>
+        </Box>
        </Container>
     </Box>
   )

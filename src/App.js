@@ -14,6 +14,8 @@ import Product from "./pages/product/Product";
 import Company from "./pages/company/Company";
 import Search from "./pages/search/Search"
 
+import Cart from "./pages/cart/Cart"
+// import { Search } from "@mui/icons-material";
 
 
 function App() {
@@ -31,6 +33,7 @@ function App() {
         {/* <Route exact path="/products" element={<Products/>} /> */}
         
       
+        <Route exact path="/cart" element={<Cart />} />
       </Routes>
     </Router>
 

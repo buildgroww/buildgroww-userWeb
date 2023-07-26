@@ -24,10 +24,9 @@ import { HiShoppingBag } from "react-icons/hi";
 // import { FiPackage } from "react-icons/fi";
 
 import { useDispatch, useSelector } from "react-redux";
-import { logOut, selectUser } from "../../../../redux/userRedux";
+ 
 import { useNavigate } from "react-router-dom";
-import { addProduct } from "../../../../redux/cartRedux";
-import { clearOrders } from "../../../../redux/orderRedux";
+ 
 import Cookies from "js-cookie";
 
 const CustomButton = styled(Box)`
@@ -90,19 +89,19 @@ export default function NavButton(props) {
 //   const [showMore, setShowMore] = useState("none");
 //   onMouseOver={() => setShowLogin("flex")} onMouseOut={() => setShowLogin("none")}
 const theme = useTheme();
-const user = useSelector(selectUser);
+const user = useSelector();
 const navigate = useNavigate();
 const dispatch = useDispatch();
 
 const handleLogout = () => {
   // logout();
-  dispatch(logOut());
-    Cookies.remove('authCookie');
-    localStorage.clear();
-    dispatch(addProduct({}));
-    dispatch(clearOrders());
-    navigate("/")
-    window.location.reload();
+  // dispatch(logOut());
+  //   Cookies.remove('authCookie');
+  //   localStorage.clear();
+  //   dispatch(addProduct({}));
+  //   dispatch(clearOrders());
+  //   navigate("/")
+  //   window.location.reload();
   
 }
 
@@ -150,9 +149,9 @@ const handleLogout = () => {
                 fontSize: "22px",
               }}
             />{" "}
-            {user.currentUser?.data?.name !== undefined && user.currentUser?.data?.name !== null
+            {user.currentUser?.data?.name !== undefined && user.currentUser?.data?.name !== null 
               ? user.currentUser?.data?.name?.split(' ').slice(0,1)
-              : "TechPyro User"}
+               : "TechPyro User"}
           </Typography>
         )}
         <Box

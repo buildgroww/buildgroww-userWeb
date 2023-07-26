@@ -2,13 +2,13 @@ import { Box, Button, Card, Typography,useTheme,Zoom } from '@mui/material'
 import React, { useState,useEffect } from 'react'
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectUser, updateLocation } from '../../../redux/userRedux';
+// import { selectUser, updateLocation } from '../../../redux/userRedux';
 import { useSnackbar } from 'notistack';
 import axios from 'axios';
 
 export default function PageHeader() {
     const theme = useTheme();
-    const user = useSelector(selectUser);
+    const user = useSelector();
     const [res,setRes] = useState({});
     const {enqueueSnackbar} = useSnackbar();
     const dispatch = useDispatch();
@@ -71,14 +71,14 @@ export default function PageHeader() {
    const handleCurrLocation = async ()=>{
       if(user.currentLocation===null){
           if(navigator.geolocation){
-              navigator.geolocation.getCurrentPosition((position)=>{
-                const {latitude,longitude} = position.coords;
-                dispatch(updateLocation({latitude,longitude}))
-                getPosition(latitude,longitude)
-              },(error)=>{
-                dispatch(updateLocation({code:error.code,message:error.message}))
-                console.log(error)
-              })
+              // navigator.geolocation.getCurrentPosition((position)=>{
+              //   const {latitude,longitude} = position.coords;
+              //   dispatch(updateLocation({latitude,longitude}))
+              //   getPosition(latitude,longitude)
+              // },(error)=>{
+              //   dispatch(updateLocation({code:error.code,message:error.message}))
+              //   console.log(error)
+              // })
             }
             else{
               alert('Your Browser is not supporting geoLocation, Please Update your browser');

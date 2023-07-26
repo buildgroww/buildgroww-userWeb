@@ -4,9 +4,9 @@ import React,{useRef, useState} from 'react'
 
 import SearchIcon from '@mui/icons-material/Search';
 import { Link, useNavigate } from 'react-router-dom';
-import { ProductsList } from '../../../../redux/apiCalls';
+// import { ProductsList } from '../../../../redux/apiCalls';
 import { useDispatch, useSelector } from 'react-redux';
-import { addSearchProduct, clearSearchlist, updateQuery } from '../../../../redux/SearchRedux';
+// import { addSearchProduct, clearSearchlist, updateQuery } from '../../../../redux/SearchRedux';
 import HistoryIcon from '@mui/icons-material/History';
 
 const Search = styled(Box)(({theme}) => ({
@@ -71,26 +71,26 @@ export default function SearchBar(props) {
     }
     const handleEnter = (e)=>{
         if(e.target.value!=="" && e.key ==='Enter'){
-            dispatch(addSearchProduct({key:e.target.value,value:list}));
-            dispatch(updateQuery(e.target.value));
-            if(window.location.pathname!=='/products'){
-                navigate('/products');
-            }
+            // dispatch(addSearchProduct({key:e.target.value,value:list}));
+            // dispatch(updateQuery(e.target.value));
+            // if(window.location.pathname!=='/products'){
+            //     navigate('/products');
+            // }
         } 
     }
     const handleChange = async(e)=>{
         if(e.target.value!==""){
-            const query = {"title.longTitle":{"$regex":`${e.target.value}`,"$options":"i"},}
-            const sort = {"name":1}
-            const res = await ProductsList(query,sort);
-            if(res?.data?.status==='SUCCESS'){
-                setList(res.data.data);
+            // const query = {"title.longTitle":{"$regex":`${e.target.value}`,"$options":"i"},}
+            // const sort = {"name":1}
+            // const res = await ProductsList(query,sort);
+            // if(res?.data?.status==='SUCCESS'){
+            //     setList(res.data.data);
                 
-                // dispatch(clearSearchlist())
-            }
-            else{
-                setList(null);
-            }
+            //     // dispatch(clearSearchlist())
+            // }
+            // else{
+            //     setList(null);
+            // }
         }
         else{
             setList(null);
@@ -125,7 +125,8 @@ export default function SearchBar(props) {
             zIndex: "100"}} component="nav" aria-label="mailbox folders" ref={catMenu}>
             {list===null?null:
             list.data.map((item,index)=>(
-                <StyledListItem key={index} sx={{gap:'15px'}} onClick={()=>{dispatch(updateQuery(item?.title?.shortTitle));
+                <StyledListItem key={index} sx={{gap:'15px'}} onClick={()=>{
+                    // dispatch(updateQuery(item?.title?.shortTitle));
                     if(window.location.pathname!=='/products'){
                         navigate('/products');
                     }
@@ -137,7 +138,8 @@ export default function SearchBar(props) {
             ))}            
             <Divider />
             {searchProducts.searchList.map((item,index)=>(
-                <StyledListItem key={index} onClick={()=>{dispatch(updateQuery(item.key));
+                <StyledListItem key={index} onClick={()=>{
+                    // dispatch(updateQuery(item.key));
                     if(window.location.pathname!=='/products'){
                         navigate('/products');
                     }

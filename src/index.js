@@ -6,6 +6,7 @@ import { CssBaseline } from '@mui/material';
 import { Provider } from 'react-redux';
 import store from './redux/store/store';
 import { SnackbarProvider } from 'notistack';
+import "./index.css";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

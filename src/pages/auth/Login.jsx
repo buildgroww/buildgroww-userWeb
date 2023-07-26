@@ -1,42 +1,68 @@
 import { Close, Google } from '@mui/icons-material';
-import { Box, Button, TextField, Typography } from '@mui/material'
+import { Box, Button, Dialog,  TextField, Typography, useMediaQuery, useTheme } from '@mui/material'
 import { useFormik } from 'formik';
 import React from 'react'
 
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from '../../redux/store/store';
+import { login } from '../../redux/slices/auth';
+import { useState } from 'react';
+import Block1 from './password/Block1';
 
 const initialValues = {
   
-  email:'',
+  username:'',
   password:''
 }
 
-function Login({setLogin}) {
+function Login({setLogin,setDrawer}) {
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const theme = useTheme();
+  const[open,setOpen] = useState(false);
   const {values , errors , handleBlur,handleChange,handleSubmit,touched} = useFormik({
     initialValues:initialValues,
 
     onSubmit : async(values,action) => {
-      const{email,password}= values
-      let data = {email,password}
+      const{username,password}= values
+      let data = {username,password}
       console.log(data)
-      action.resetForm();
+      const result = await dispatch(login(data))
+      if (result){
+        action.resetForm();
+        localStorage.setItem("accessToken",result.token);
+      setLogin(false)
+      }
     
     }
 
 
   });
 
-  const navigate = useNavigate();
+const handleOpenPassword = () => {
+  setOpen(true);
+  
+}
+const handleClosePassword = () => {
+  setOpen(false);
+}
+
   const handleDrawerClose = ()=>{
     setLogin(false);
 
-
-
 };
+
+const handleOpen = () => {
+  setDrawer(true)
+  setLogin(false);
+}
+
+const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
   return (
 
     <Box sx={{width:'100%',display:'flex',justifyContent:'center',alignItems:'center'}}>
-    <Box sx={{width:{md:'500px',sm:'500px',xs:'350px'},position:'relative',height:{sm:'60vh',xs:'60vh'},padding:{md:'25px',sm:'25px',xs:'15px'}}}>
+    <Box sx={{width:{md:'500px',sm:'500px',xs:'350px'},position:'relative',height:{sm:'70vh',xs:'60vh'},padding:{md:'25px',sm:'25px',xs:'15px'}}}>
        <Box sx={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
         <Typography sx={{fontSize:'30px',fontWeight:'700'}}>BuildGroww</Typography>
         <Close onClick={handleDrawerClose} sx={{fontSize:'25px','&:hover':{background:'gray',borderRadius:'5px',cursor:'pointer'}}}/>
@@ -54,7 +80,7 @@ function Login({setLogin}) {
 
        
 
-        <TextField variant='outlined' label='Email-Id / Phone No' type='email' name='email' value={values.email} onChange={handleChange} onBlur={handleBlur} sx={{width:'90%',"& fieldset": {borderRadius:'3px'}}}/>
+        <TextField variant='outlined' label='Email-Id / Phone No' type='email' name='username' value={values.username} onChange={handleChange} onBlur={handleBlur} sx={{width:'90%',"& fieldset": {borderRadius:'3px'}}}/>
 
         <TextField variant='outlined' label='Password' type='password' name='password' value={values.password} onChange={handleChange} onBlur={handleBlur} sx={{width:'90%',"& fieldset": {borderRadius:'3px'}}}/>
 
@@ -69,6 +95,17 @@ function Login({setLogin}) {
        <Box sx={{display:'flex',alignItems:'center',justifyContent:'center'}}>
               <Button variant='outlined' sx={{borderRadius:'3px',color:'black',border:'1px solid green',display:'flex',gap:'5px'}}><Google sx={{color:'green'}}/>Google</Button>
        </Box>
+        <Box sx={{display:'flex',justifyContent:'center',marginTop:'30px'}}>
+       <Typography onClick={handleOpen} sx={{color:'black',cursor:'pointer'}}>Don't have an account?Register | </Typography>
+       
+       <Box>
+       <Typography onClick={handleOpenPassword}   sx={{color:'black',cursor:'pointer'}}> Forgot Password</Typography>
+       <Dialog open={open} fullScreen={fullScreen}>
+        <Block1 />
+       </Dialog>
+       </Box>
+
+        </Box>
 </Box>
 </Box>
   )

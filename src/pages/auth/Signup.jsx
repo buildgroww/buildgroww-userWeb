@@ -15,7 +15,7 @@ const initialValues = {
   password:''
 }
 
-function Signup({setDrawer}) {
+function Signup({setDrawer,setLogin}) {
 
   const dispatch = useDispatch();
   const {values , errors , handleBlur,handleChange,handleSubmit,touched} = useFormik({
@@ -30,7 +30,8 @@ function Signup({setDrawer}) {
       console.log(result)
       if(result){
         action.resetForm();
-
+        setDrawer(false)
+         setLogin(true)
       }
       else{
         return false

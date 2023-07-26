@@ -22,7 +22,8 @@ import {
     List,
     ListItem,
     ListItemText,
-    useMediaQuery
+    useMediaQuery,
+    Divider
 } from "@mui/material";
 
 import { Menu,} from '@mui/icons-material';
@@ -40,6 +41,8 @@ import Signup from '../../../pages/auth/Signup';
 import Login from '../../../pages/auth/Login';
 import { useDispatch } from 'react-redux';
 import { useSnackbar } from 'notistack';
+import { useSelector } from '../../../redux/store/store';
+import { getUser } from '../../../redux/slices/auth';
 
   const StyleToolbar = styled(Toolbar)(({theme}) => ({
       display: 'flex',
@@ -120,13 +123,24 @@ export default function Navbar(props) {
     const [drawer,setDrawer] = useState(false);
     const [login,setLogin] = useState(false);
     const [res,setRes] = useState({});
-    const [on,setOn] = useState(false);
-    // const {enqueueSnackbar} = useSnackbar();
     const dispatch = useDispatch();
     const [loca,setLoca] = useState(null);
+
+    const user = useSelector((state) => state.auth)
+
+    const fetchUser = async () => {
+      let result = await dispatch(getUser())
+      if(result){
+         return true
+      }
+      else
+      return false
+    }
+    console.log(user)
     const handleOpen = ()=>{
         setOpen(true);
     };
+
 
     const handleDrawer = ()=>{
         setDrawer(true);
@@ -152,6 +166,7 @@ export default function Navbar(props) {
 
     useEffect(() => {
         // handleCurrLocation();
+        fetchUser()
       }, [])
 
       const handleLocationChange = async (e)=>{
@@ -255,16 +270,48 @@ export default function Navbar(props) {
                 <SearchBar/>
              
             </NavLeft>
-            <Box>
+            <Box sx={{display:{md:Object.keys(user).length!==0 ? 'flex' : 'none',xs:'none'},alignItems:'center',position:'relative',"&:hover .list":{display:'flex'}}}>
                 <Avatar onClick={()=>{navigate('/account')}}/>
+                <Typography sx={{color:'black',fontSize:'16px',fontWeight:'500'}}>{user.user.name}</Typography>
+
+                <Box  className={'list'} sx={{position:'absolute',display:'none',flexDirection:'column',width:'250px',background:'white',right:'0px',height:'auto',  zIndex:'100',border:'1px solid rgba(0,0,0,0.3)',top:'32px',borderRadius:'5px'}}>
+                 <Box sx={{margin:'20px'}}>
+                 <Typography sx={{color:'black',fontSize:'16px',fontWeight:'600'}}>Welcome {user.user.name} !</Typography>
+                <Box sx={{display:'flex',gap:'10px'}}>
+                   
+                   <Button  variant='outlined' sx={{color:'black',fontSize:'12px',height:'35px',borderRadius:'5px'}}>MyAccount</Button>
+                   <Button variant='outlined' sx={{color:'black',fontSize:'12px',height:'35px',borderRadius:'5px'}}>Logout</Button>
+                   
+                </Box>
+
+                 </Box>
+                <Divider/>
+                <Typography  sx={{fontWeight:'600',fontSize:'16px',padding:'15px',color:'black'}}>Orders</Typography>
+                <Divider/>
+                <Typography sx={{fontWeight:'600',fontSize:'16px',padding:'15px',color:'black'}}>Wishlist</Typography>
+                <Divider/>
+
+                <Typography sx={{fontWeight:'600',fontSize:'16px',padding:'15px',color:'black'}}>Coupons</Typography>
+               <Divider/>
+
+                <Typography sx={{fontWeight:'600',fontSize:'16px',padding:'15px',color:'black'}}>Saved Address</Typography>
+                <Divider/>
+
+                 <Typography sx={{fontWeight:'600',fontSize:'16px',padding:'15px',color:'black'}}>Contact Us</Typography>
+                <Divider/>
+
+                   <Typography  sx={{fontWeight:'600',fontSize:'16px',padding:'15px',color:'black'}}>FAQs</Typography>
+                <Divider/>
+
+                </Box>
             </Box>
             <MenuButton sx={{display:{md:'none',xs:`${props.menu}`},right:'0 !important',marginLeft:'5px',marginTop:'4px'}} onClick={handleOpen}>
-                <Menu/>
+                <Menu />
             </MenuButton>
             <Drawer anchor='right' open={open} onClose={handleClose} transitionDuration={{enter:400 , exit:400}} ModalProps={{sx:{position:'absolute'}}}>
-                <Siderbar setOpen={setOpen} setLogin={setLogin} />
+                <Siderbar setOpen={setOpen} setLogin={setLogin} setDrawer={setDrawer}/>
             </Drawer>
-            <Box  sx={{color:'#000000',cursor:'pointer',fontSize:'18px',display:{md:'flex',xs:'none'},justifyContent:'flex-end',alignItems:'center'}}>
+            <Box  sx={{color:'#000000',cursor:'pointer',fontSize:'18px',display:{md: 'flex',xs:'none'},justifyContent:'flex-end',alignItems:'center'}}>
                 {/* <HiExternalLink style={{fontSize:'30px'}}/> */}
 
                 <Box>
@@ -272,7 +319,7 @@ export default function Navbar(props) {
 
 
                 <Dialog open={login} fullScreen={fullScreen}>
-                <Login setLogin={setLogin}/>
+                <Login setLogin={setLogin} setDrawer={setDrawer}/>
     
                 </Dialog>
 
@@ -281,7 +328,7 @@ export default function Navbar(props) {
                 <Typography onClick={handleDrawer} sx={{fontSize:{md:'20px',sm:'17px',xs:'14px'}}}>Sign Up</Typography>
 
                 <Dialog open={drawer} fullScreen={fullScreen}>
-                <Signup setDrawer={setDrawer}/>
+                <Signup setDrawer={setDrawer} setLogin={setLogin}/>
     
                 </Dialog>
                 </Box>

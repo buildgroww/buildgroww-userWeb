@@ -15,6 +15,7 @@ import Company from "./pages/company/Company";
 import Search from "./pages/search/Search"
 
 import Cart from "./pages/cart/Cart"
+import CheckOut from "./pages/checkout/CheckOut";
 // import { Search } from "@mui/icons-material";
 
 
@@ -31,7 +32,7 @@ function App() {
         <Route exact path="/company" element={<Company />} />
         <Route exact path="/product" element={<Product />} />
         {/* <Route exact path="/products" element={<Products/>} /> */}
-        
+        <Route exact path="/checkout" element={<CheckOut />} />
       
         <Route exact path="/cart" element={<Cart />} />
       </Routes>

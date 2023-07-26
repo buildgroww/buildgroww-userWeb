@@ -1,9 +1,6 @@
 import React, { useState } from 'react'
-import Content from '../../../components/content/Content'
-import MiniSlider from '../../../contents/products/pageheader/MiniSlider'
-import { navData } from '../../../constants/Constant'
 import Navbar from "../../../layout/mainLayout/navbar/Navbar"
-import Products from "../../../contents/products/block1/Products"
+import Block1 from '../../../contents/products/block1/Block1'
 import { Box, Skeleton } from '@mui/material'
 const Product = () => {
   const [loading,setLoading] = useState(true);
@@ -34,9 +31,12 @@ const Product = () => {
       : */}
       <div>
         <Navbar menu={'none'} arrow={'block'} logo={'Products'}/>
-        <MiniSlider navData={navData}/>
-        <Products setLoading={setLoading}/>
-        <Content/>
+        {/* <MiniSlider navData={navData}/> */}
+        {/* <Products setLoading={setLoading}/> */}
+        {/* <Content/> */}
+        <Box sx={{margin:'100px 15vw 0 15vw'}}>
+            <Block1/>
+        </Box>
       </div>
       {/* } */}
     </>

@@ -49,7 +49,6 @@ function Block2() {
         <Box sx={{border:'1px solid rgba(0, 0, 0, 0.42)',borderRadius:'40px',padding:{sm:'20px 0 20px 36px',xs:'20px 0 20px 20px'}}}>
             <Box sx={{}}><Typography sx={{fontSize:{md:'36px',sm:'30px',xs:'25px'},fontWeight:300,fontFamily:'Roboto'}}>Before Construction</Typography></Box>
             <IconsContainer>
-                {/* <Icons> <img style={{width:'50%',height:'50%'}} alt='before construction image' src='/images/category/home/block2/img1.png' /> </Icons>
                 <Icons> <img style={{width:'50%',height:'50%'}} alt='before construction image' src='/images/category/home/block2/img1.png' /> </Icons>
                 <Icons> <img style={{width:'50%',height:'50%'}} alt='before construction image' src='/images/category/home/block2/img1.png' /> </Icons>
                 <Icons> <img style={{width:'50%',height:'50%'}} alt='before construction image' src='/images/category/home/block2/img1.png' /> </Icons>
@@ -64,7 +63,8 @@ function Block2() {
                 <Icons> <img style={{width:'50%',height:'50%'}} alt='before construction image' src='/images/category/home/block2/img1.png' /> </Icons>
                 <Icons> <img style={{width:'50%',height:'50%'}} alt='before construction image' src='/images/category/home/block2/img1.png' /> </Icons>
                 <Icons> <img style={{width:'50%',height:'50%'}} alt='before construction image' src='/images/category/home/block2/img1.png' /> </Icons>
-                <Icons> <img style={{width:'50%',height:'50%'}} alt='before construction image' src='/images/category/home/block2/img1.png' /> </Icons> */}
+                <Icons> <img style={{width:'50%',height:'50%'}} alt='before construction image' src='/images/category/home/block2/img1.png' /> </Icons>
+                <Icons> <img style={{width:'50%',height:'50%'}} alt='before construction image' src='/images/category/home/block2/img1.png' /> </Icons>
             </IconsContainer>
         </Box>
     </Box>

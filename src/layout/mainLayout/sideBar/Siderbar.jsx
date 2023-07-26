@@ -20,11 +20,11 @@ const SideBar = styled(Box)(({ theme }) => ({
     }
 }));
 
-export default function Siderbar() {
+export default function Siderbar({setOpen,setLogin}) {
     const theme = useTheme();
   return (
     <SideBar>
-        <Header/>
+        <Header setOpen={setOpen} setLogin={setLogin} />
         {/* <Divider sx={{height:'1px',width:'100%',color:`${theme.sidebar.textColor}`}}/> */}
         <MenuSidebar/>
         <Stack sx={{flex:'2',width:'100%',}}>

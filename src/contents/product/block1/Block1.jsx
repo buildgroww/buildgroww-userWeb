@@ -4,7 +4,10 @@ import React from 'react'
 const StyleToolbar = styled(Box)(({theme})=>({
     padding:"30px",
   textAlign:"justify",
-  backgroundColor:'#fff'
+  backgroundColor:'#fff',
+  [theme.breakpoints.down("md")]:{
+    padding:'10px'
+  }
   }))
 function Block1() {
   return (
@@ -13,7 +16,7 @@ function Block1() {
   <Box sx={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"20px",gap:"30px",flexDirection:{md:"row",sm:"row",xs:'column'}}}>
  
         <Box >
-          <Typography sx={{fontSize:"24px",fontWeight:"600",}}>
+          <Typography sx={{fontSize:{md:"24px",sm:"24px",xs:"20px"},fontWeight:"600",}}>
 Lorem ipsum dolor sit amet 
           </Typography>
           <Box sx={{display:"flex",gap:"10px",paddingY:"10px",alignItems:"center",flexWrap:"wrap"}}>

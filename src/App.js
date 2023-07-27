@@ -16,6 +16,8 @@ import Search from "./pages/search/Search"
 
 import Cart from "./pages/cart/Cart"
 import CheckOut from "./pages/checkout/CheckOut";
+import Orders from "./pages/orders/Orders";
+import Orderdetails from "./pages/orderdetails/Orderdetails";
 // import { Search } from "@mui/icons-material";
 
 
@@ -33,8 +35,10 @@ function App() {
         <Route exact path="/product" element={<Product />} />
         {/* <Route exact path="/products" element={<Products/>} /> */}
         <Route exact path="/checkout" element={<CheckOut />} />
+        <Route exact path="/orderdetails" element={<Orderdetails />} />
       
         <Route exact path="/cart" element={<Cart />} />
+        <Route exact path="/orders" element={<Orders />} />
       </Routes>
     </Router>
 

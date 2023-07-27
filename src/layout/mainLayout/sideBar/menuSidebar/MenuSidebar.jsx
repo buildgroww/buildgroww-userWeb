@@ -6,20 +6,17 @@ import {
       ListItem,
       ListItemText,
     } from "@mui/material";
-    import SubscriptionsIcon from '@mui/icons-material/Subscriptions';
-    import GridViewRoundedIcon from '@mui/icons-material/GridViewRounded';
-    import CategoryIcon from '@mui/icons-material/Category';
-    import MoreIcon from '@mui/icons-material/More';
-    import LanguageIcon from '@mui/icons-material/Language';
+    import HomeRepairServiceIcon from '@mui/icons-material/HomeRepairService';
     import FilterFramesIcon from '@mui/icons-material/FilterFrames';
     import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-    import FavoriteIcon from '@mui/icons-material/Favorite';
-    import PersonIcon from '@mui/icons-material/Person';
-    import NotificationsIcon from '@mui/icons-material/Notifications';
+    import AccountCircleIcon from '@mui/icons-material/AccountCircle';
     import PhoneIcon from '@mui/icons-material/Phone';
     import ContactPageIcon from '@mui/icons-material/ContactPage';
     import GroupsIcon from '@mui/icons-material/Groups';
     import EditIcon from '@mui/icons-material/Edit';
+    import PlumbingIcon from '@mui/icons-material/Plumbing';
+    import ElectricalServicesIcon from '@mui/icons-material/ElectricalServices';
+    import FormatPaintIcon from '@mui/icons-material/FormatPaint';
 import { Link, useNavigate } from 'react-router-dom';
 
 
@@ -53,8 +50,8 @@ export default function MenuSidebar() {
           <ListItemText primary="Choose Language" />
         </ListItem>
         <Divider light /> */}
-        <ListItem>
-          <PersonIcon/>
+        <ListItem button>
+          <AccountCircleIcon/>
           <ListItemText primary="My Account" />
         </ListItem>
         <Divider/>
@@ -81,23 +78,31 @@ export default function MenuSidebar() {
       </List> 
       <Box sx={{fontSize:'17px',marginLeft:'5px',fontWeight:500,}}>Services</Box>
     <List sx={{width:'100%',flex:'9',padding:'0'}} component="nav" aria-label="mailbox folders">
-        <ListItem button onClick={()=>{navigate('/services-maintenance')}}>
-          <SubscriptionsIcon/>
-          <ListItemText primary="Services and maintenance" />
+        <ListItem button onClick={()=>{navigate('/')}}>
+          <HomeRepairServiceIcon/>
+          <ListItemText primary="Home Service" />
         </ListItem>
         <Divider/>
-        <ListItem button onClick={()=>{navigate('/packages')}}>
-          <GridViewRoundedIcon/>
-          <ListItemText primary="Packages" />
+        <ListItem button onClick={()=>{navigate('/')}}>
+          <PlumbingIcon/>
+          <ListItemText primary="Plumbing Service" />
+        </ListItem>
+        <ListItem button onClick={()=>{navigate('/')}}>
+          <ElectricalServicesIcon/>
+          <ListItemText primary="Electrical Service" />
+        </ListItem>
+        <ListItem button onClick={()=>{navigate('/')}}>
+          <FormatPaintIcon/>
+          <ListItemText primary="Colouring Service" />
         </ListItem>
         
       </List>
       <Box sx={{fontSize:'17px',marginLeft:'5px',fontWeight:500,}}>Contact</Box>
     <List sx={{width:'100%',flex:'9',padding:'0'}} component="nav" aria-label="mailbox folders">
-        <a href="tel:7300639790" style={{textDecoration:'none'}}>
+        <a href="tel:9559613375" style={{textDecoration:'none'}}>
         <ListItem button>
           <PhoneIcon/>
-          <ListItemText primaryTypographyProps={{fontSize:'18px',fontWeight:600}} primary="+91-7300639790" />
+          <ListItemText primaryTypographyProps={{fontSize:'18px',fontWeight:600}} primary="+91-9559613375" />
         </ListItem>
         </a>
         <Divider/>

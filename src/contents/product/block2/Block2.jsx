@@ -5,7 +5,7 @@ const StyleToolbar = styled(Box)(({theme})=>({
     margin:"0px 120px",
   textAlign:"justify",
   [theme.breakpoints.down('sm')]: {
-    margin:"0px 20px"
+    margin:"0px 10px"
   } 
   }))
 function Block2() {
@@ -15,14 +15,14 @@ function Block2() {
       <Card sx={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"20px",gap:"30px",flexDirection:{md:"row",sm:"row",xs:'column'}}}>
      
             <Box >
-              <Typography sx={{fontSize:"24px",fontWeight:"600",}}>
+              <Typography sx={{fontSize:{md:"24px",sm:"24px",xs:"18px"},fontWeight:"600",}}>
     Lorem ipsum dolor sit amet 
               </Typography>
              
-              <Typography sx={{fontSize:"18px",paddingY:'5px'}}>Lorem ipsum dolor sit amet.  <span style={{fontSize:"14px"}}>
+              <Typography sx={{fontSize:"16px",paddingY:'5px'}}>Lorem ipsum dolor sit amet.  <span style={{fontSize:"14px"}}>
                    4.4km
                 </span></Typography>
-               <Typography sx={{fontSize:"12px"}}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione hic culpa, obcaecati numquam ullam voluptatum laudantium nihil quia totam mollitia deleniti, earum quaerat voluptates sit, aspernatur necessitatibus eaque reiciendis fugiat.</Typography>
+               <Typography sx={{fontSize:"14px"}}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione hic culpa, obcaecati numquam ullam voluptatum laudantium nihil quia totam mollitia deleniti, earum quaerat voluptates sit, aspernatur necessitatibus eaque reiciendis fugiat.</Typography>
                   
             </Box>
             <Box sx={{position:"relative",width:{md:250,sm:250,xs:"100%"},height:150}}>

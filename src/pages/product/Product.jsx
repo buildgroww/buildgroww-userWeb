@@ -9,7 +9,7 @@ function Product() {
   return (
     <>
     <Navbar menu={'block'} arrow={'none'} logo={'Build Groww'}/>
-    <Box sx={{marginTop:"100px"}}>
+    <Box sx={{marginTop:"70px"}}>
     <Block1/>
     <Block2/>
     </Box>

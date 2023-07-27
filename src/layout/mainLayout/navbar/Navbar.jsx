@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from 'react';
+import React,{useEffect, useRef, useState} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import SearchBar from './searchbar/SearchBar'
 
@@ -29,9 +29,8 @@ import {
 import { Menu,} from '@mui/icons-material';
 
 import WestIcon from '@mui/icons-material/West';
-import Siderbar from '../sideBar/Siderbar';
 
-
+import Siderbar from '../sideBar/Siderbar.jsx'
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 
@@ -119,11 +118,14 @@ const SearchList = styled(List)(({ theme }) => ({
 
 
 export default function Navbar(props) {
-
+    const catMenu = useRef(null);
     const [open, setOpen] = useState(false);
     const [drawer,setDrawer] = useState(false);
     const [login,setLogin] = useState(false);
     const [res,setRes] = useState({});
+    const [on,setOn] = useState(false);
+    const [showSearch,setShowSearch] = useState(false);
+    // const {enqueueSnackbar} = useSnackbar();
     const dispatch = useDispatch();
     const [loca,setLoca] = useState(null);
 
@@ -205,6 +207,13 @@ export default function Navbar(props) {
   
       const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
 
+      const closeOpenMenus = (e) => {
+        if (catMenu.current && showSearch && !catMenu.current.contains(e.target)) {
+          setShowSearch(false);
+        }
+      };
+      document.addEventListener("mousedown", closeOpenMenus);
+
   return (
       <NavBar  sx={{paddingLeft: {sm:'27px',xs:'5px'},paddingRight: {sm:'27px',xs:'5px'}}} position="fixed">
         <StyleToolbar sx={{height:{sm:'95px',xs:'100px',},top:{sm:'0',xs:'-21px',},}}>
@@ -221,37 +230,38 @@ export default function Navbar(props) {
                     </Paragraph>
                 </Logo>
 
-                {res && res.city && <Button sx={{display:{sm:'flex',xs:'none'},backgroundColor:'rgba(217, 217, 217, 0.39)',color:'#000000',justifyContent:'flex-start',gap:'30px',padding:'13px 15px',boxShadow:'0px 4px 4px rgba(0, 0, 0, 0.25)',borderRadius:'21px',width:'270px',minWidth:'160px'}}><LocationOnIcon/>{res.city}</Button>}
+                {/* {res && res.city && <Button sx={{display:{sm:'flex',xs:'none'},backgroundColor:'rgba(217, 217, 217, 0.39)',color:'#000000',justifyContent:'flex-start',gap:'30px',padding:'13px 15px',boxShadow:'0px 4px 4px rgba(0, 0, 0, 0.25)',borderRadius:'21px',width:'270px',minWidth:'160px'}}><LocationOnIcon/>{res.city}</Button>} */}
 
-                {/* {(!res || !res.city) && <Button sx={{display:{sm:'flex',xs:'none'}, backgroundColor:'rgba(217, 217, 217, 0.39)',color:'#000000',justifyContent:'flex-start',gap:{md:'30px',sm:'20px',xs:'15px'},padding:'13px 15px',boxShadow:'0px 4px 4px rgba(0, 0, 0, 0.25)',borderRadius:'21px',width:{md:'270px',sm:'230px',xs:'100px'},minWidth:'150px'}}><LocationOnIcon/>Haridwar</Button>} */}
 
-                {<TextField
+                {showSearch && <TextField
+                    autoFocus
                     type="text"
                     InputProps={{
-                       startAdornment: <InputAdornment position="start"><LocationOnIcon
-                    //    sx={{
-                    //      marginTop: "6px",
-                    //      marginLeft: "10px",
-                    //      color: `${theme.header.background}`,
-                    //    }}
-                     /></InputAdornment>,
-                    }}
-                      placeholder="Search For Location"
-                      defaultValue='Haridwar'
-                    //   defaultValue={on?'':'Haridwar'}
-                      sx={{
-                        background: 'rgba(217, 217, 217, 0.39)',
-                        "& fieldset": { border:'none' },
-                        boxShadow:'0px 4px 4px rgba(0, 0, 0, 0.25)',
-                        borderRadius:'21px',
-                        width:{md:'270px',sm:'230px',xs:'130px'},
-                        padding:{md:'7px 15px',sm:'4px 10px',xs:'0px 0'},
-                        position:'relative'
-                      }}
-                      onChange={handleLocationChange}
-                      variant="outlined"
-                      size="small"
-                />}
+                        startAdornment: <InputAdornment position="start"><LocationOnIcon
+                        //    sx={{
+                            //      marginTop: "6px",
+                            //      marginLeft: "10px",
+                            //      color: `${theme.header.background}`,
+                            //    }}
+                            /></InputAdornment>,
+                        }}
+                        placeholder="Search For Location"
+                        sx={{
+                            background: 'rgba(217, 217, 217, 0.39)',
+                            "& fieldset": { border:'none' },
+                            boxShadow:'0px 4px 4px rgba(0, 0, 0, 0.25)',
+                            borderRadius:'21px',
+                            width:{md:'270px',sm:'230px',xs:'130px'},
+                            padding:{md:'7px 15px',sm:'4px 10px',xs:'0px 0'},
+                            position:'relative'
+                        }}
+                        onChange={handleLocationChange}
+                        variant="outlined"
+                        size="small"
+                        ref={catMenu}
+                        />}
+
+                        {!showSearch && <Button size='small' onClick={()=>{setShowSearch(true)}} sx={{display:'flex',fontSize:'16px',fontWeight:400,padding:{md:'13px 15px 13px 29px',sm:'10px 10px 10px 24px',xs:'6px 0px 6px 14px'}, backgroundColor:'rgba(217, 217, 217, 0.39)',color:'#000000',justifyContent:'flex-start',gap:'10px',boxShadow:'0px 4px 4px rgba(0, 0, 0, 0.25)',borderRadius:'21px',width:{md:'270px',sm:'180px',xs:'130px'},}}><LocationOnIcon/>Haridwar</Button>}
 
                 {loca && <SearchList
           color="secondary"
@@ -284,9 +294,6 @@ export default function Navbar(props) {
               ))}
               </SearchList>}
                 
-                
-
-             
                 <SearchBar/>
              
             </NavLeft>

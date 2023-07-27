@@ -53,7 +53,8 @@ const Block1 = ({setOpen}) => {
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
       
   return (
-    <>
+    <Box sx={{display:'flex',justifyContent:'center'}}>
+
       <Box sx={{width:{md:'500px',sm:'400px',xs:'350px'}}}>
         <Box sx={{display:'flex',justifyContent:'space-between',padding:'15px'}}>
             <Typography sx={{fontSize:'12px',color:'green'}}>Forgot Password</Typography>
@@ -65,16 +66,16 @@ const Block1 = ({setOpen}) => {
         <TextField variant='outlined' label='email' type='email' name='email' value={values.email}  sx={{width:'100%',"& fieldset": {height:'50px',borderRadius:'3px'},height:'50px'}} onChange={handleChange} onBlur={handleBlur}></TextField>
 
         <Box>
-        <Button onClick={handleOpen} variant='contained' type='submit' sx={{width:'100%',borderRadius:'3px',background:'black'}}>RESET PASSWORD</Button>      
+        <Button onClick={handleOpen} variant='contained' type='submit' sx={{width:'100%',borderRadius:'3px',background:'black','&:hover':{background:'black'}}}>RESET PASSWORD</Button>      
         <Dialog open={close} fullScreen={fullScreen}                            >
- <Block2 setClose={setClose}/>
+ <Block2 setClose={setClose} setOpen={setOpen}/>
     
    </Dialog>
         </Box>
       
         </form>
       </Box>
-    </>
+    </Box>
   )
 }
 

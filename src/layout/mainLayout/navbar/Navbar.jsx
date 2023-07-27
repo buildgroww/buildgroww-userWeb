@@ -42,7 +42,8 @@ import Login from '../../../pages/auth/Login';
 import { useDispatch } from 'react-redux';
 import { useSnackbar } from 'notistack';
 import { useSelector } from '../../../redux/store/store';
-import { getUser } from '../../../redux/slices/auth';
+import { getUser, logoutUser } from '../../../redux/slices/auth';
+import Cookies from 'js-cookie';
 
   const StyleToolbar = styled(Toolbar)(({theme}) => ({
       display: 'flex',
@@ -126,7 +127,7 @@ export default function Navbar(props) {
     const dispatch = useDispatch();
     const [loca,setLoca] = useState(null);
 
-    const user = useSelector((state) => state.auth)
+    const {user} = useSelector((state) => state.auth)
 
     const fetchUser = async () => {
       let result = await dispatch(getUser())
@@ -136,6 +137,15 @@ export default function Navbar(props) {
       else
       return false
     }
+
+    const handleLogout = async () => {
+
+      localStorage.removeItem('accessToken');
+      Cookies.remove('authCookie')
+      await dispatch(logoutUser())
+     
+  }
+
     console.log(user)
     const handleOpen = ()=>{
         setOpen(true);
@@ -181,6 +191,16 @@ export default function Navbar(props) {
         //     console.log(error);
         // }
            
+      }
+
+      let userName= `${user && user.name}`
+     
+      const stringAvatar = (name) => {
+        return {
+         
+          children : `${name.split('')[0][0]}`,
+         
+        };
       }
   
       const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
@@ -271,16 +291,16 @@ export default function Navbar(props) {
              
             </NavLeft>
             <Box sx={{display:{md:Object.keys(user).length!==0 ? 'flex' : 'none',xs:'none'},alignItems:'center',position:'relative',"&:hover .list":{display:'flex'}}}>
-                <Avatar onClick={()=>{navigate('/account')}}/>
-                <Typography sx={{color:'black',fontSize:'16px',fontWeight:'500'}}>{user.user.name}</Typography>
+                <Avatar onClick={()=>{navigate('/account')}} {...stringAvatar(userName)} sx={{cursor:'pointer',background:'green'}}/>
+                <Typography sx={{color:'black',fontSize:'16px',fontWeight:'500'}}>{user && user.name}</Typography>
 
                 <Box  className={'list'} sx={{position:'absolute',display:'none',flexDirection:'column',width:'250px',background:'white',right:'0px',height:'auto',  zIndex:'100',border:'1px solid rgba(0,0,0,0.3)',top:'32px',borderRadius:'5px'}}>
                  <Box sx={{margin:'20px'}}>
-                 <Typography sx={{color:'black',fontSize:'16px',fontWeight:'600'}}>Welcome {user.user.name} !</Typography>
+                 <Typography sx={{color:'black',fontSize:'16px',fontWeight:'600'}}>Welcome {user && user.name} !</Typography>
                 <Box sx={{display:'flex',gap:'10px'}}>
                    
-                   <Button  variant='outlined' sx={{color:'black',fontSize:'12px',height:'35px',borderRadius:'5px'}}>MyAccount</Button>
-                   <Button variant='outlined' sx={{color:'black',fontSize:'12px',height:'35px',borderRadius:'5px'}}>Logout</Button>
+                   <Button onClick={()=>navigate('/account')}  variant='outlined' sx={{color:'black',fontSize:'12px',height:'35px',borderRadius:'5px'}}>MyAccount</Button>
+                   <Button onClick={handleLogout} variant='outlined' sx={{color:'black',fontSize:'12px',height:'35px',borderRadius:'5px'}}>Logout</Button>
                    
                 </Box>
 
@@ -288,11 +308,8 @@ export default function Navbar(props) {
                 <Divider/>
                 <Typography  sx={{fontWeight:'600',fontSize:'16px',padding:'15px',color:'black'}}>Orders</Typography>
                 <Divider/>
-                <Typography sx={{fontWeight:'600',fontSize:'16px',padding:'15px',color:'black'}}>Wishlist</Typography>
+                <Typography sx={{fontWeight:'600',fontSize:'16px',padding:'15px',color:'black'}}>Carts</Typography>
                 <Divider/>
-
-                <Typography sx={{fontWeight:'600',fontSize:'16px',padding:'15px',color:'black'}}>Coupons</Typography>
-               <Divider/>
 
                 <Typography sx={{fontWeight:'600',fontSize:'16px',padding:'15px',color:'black'}}>Saved Address</Typography>
                 <Divider/>
@@ -311,7 +328,7 @@ export default function Navbar(props) {
             <Drawer anchor='right' open={open} onClose={handleClose} transitionDuration={{enter:400 , exit:400}} ModalProps={{sx:{position:'absolute'}}}>
                 <Siderbar setOpen={setOpen} setLogin={setLogin} setDrawer={setDrawer}/>
             </Drawer>
-            <Box  sx={{color:'#000000',cursor:'pointer',fontSize:'18px',display:{md: 'flex',xs:'none'},justifyContent:'flex-end',alignItems:'center'}}>
+            <Box  sx={{color:'#000000',cursor:'pointer',fontSize:'18px',display:{md:Object.keys(user).length!==0 ? 'none' : 'flex',xs:'none'},justifyContent:'flex-end',alignItems:'center'}}>
                 {/* <HiExternalLink style={{fontSize:'30px'}}/> */}
 
                 <Box>

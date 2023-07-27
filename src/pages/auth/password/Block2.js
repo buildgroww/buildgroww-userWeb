@@ -9,7 +9,7 @@ const initialValues = {
   code:"",
   newPassword:""
 }
-const Block2 = ({setClose}) => {
+const Block2 = ({setClose,setOpen}) => {
     const handleClose = ()=>{
         setClose(false);
 
@@ -32,6 +32,7 @@ const Block2 = ({setClose}) => {
        if(resetPassword.data.status==='SUCCESS'){
            action.resetForm();
          setClose(false)
+         setOpen(false)
        }
        else
         return false;
@@ -46,7 +47,7 @@ const Block2 = ({setClose}) => {
    
       
   return (
-    <>
+    <Box sx={{display:'flex',justifyContent:'center'}}>
       <Box sx={{width:{md:'500px',sm:'400px',xs:'350px'}}}>
         <Box sx={{display:'flex',justifyContent:'space-between',padding:'15px'}}>
             <Typography sx={{fontSize:'12px',color:'green'}}>Forgot Password</Typography>
@@ -59,13 +60,13 @@ const Block2 = ({setClose}) => {
 
         <TextField variant='outlined' label='Reset Password' type='password' name='newPassword' value={values.newPassword}  sx={{width:'100%',"& fieldset": {height:'50px',borderRadius:'3px'},height:'50px'}} onChange={handleChange} onBlur={handleBlur}></TextField>
         
-        <Button variant='contained' type='submit' sx={{width:'100%',borderRadius:'3px'}}>RESET PASSWORD</Button>  
+        <Button variant='contained' type='submit' sx={{width:'100%',borderRadius:'3px','&:hover':{background:'black'}}}>RESET PASSWORD</Button>  
 
 
       
         </form>
       </Box>
-    </>
+    </Box>
   )
 }
 

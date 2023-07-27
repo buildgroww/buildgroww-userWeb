@@ -5,7 +5,7 @@ import React from 'react'
 
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from '../../redux/store/store';
-import { login } from '../../redux/slices/auth';
+import { getUser, login } from '../../redux/slices/auth';
 import { useState } from 'react';
 import Block1 from './password/Block1';
 
@@ -21,6 +21,16 @@ function Login({setLogin,setDrawer}) {
   const navigate = useNavigate();
   const theme = useTheme();
   const[open,setOpen] = useState(false);
+
+  const fetchUser = async () => {
+    let result = await dispatch(getUser())
+    if(result){
+       return true
+    }
+    else
+    return false
+  }
+
   const {values , errors , handleBlur,handleChange,handleSubmit,touched} = useFormik({
     initialValues:initialValues,
 
@@ -30,10 +40,13 @@ function Login({setLogin,setDrawer}) {
       console.log(data)
       const result = await dispatch(login(data))
       if (result){
-        action.resetForm();
         localStorage.setItem("accessToken",result.token);
+        action.resetForm();
       setLogin(false)
+      fetchUser()
       }
+      else
+      return false
     
     }
 
@@ -101,7 +114,7 @@ const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
        <Box>
        <Typography onClick={handleOpenPassword}   sx={{color:'black',cursor:'pointer'}}> Forgot Password</Typography>
        <Dialog open={open} fullScreen={fullScreen}>
-        <Block1 />
+        <Block1 setOpen={setOpen}/>
        </Dialog>
        </Box>
 

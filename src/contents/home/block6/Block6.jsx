@@ -1,5 +1,6 @@
 import { Box, Typography, styled } from "@mui/material";
 import React from "react";
+import { useNavigate } from "react-router";
 
 const Image = styled('img')(({theme})=>({
   width:'100%',
@@ -14,6 +15,12 @@ const Image = styled('img')(({theme})=>({
 }))
 
 function Block6() {
+  const navigate = useNavigate();
+
+  const handleClick = (item)=>{
+    navigate(`/location/${item}`)
+
+  }
   return (
     <Box sx={{ width: "100%", padding: "0 58px" }}>
       <Box
@@ -28,12 +35,14 @@ function Block6() {
         }}
       >
         <Box
+          onClick={()=>handleClick('Plumbing-Service')}        
           sx={{
             width: {sm:"360px",xs:'100%'},
             height: {md:"431px",sm:'370px',xs:'300px'},
             textAlign: "center",
             borderRadius: "19px",
             border: "1px solid #000000",
+            cursor:'pointer'
           }}
         >
           {" "}
@@ -48,12 +57,14 @@ function Block6() {
           />
         </Box>
         <Box
+          onClick={()=>handleClick('Electrical-Service')}
           sx={{
             width: {sm:"360px",xs:'100%'},
             height: {md:"431px",sm:'370px',xs:'300px'},
             textAlign: "center",
             borderRadius: "19px",
             border: "1px solid #000000",
+            cursor:'pointer'
           }}
         >
           {" "}
@@ -68,12 +79,14 @@ function Block6() {
           />
         </Box>
         <Box
+          onClick={()=>handleClick('Colouring-Service')}
           sx={{
             width: {sm:"360px",xs:'100%'},
             height: {md:"431px",sm:'370px',xs:'300px'},
             textAlign: "center",
             borderRadius: "19px",
             border: "1px solid #000000",
+            cursor:'pointer'
           }}
         >
           {" "}

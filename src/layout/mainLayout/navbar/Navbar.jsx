@@ -32,6 +32,7 @@ import WestIcon from '@mui/icons-material/West';
 
 import Siderbar from '../sideBar/Siderbar.jsx'
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+import MyLocationIcon from '@mui/icons-material/MyLocation';
 
 
 
@@ -233,17 +234,12 @@ export default function Navbar(props) {
                 {/* {res && res.city && <Button sx={{display:{sm:'flex',xs:'none'},backgroundColor:'rgba(217, 217, 217, 0.39)',color:'#000000',justifyContent:'flex-start',gap:'30px',padding:'13px 15px',boxShadow:'0px 4px 4px rgba(0, 0, 0, 0.25)',borderRadius:'21px',width:'270px',minWidth:'160px'}}><LocationOnIcon/>{res.city}</Button>} */}
 
 
-                {showSearch && <TextField
+                {showSearch &&  <Box sx={{position:'relative'}}>
+                  <TextField
                     autoFocus
                     type="text"
                     InputProps={{
-                        startAdornment: <InputAdornment position="start"><LocationOnIcon
-                        //    sx={{
-                            //      marginTop: "6px",
-                            //      marginLeft: "10px",
-                            //      color: `${theme.header.background}`,
-                            //    }}
-                            /></InputAdornment>,
+                        startAdornment: <InputAdornment position="start"><LocationOnIcon/></InputAdornment>,
                         }}
                         placeholder="Search For Location"
                         sx={{
@@ -253,46 +249,50 @@ export default function Navbar(props) {
                             borderRadius:'21px',
                             width:{md:'270px',sm:'230px',xs:'130px'},
                             padding:{md:'7px 15px',sm:'4px 10px',xs:'0px 0'},
-                            position:'relative'
                         }}
                         onChange={handleLocationChange}
                         variant="outlined"
                         size="small"
                         ref={catMenu}
-                        />}
+                        />
+                        <SearchList
+                            color="secondary"
+                            sx={{
+                              background: 'rgba(217, 217, 217, 0.39)',
+                              width:'100%',
+                              display: 'block',
+                              flexDirection: "column",
+                              marginTop: "5px",
+                              bgcolor: "#fff",
+                              position: "absolute",
+                              left: "0",
+                              right: "0",
+                              zIndex: "1",
+                              borderColor:'#3E96DF',
+                              borderRadius:'21px'
+                            }}
+                            component="nav"
+                            aria-label="mailbox folders"
+                          >
+                            <StyledListItem sx={{ gap: "15px",color:'#1700ff !important' }}
+                                button><MyLocationIcon/><ListItemText primary={`Current Location`} /></StyledListItem>
+                        {loca && loca.map((item, index) => (
+                              <StyledListItem
+                                key={index}
+                                sx={{ gap: "15px" }}
+                                button
+                              >
+                                  <LocationOnIcon/>
+                                <ListItemText primary={`${item?.description}`} />
+                              </StyledListItem>
+                            ))}
+                            </SearchList>
+                      </Box>
+                        
+                        }
 
                         {!showSearch && <Button size='small' onClick={()=>{setShowSearch(true)}} sx={{display:'flex',fontSize:'16px',fontWeight:400,padding:{md:'13px 15px 13px 29px',sm:'10px 10px 10px 24px',xs:'6px 0px 6px 14px'}, backgroundColor:'rgba(217, 217, 217, 0.39)',color:'#000000',justifyContent:'flex-start',gap:'10px',boxShadow:'0px 4px 4px rgba(0, 0, 0, 0.25)',borderRadius:'21px',width:{md:'270px',sm:'180px',xs:'130px'},}}><LocationOnIcon/>Haridwar</Button>}
 
-                {loca && <SearchList
-          color="secondary"
-          sx={{
-              width:'70%',
-            display: 'block',
-            flexDirection: "column",
-            marginTop: "54px",
-            bgcolor: "#fff",
-            position: "absolute",
-            left: "0",
-            right: "0",
-            zIndex: "100",
-            borderColor:'#3E96DF',
-            borderRadius:'21px'
-          }}
-          component="nav"
-          aria-label="mailbox folders"
-        //   ref={catMenu}
-        >
-          {loca && loca.map((item, index) => (
-                <StyledListItem
-                  key={index}
-                  sx={{ gap: "15px" }}
-                  button
-                >
-                    <LocationOnIcon/>
-                  <ListItemText primary={`${item?.description}`} />
-                </StyledListItem>
-              ))}
-              </SearchList>}
                 
                 <SearchBar/>
              

@@ -16,6 +16,7 @@ import {
   import { useDispatch, useSelector } from "react-redux";
   import HistoryIcon from "@mui/icons-material/History";
   import MicIcon from '@mui/icons-material/Mic';
+import { useEffect } from "react";
   
   const Search = styled(Box)(({ theme }) => ({
     // border-radius: 5px;
@@ -56,6 +57,9 @@ import {
     padding: 2px 10px;
   `;
   
+  const placeholderText = ["workers", "bricks in Haridwar", "bricks builder", "repairing"];
+
+
   export default function SearchBar(props) {
     const [showSearch, setShowSearch] = useState("none");
     const [list, setList] = useState(null);
@@ -102,6 +106,26 @@ import {
       }
     };
     document.addEventListener("mousedown", closeOpenMenus);
+
+
+    const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = () => {
+      setIndex(prevIndex => {
+        if(prevIndex === placeholderText.length - 1){
+          return 0;
+        } 
+        return prevIndex + 1;
+      })
+    };
+    setInterval(timer, 2000);
+    
+    //cleanup function in order clear the interval timer
+    //when the component unmounts
+    return () => { clearInterval(timer); }
+  }, []);
+
     return (
       <Search sx={{  display: "flex" }}>
         
@@ -117,13 +141,14 @@ import {
              }}
            /></InputAdornment>,
           }}
-            placeholder="search here... "
+            placeholder={`Search For ${placeholderText[index]}`}
             sx={{
               background: `${theme.colors.alpha.black[10]}`,
               "& fieldset": { borderRadius:'5px', },
-              // "& .MuiInputBase-input": {
-              //   padding: "8px",
-              // },
+              "& .MuiInputBase-input": {
+                paddingLeft:'10px'
+              },
+              
             }}
             variant="outlined"
             size="small"
@@ -142,6 +167,7 @@ import {
           sx={{
             borderColor:'#3E96DF',
             boxShadow:'0px 4px 4px rgba(0, 0, 0, 0.25)',
+            color:'#fff',
             borderRadius:'21px',
               "& fieldset": { borderRadius:'21px',},
               background: `${theme.colors.alpha.black[10]}`,
@@ -152,8 +178,16 @@ import {
           //     width: "100%",
           //   },
             "& .MuiOutlinedInput-root": { width: "100%",height:'100%' },
+            "& input":{
+              fontSize:'16px',
+              color:'#000',
+              marginLeft:'10px'
+            },
+            "::placeholder":{
+              color:'green'
+            }
           }}
-          placeholder="search here... "
+          placeholder={`Search For ${placeholderText[index]}`}
           variant="outlined"
           onChange={(e) => handleChange(e)}
           onKeyDown={(e) => handleEnter(e)}

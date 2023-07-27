@@ -126,7 +126,7 @@ const Home = ({loading, setLoading}) => {
       <Navbar menu={'block'} arrow={'none'} logo={'Build Groww'}/>
       
        <Block1/>
-      <Box sx={{display:'flex',flexDirection:'column',gap:'22px'}}>
+      <Box sx={{display:'flex',flexDirection:'column',gap:'22px',marginBottom:'20px'}}>
           <Block2/>
           <Block3/>
           <Block4/>
@@ -134,7 +134,7 @@ const Home = ({loading, setLoading}) => {
           <Block6/>
       </Box>
      
-      <Block17/>
+      {/* <Block17/> */}
       <Footer/>
     </div> 
   }

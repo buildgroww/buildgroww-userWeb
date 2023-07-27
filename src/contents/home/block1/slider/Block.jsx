@@ -3,7 +3,7 @@ import React from 'react'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
-// import "./block1.css"
+import "./block1.css"
 import {Card, useTheme,styled } from '@mui/material';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
@@ -84,9 +84,9 @@ const theme = useTheme();
       slidesToShow: 1,
       slidesToScroll: 1,
       autoplay: true,
-      autoplaySpeed: 2000
-        // prevArrow:<PreviousBtn />,
-        // nextArrow:<NextBtn />,
+      autoplaySpeed: 2000,
+        prevArrow:<PreviousBtn />,
+        nextArrow:<NextBtn />,
         // responsive: [
         //     {
         //       breakpoint: 960,

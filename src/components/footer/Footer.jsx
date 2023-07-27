@@ -6,7 +6,7 @@ import {FaInstagramSquare} from "react-icons/fa"
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 const Button = styled("button")(({theme})=>({
-background:"#485769",
+background:"#5a3535",
 fontFamily:"Roboto",
 fontSize:'15px',
 lineHeight:"19px",
@@ -17,7 +17,7 @@ lineHeight:"19px",
 }))
 const Container = styled(Box)(({theme})=>({
 width:"100%",
-background:"#172337",
+background:"#381801",
 padding:"70px 70px 40px 70px",
 
 
@@ -158,7 +158,7 @@ const Footer = () => {
                       Groww
                     </Paragraph>
           </Logo>
-          <Typography variant='body1' sx={{color:"white", textAlign:"justify"}}>Get everything digitized with us! We are a platform providing services like website, application, dashboard, UI/UX design, digital marketing, graphic designing, logo design, presentations, and content writing for stores, hotels, restaurants, hospitals, and institutes.</Typography>
+          <Typography variant='body1' sx={{color:"white", textAlign:"justify"}}>Discover your one-stop destination for premium building materials and professional home services. From bricks to plumbing, we have everything you need for your dream home. Explore now!</Typography>
           <Box sx={{color:"white", display:"flex", flexDirection:"column", gap:"8px", justifyContent:{sm:"flex-start", xs:"center"}, width:"100%" }}   >
             <Typography sx={{display:"flex", alignItems:"center", fontSize:{lg:"12px", md:"10px", sm:"8px",xs:"15px"}, justifyContent:{sm:"flex-start", xs:"center"}}} >Show some love <FavoriteOutlined sx={{fontSize:{lg:"16px", md:"12px",sm:"10px",xs:"15px"}, margin:"0px 2px", display:{md:"flex",sm:"none" }}} /> on social media </Typography>
             <Box sx={{display:"flex", gap:"10px", alignItems:"center", justifyContent:{sm:"flex-start", xs:"center"}}} >
@@ -171,37 +171,33 @@ const Footer = () => {
           </Box>
         </Box1>
         <Box2>
-          <Typography sx={{color:"#7C6151", fontSize:"16px", fontWeight:"500"}} > Product</Typography>
+          <Typography sx={{color:"#7C6151", fontSize:"16px", fontWeight:"500"}} > Category</Typography>
 
           <LinkContainer>
-          <Link to="/websites" style={{color:"white", textDecoration:"none"}} >Websites</Link>
-          <Link to="/apps"  style={{color:"white", textDecoration:"none"}} >Apps</Link>
-          <Link to="/dashboards"  style={{color:"white", textDecoration:"none"}} >Dashboards or CRM</Link>
-          <Link to="/uiux" style={{color:"white", textDecoration:"none"}} >UI/UX Designs</Link>
-          <Link to="graphics"  style={{color:"white", textDecoration:"none"}} >Graphics Designing</Link>
-          <Link to="logos" style={{color:"white", textDecoration:"none"}} >Logo Designing</Link>
+          <Link to="/location/brick" style={{color:"white", textDecoration:"none"}} >Bricks</Link>
+          <Link to="/location/cement"  style={{color:"white", textDecoration:"none"}} >Cements</Link>
+          <Link to="/location/wood"  style={{color:"white", textDecoration:"none"}} >Wood</Link>
+          <Link to="/location/plastic" style={{color:"white", textDecoration:"none"}} >Plastic</Link>
+          <Link to="/location/metal"  style={{color:"white", textDecoration:"none"}} >Metal</Link>
           </LinkContainer>
         </Box2>
         <Box3>
-        <Typography   sx={{color:"#7C6151", fontSize:"16px"}}  >Topics</Typography>
+        <Typography   sx={{color:"#7C6151", fontSize:"16px"}}  >Services</Typography>
         <LinkContainer>
-          <Link style={{color:"white", textDecoration:"none"}} >Business & Services</Link>
-          <Link style={{color:"white", textDecoration:"none"}} >Education</Link>
-          <Link style={{color:"white", textDecoration:"none"}} >E-commerce</Link>
+          <Link style={{color:"white", textDecoration:"none"}} >Electrical Services</Link>
+          <Link style={{color:"white", textDecoration:"none"}} >Home Renovation Services</Link>
+          <Link style={{color:"white", textDecoration:"none"}} >Home Cleaning Services</Link>
           <Link style={{color:"white", textDecoration:"none"}} >Food &Restaurant</Link>
-          <Link style={{color:"white", textDecoration:"none"}} >News</Link>
-          <Link style={{color:"white", textDecoration:"none"}} >Blogs</Link>
-          <Link style={{color:"white", textDecoration:"none"}} >Real Estate</Link>
-          <Link style={{color:"white", textDecoration:"none"}} >Travel & Adventures</Link>
-          <Link style={{color:"white", textDecoration:"none"}} >Booking</Link>
-          <Link to="/services-maintenance" style={{color:"white", textDecoration:"none"}} >Maintenance & Management</Link>
+          <Link style={{color:"white", textDecoration:"none"}} >Painting Services</Link>
+          <Link style={{color:"white", textDecoration:"none"}} >Home Repair and Maintenance Services</Link>
+          <Link style={{color:"white", textDecoration:"none"}} >Plumbing Services</Link>
         </LinkContainer>
         </Box3>
         <Box4>
         <Typography sx={{color:"#7C6151", fontSize:"16px"}}  >About</Typography>
         <LinkContainer>
-          <a href="https://about.techpyro.com" target="_parent"  style={{color:"white", textDecoration:"none"}} >About Us</a>
-          <a href="https://contact.techpyro.com/contact" target="_parent" style={{color:"white", textDecoration:"none"}} >Contact Us</a>
+          <a href="https://about.buildgroww.com" target="_parent"  style={{color:"white", textDecoration:"none"}} >About Us</a>
+          <a href="https://contact.buildgroww.com/contact" target="_parent" style={{color:"white", textDecoration:"none"}} >Contact Us</a>
          
         </LinkContainer>
         </Box4>

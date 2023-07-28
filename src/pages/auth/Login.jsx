@@ -1,5 +1,5 @@
 import { Close, Google } from '@mui/icons-material';
-import { Box, Button, Dialog,  TextField, Typography, useMediaQuery, useTheme } from '@mui/material'
+import { Backdrop, Box, Button, CircularProgress, Dialog,  TextField, Typography, useMediaQuery, useTheme } from '@mui/material'
 import { useFormik } from 'formik';
 import React from 'react'
 
@@ -21,6 +21,8 @@ function Login({setLogin,setDrawer}) {
   const navigate = useNavigate();
   const theme = useTheme();
   const[open,setOpen] = useState(false);
+  const[backdrop,setBackdrop] = useState(false)
+
 
   const fetchUser = async () => {
     let result = await dispatch(getUser())
@@ -40,6 +42,7 @@ function Login({setLogin,setDrawer}) {
       console.log(data)
       const result = await dispatch(login(data))
       if (result){
+        setBackdrop(false)
         localStorage.setItem("accessToken",result.token);
         action.resetForm();
       setLogin(false)
@@ -71,6 +74,9 @@ const handleOpen = () => {
   setLogin(false);
 }
 
+const handleClick = () => {
+  setBackdrop(true)
+}
 const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
   return (
 
@@ -97,7 +103,14 @@ const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
 
         <TextField variant='outlined' label='Password' type='password' name='password' value={values.password} onChange={handleChange} onBlur={handleBlur} sx={{width:'90%',"& fieldset": {borderRadius:'3px'}}}/>
 
-        <Button variant='contained' type='submit' sx={{borderRadius:'3px',width:'90%',background:'black','&:hover':{background:'black'}}}>LOGIN</Button>
+        <Box sx={{width:'90%'}}>
+        <Button onClick={handleClick} variant='contained' type='submit' sx={{borderRadius:'3px',width:'100%',background:'black','&:hover':{background:'black'}}}>SIGNUP</Button>
+
+        <Backdrop open={backdrop}> 
+          <CircularProgress  color="inherit"/>
+        </Backdrop>
+
+ </Box>
 
        </form>
 

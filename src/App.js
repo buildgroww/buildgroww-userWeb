@@ -18,6 +18,8 @@ import Cart from "./pages/cart/Cart"
 import CheckOut from "./pages/checkout/CheckOut";
 import Orders from "./pages/orders/Orders";
 import Orderdetails from "./pages/orderdetails/Orderdetails";
+import Category from "./pages/category/category/Category";
+import SubCategory from "./pages/category/subcategory/SubCategory";
 // import { Search } from "@mui/icons-material";
 
 
@@ -36,7 +38,8 @@ function App() {
         {/* <Route exact path="/products" element={<Products/>} /> */}
         <Route exact path="/checkout" element={<CheckOut />} />
         <Route exact path="/orderdetails" element={<Orderdetails />} />
-      
+        <Route exact path="/category" element={<Category />} />
+        <Route exact path="/subcategory" element={<SubCategory />} />
         <Route exact path="/cart" element={<Cart />} />
         <Route exact path="/orders" element={<Orders />} />
       </Routes>

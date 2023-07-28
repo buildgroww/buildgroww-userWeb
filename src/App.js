@@ -33,13 +33,15 @@ function App() {
         <Route exact path="/" element={<Home  />} />
         <Route exact path="/search" element={<Search />} />
         <Route exact path="/account" element={<Account />} />
-        <Route exact path="/company" element={<Company />} />
-        <Route exact path="/product" element={<Product />} />
-        {/* <Route exact path="/products" element={<Products/>} /> */}
+        <Route exact path="/:location/:company" element={<Company />} />
+        <Route exact path="/:location/:company/:id" element={<Product />} />
         <Route exact path="/checkout" element={<CheckOut />} />
         <Route exact path="/orderdetails" element={<Orderdetails />} />
+<<<<<<< HEAD
         <Route exact path="/category" element={<Category />} />
         <Route exact path="/subcategory" element={<SubCategory />} />
+=======
+>>>>>>> 572229a66962b66665943043a49f7124da1e6d81
         <Route exact path="/cart" element={<Cart />} />
         <Route exact path="/orders" element={<Orders />} />
       </Routes>

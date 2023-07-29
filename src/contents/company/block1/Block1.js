@@ -31,7 +31,7 @@ function Block1({companyData}) {
   const [open, setOpen] = useState(false)
   const [showNumber, setShowNumber] = useState(false);
   const location = window.location.pathname.split('/')[1]
-  const search = window.location.pathname.split('/')[2]
+  const search = window.location.pathname.split('/')[2].replace("%20"," ");
 
 
   const closeOpenMenus = (e)=>{
@@ -95,6 +95,7 @@ const handleClose = () =>{
             {/* <span style={{fontSize:"14px"}}>4.4km</span> */}
                  </Typography>
               <Typography sx={{fontSize:"16px"}}><span style={{color:"#339D3A"}}>Open</span> Until 9:30 pm</Typography>
+              <Typography sx={{fontSize:"16px"}}>{item && item.address && item.address[0] && item.address[0].locality},{item && item.address && item.address[0] && item.address[0].city},{item && item.address && item.address[0] && item.address[0].state},{item && item.address && item.address[0] && item.address[0].country}-{item && item.address && item.address[0] && item.address[0].zipcode}</Typography>
               <Box sx={{display:'flex',alignItems:'center',flexWrap:'wrap',gap:'10px',marginY:'10px'}}>
               {item.productCategory.slice(0,5).map((i,ind)=>{
                 return <Box key={ind} sx={{border:'1px solid #ccc',padding:'2px 15px',borderRadius:'10px',backgroundColor:'#eee',fontSize:'14px',cursor:'pointer'}}>

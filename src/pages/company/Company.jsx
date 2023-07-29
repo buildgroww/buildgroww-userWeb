@@ -4,12 +4,15 @@ import Navbar from '../../layout/mainLayout/navbar/Navbar'
 import { Box } from '@mui/material'
 import { useDispatch, useSelector } from '../../redux/store/store'
 import { getCompanyData } from '../../redux/slices/company'
+import { useLocation } from 'react-router-dom'
 function Company() {
   const dispatch = useDispatch();
   const [page,setPage] = useState(1);
+  const loc = useLocation();
 
   const location = window.location.pathname.split('/')[1]
-  const search = window.location.pathname.split('/')[2]
+  const search = window.location.pathname.split('/')[2].replace("%20"," ");
+
 
   const companyData = useSelector((state)=>state.company)
 
@@ -21,9 +24,8 @@ function Company() {
       let sort = {"name":1}
       dispatch(getCompanyData(query,sort,page))
     }
-
     fetchData();
-  }, [])
+  }, [loc.pathname])
   
 
   return (

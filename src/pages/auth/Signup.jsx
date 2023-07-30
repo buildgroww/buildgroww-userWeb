@@ -1,5 +1,5 @@
 import { Close, Google } from '@mui/icons-material';
-import { Box, Button, TextField, Typography } from '@mui/material'
+import { Autocomplete, Backdrop, Box, Button, CircularProgress, TextField, Typography } from '@mui/material'
 import { useFormik } from 'formik';
 import React from 'react'
 
@@ -7,28 +7,34 @@ import { useNavigate } from 'react-router-dom';
 import { signupSchema } from '../../schemas';
 import { useDispatch } from '../../redux/store/store';
 import { register } from '../../redux/slices/auth';
+import { useState } from 'react';
 
 const initialValues = {
   name:'',
   phone:'',
   email:'',
-  password:''
+  password:'',
+  userCategory:'',
+  workCategory:''
 }
 
 function Signup({setDrawer,setLogin}) {
 
   const dispatch = useDispatch();
+  const [category,setCategory] = useState('');
+  const[backdrop,setBackdrop] = useState(false)
   const {values , errors , handleBlur,handleChange,handleSubmit,touched} = useFormik({
     initialValues:initialValues,
     validationSchema:signupSchema,
 
     onSubmit : async(values,action) => {
-      const{name,email,password,phone}= values
-      let data = {name,email,phone,password}
+      const{name,email,password,phone,userCategory,workCategory}= values
+      let data = {name,email,phone,password,userCategory,workCategory}
 
       const result = await dispatch(register(data))
       console.log(result)
       if(result){
+        setBackdrop(false)
         action.resetForm();
         setDrawer(false)
          setLogin(true)
@@ -42,17 +48,41 @@ function Signup({setDrawer,setLogin}) {
 
   });
 
+  console.log(values)
+
   const navigate = useNavigate();
   const handleDrawerClose = ()=>{
     setDrawer(false);
 
-
-
 };
+
+let arr = [
+  {
+    name:'buyer'
+},
+{
+  name:'seller'
+},
+{
+  name:'worker'
+}
+]
+
+let workCategoryArr =[
+  {list:'plumber'},
+  {list:'elctrician'},
+  {list:'carpainter'},
+  {list:'painter'},
+  {list:'Engineer'}
+]
+
+const handleClick = () => {
+  setBackdrop(true)
+}
   return (
 
     <Box sx={{width:'100%',display:'flex',justifyContent:'center',alignItems:'center'}}>
-    <Box sx={{width:{md:'500px',sm:'500px',xs:'350px'},position:'relative',height:{sm:'85vh',xs:'80vh'},padding:{md:'25px',sm:'25px',xs:'15px'}}}>
+    <Box sx={{width:{md:'500px',sm:'500px',xs:'350px'},position:'relative',height:{sm:'95vh',xs:'85vh'},padding:{md:'25px',sm:'25px',xs:'15px'}}}>
        <Box sx={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
         <Typography sx={{fontSize:'30px',fontWeight:'700'}}>BuildGroww</Typography>
         <Close onClick={handleDrawerClose} sx={{fontSize:'25px','&:hover':{background:'gray',borderRadius:'5px',cursor:'pointer'}}}/>
@@ -63,7 +93,7 @@ function Signup({setDrawer,setLogin}) {
        </Box>
 
 
-       <form onSubmit={handleSubmit} style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',marginTop:'50px',gap:'15px'}}>
+       <form onSubmit={handleSubmit} style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',marginTop:'30px',gap:'15px'}}>
         
         <Box sx={{width:'90%'}}>
         <TextField variant='outlined' label='Name' type='text' name='name' value={values.name} onChange={handleChange} onBlur={handleBlur}  sx={{width:'100%',"& fieldset": {borderRadius:'3px'}}}/>
@@ -77,6 +107,8 @@ function Signup({setDrawer,setLogin}) {
        <Typography sx={{fontSize:'12px',color:'red'}}>{errors.phone}</Typography>):null}
         </Box>
 
+   
+
         <Box sx={{width:'90%'}}> 
         <TextField variant='outlined' label='Email-Id' type='email' name='email' value={values.email} onChange={handleChange} onBlur={handleBlur} sx={{width:'100%',"& fieldset": {borderRadius:'3px'}}}/>
         {errors.email && touched.email ?(
@@ -89,7 +121,49 @@ function Signup({setDrawer,setLogin}) {
          <Typography sx={{fontSize:'12px',color:'red'}}>{errors.password}</Typography>):null}
        </Box>
 
-        <Button variant='contained' type='submit' sx={{borderRadius:'3px',width:'90%',background:'black','&:hover':{background:'black'}}}>SIGNUP</Button>
+
+       <Box sx={{width:'90%'}}>
+        <Autocomplete
+                          disablePortal
+                          onChange={(event, value) =>  (values.userCategory = value.name) && setCategory(value.name) }
+                        
+                          options={arr}
+                          getOptionLabel={(option) => option.name}
+                          renderInput={(params) => (
+                            <TextField
+                              fullWidth sx={{"& fieldset": {borderRadius:'3px'}}}
+                              {...params}
+                              label='User Category'
+                            />
+                          )}                         
+             />
+        </Box>
+
+        <Box sx={{width:'90%',display:category === 'worker' ? 'block':'none'}}>
+        <Autocomplete
+                          disablePortal
+                          onChange={(event, value) => value && (values.workCategory = value.list)}
+                          options={workCategoryArr}
+                          getOptionLabel={(option) => option.list}
+                          renderInput={(params) => (
+                            <TextField
+                              fullWidth sx={{"& fieldset": {borderRadius:'3px'}}}
+                              {...params}
+                              label='Work Category'
+                            />
+                          )}                         
+          />
+        </Box>
+
+       
+ <Box sx={{width:'90%'}}>
+        <Button onClick={handleClick} variant='contained' type='submit' sx={{borderRadius:'3px',width:'100%',background:'black','&:hover':{background:'black'}}}>SIGNUP</Button>
+
+        <Backdrop open={backdrop}> 
+          <CircularProgress  color="inherit"/>
+        </Backdrop>
+
+ </Box>
 
        </form>
 

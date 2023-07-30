@@ -149,7 +149,6 @@ export default function Navbar(props) {
      
   }
 
-    console.log(user)
     const handleOpen = ()=>{
         setOpen(true);
     };

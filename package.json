@@ -5,6 +5,7 @@
   "homepage": ".",
   "dependencies": {
     "@glidejs/glide": "^3.6.0",
+    "@googlemaps/react-wrapper": "^1.1.35",
     "@mui/icons-material": "^5.10.16",
     "@mui/lab": "^5.0.0-alpha.114",
     "@mui/material": "^5.14.2",

@@ -196,8 +196,8 @@ const Footer = () => {
         <Box4>
         <Typography sx={{color:"#7C6151", fontSize:"16px"}}  >About</Typography>
         <LinkContainer>
-          <a href="https://about.buildgroww.com" target="_parent"  style={{color:"white", textDecoration:"none"}} >About Us</a>
-          <a href="https://contact.buildgroww.com/contact" target="_parent" style={{color:"white", textDecoration:"none"}} >Contact Us</a>
+          <a href="/about"  style={{color:"white", textDecoration:"none"}} >About Us</a>
+          <a href="/contact" style={{color:"white", textDecoration:"none"}} >Contact Us</a>
          
         </LinkContainer>
         </Box4>

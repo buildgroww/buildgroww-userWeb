@@ -57,7 +57,7 @@ import { useEffect } from "react";
     padding: 2px 10px;
   `;
   
-  const placeholderText = ["workers", "bricks in Haridwar", "bricks builder", "repairing"];
+  const placeholderText = ["any shop", "bricks in Haridwar", "bricks builder", "sand seller"];
 
 
   export default function SearchBar(props) {
@@ -73,14 +73,10 @@ import { useEffect } from "react";
       setShowSearch("flex");
     };
     const handleEnter = (e) => {
-      // if (e.target.value !== "" && e.key === "Enter") {
-      //   dispatch(addSearchProduct({ key: e.target.value, value: list }));
-      //   dispatch(updateQuery(e.target.value));
-      //   if (window.location.pathname !== "/products") {
-      //     navigate("/products");
-      //   }
-      // }
-    };
+      if (e.target.value !== "" && e.key === "Enter") {
+            navigate(`/haridwar/${e.target.value}`)
+        }
+      };
     const handleChange = async (e) => {
       // if (e.target.value !== "") {
       //   const query = {

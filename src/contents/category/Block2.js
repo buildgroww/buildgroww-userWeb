@@ -13,7 +13,7 @@ const Block2 = () => {
         <NotificationsNone/>
       </Box>
      <Divider/>
-      <Box sx={{padding:'20px'}}>
+      <Box onClick={() => navigate('/subcategory')} sx={{padding:'20px'}}>
          <Typography sx={{fontSize:'18px',display:'flex',gap:'20px'}}><FavoriteBorderOutlined/> Civil Engineers</Typography>
       </Box>
       <Divider/>

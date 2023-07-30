@@ -18,11 +18,27 @@ import Cart from "./pages/cart/Cart"
 import CheckOut from "./pages/checkout/CheckOut";
 import Orders from "./pages/orders/Orders";
 import Orderdetails from "./pages/orderdetails/Orderdetails";
+import { useDispatch } from "react-redux";
+import { getProducts } from "./redux/slices/products";
+import { useEffect } from "react";
 // import { Search } from "@mui/icons-material";
 
 
 function App() {
-  
+  const id ="64c3873cfbe11e10988ff1ab";
+  const dispatch =useDispatch()
+  const fetchProduct = async()=>{
+    const query = {
+      "shop":id
+    }
+  const result =  await dispatch(getProducts(query))
+  console.log(result);
+  }
+
+
+  useEffect(() => {
+    fetchProduct();
+  }, [])
   return (
     <>
       

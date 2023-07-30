@@ -106,7 +106,7 @@ export default function MenuSidebar() {
         </ListItem>
         </a>
         <Divider/>
-        <a href='https://contact.techpyro.com' style={{textDecoration:'none'}}>
+        <a href='/contact' style={{textDecoration:'none'}}>
         <ListItem button>
           <ContactPageIcon/>
           <ListItemText primary="Contact Us" />
@@ -115,19 +115,19 @@ export default function MenuSidebar() {
       </List>
       <Box sx={{fontSize:'17px',marginLeft:'5px',fontWeight:500,}}>Company</Box>
     <List sx={{width:'100%',flex:'9',padding:'0'}} component="nav" aria-label="mailbox folders">
-      <a href='https://about.techpyro.com' style={{textDecoration:'none'}}>
+      <a href='/about' style={{textDecoration:'none'}}>
         <ListItem button>
           <GroupsIcon/>
           <ListItemText primary="About Us" />
         </ListItem>
         </a>
-        <Divider/>
+        {/* <Divider/>
         <a href='https://blog.techpyro.com' style={{textDecoration:'none'}}>
         <ListItem button>
           <EditIcon/>
           <ListItemText primary="Blogs" />
         </ListItem>
-        </a>
+        </a> */}
       </List>
       <Box sx={{fontSize:'17px',marginLeft:'5px',fontWeight:500,}}>Help</Box>
     <List sx={{width:'100%',padding:'0'}} component="nav" aria-label="mailbox folders">

@@ -1,6 +1,7 @@
 import { Phone, Reply, WhatsApp } from '@mui/icons-material'
 import { Box, Button, Card, CardMedia, Rating, Stack, Typography, styled } from '@mui/material'
 import React from 'react'
+import { useSelector } from 'react-redux'
 const StyleToolbar = styled(Box)(({theme})=>({
     padding:"30px",
   textAlign:"justify",
@@ -10,6 +11,10 @@ const StyleToolbar = styled(Box)(({theme})=>({
   }
   }))
 function Block1() {
+
+  //-->redux setup
+  const product= useSelector((state)=>state.product)
+  console.log(product);
   return (
     <StyleToolbar>
 <Box sx={{paddingY:"30px"}}>
@@ -17,7 +22,7 @@ function Block1() {
  
         <Box >
           <Typography sx={{fontSize:{md:"24px",sm:"24px",xs:"20px"},fontWeight:"600",}}>
-Lorem ipsum dolor sit amet 
+          {product&&product.products&&product.products.data&&product.products.data.length>0&&product.products.data[0]?.shop?.name}
           </Typography>
           <Box sx={{display:"flex",gap:"10px",paddingY:"10px",alignItems:"center",flexWrap:"wrap"}}>
             <Box>
@@ -28,10 +33,8 @@ Lorem ipsum dolor sit amet
             </Stack>
             <Typography>15 Rating</Typography>
           </Box>
-          <Typography sx={{fontSize:"18px",paddingY:'5px'}}>Lorem ipsum dolor sit amet.  <span style={{fontSize:"14px"}}>
-               4.4km
-            </span></Typography>
-            <Typography sx={{fontSize:"16px"}}><span style={{color:"#339D3A"}}>Open</span> Until 9:30 pm</Typography>
+          <Typography sx={{fontSize:"18px",paddingY:'5px'}}>{product&&product.products.data&&product.products.data.length>0&&product?.products?.data[0].shop?.title}
+</Typography>
             <Box sx={{paddingY:"10px",display:"flex",gap:"20px",alignItems:"center",flexWrap:"wrap"}}>
               <Box >
                 <Button startIcon={<Phone />} sx={{color:"#fff",backgroundColor:"green","&:hover":{
@@ -53,7 +56,8 @@ Lorem ipsum dolor sit amet
         <CardMedia
             component="img"
             sx={{ width:{md:400,sm:400,xs:"100%"},height:200,borderRadius:"5px" }}
-            image="https://images.pexels.com/photos/678289/pexels-photo-678289.jpeg?auto=compress&cs=tinysrgb&w=600"
+            image={product&&product.products&&product.products.data&&product.products.data.length>0&&product.products.data&&product.products.data[0].shop&&product.products.data[0].shop.logo}
+
             alt="Live from space album cover"
           />
   </Box>

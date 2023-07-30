@@ -1,7 +1,9 @@
 import React from 'react'
 import { Add,  } from '@mui/icons-material'
 import { Box, Button, Card, CardMedia, Rating, Stack, Typography, styled } from '@mui/material'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { createCart } from '../../../redux/slices/cart'
+import { useNavigate } from 'react-router-dom'
 const StyleToolbar = styled(Box)(({theme})=>({
     padding:"0px 120px",
   textAlign:"justify",
@@ -12,10 +14,35 @@ const StyleToolbar = styled(Box)(({theme})=>({
   } 
   }))
 function Block2() {
+  const navigate = useNavigate()
    //-->redux setup
    const product= useSelector((state)=>state.product)
 
    const productData = product&&product.products&&product.products.data&&product.products.data.length>0&&product.products.data[0].shop;
+
+   //-->Add to cart function
+   const dispatch = useDispatch()
+   const data ={
+    "userId":"64c5060adbdfded1b8a84968",
+    "products":[
+        {
+            "productId": "64c38b1dfbe11e10988ff1b5",
+            "qty": 1
+        }
+     ]
+}
+   const addToCart = ()=>{
+      const result =  dispatch(createCart(data))
+      if(result){
+navigate("/cart")
+console.log(result);
+return true;
+      }
+      else{
+        return false;
+      }
+
+   }
   return (
     <StyleToolbar>
       <Box sx={{paddingY:"10px",display:"flex",gap:"25px",alignItems:"center",flexWrap:"wrap"}}>
@@ -54,7 +81,7 @@ function Block2() {
           <Box sx={{position:'absolute',bottom:'0px',width:"100%",display:"flex",justifyContent:'center',alignItems:'center'}}>
             <Button startIcon={<Add/>} sx={{color:"#fff",backgroundColor:"green",width:"100%",borderRadius:"0px","&:hover":{
                  backgroundColor:"#339D3A"
-                }}}>Add to Cart</Button>
+                }}} onClick={addToCart}>Add to Cart</Button>
           </Box>
           </Box>
       </Card>

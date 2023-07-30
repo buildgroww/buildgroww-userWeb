@@ -314,7 +314,7 @@ export default function Navbar(props) {
                 <Divider/>
                 <Typography  sx={{fontWeight:'600',fontSize:'16px',padding:'15px',color:'black'}}>Orders</Typography>
                 <Divider/>
-                <Typography sx={{fontWeight:'600',fontSize:'16px',padding:'15px',color:'black'}}>Carts</Typography>
+                <Typography onClick={()=> navigate("/cart")} sx={{cursor:"pointer",fontWeight:'600',fontSize:'16px',padding:'15px',color:'black'}}>Carts</Typography>
                 <Divider/>
 
                 <Typography sx={{fontWeight:'600',fontSize:'16px',padding:'15px',color:'black'}}>Saved Address</Typography>

@@ -23,6 +23,7 @@ function Block1() {
         <Box >
           <Typography sx={{fontSize:{md:"24px",sm:"24px",xs:"20px"},fontWeight:"600",}}>
           {product&&product.products&&product.products.data&&product.products.data.length>0&&product.products.data[0]?.shop?.name}
+{/* {product.length>0&&product.data[0].shop.name} */}
           </Typography>
           <Box sx={{display:"flex",gap:"10px",paddingY:"10px",alignItems:"center",flexWrap:"wrap"}}>
             <Box>

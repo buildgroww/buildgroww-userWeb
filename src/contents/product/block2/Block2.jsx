@@ -10,9 +10,11 @@ const StyleToolbar = styled(Box)(({theme})=>({
   backgroundColor:"#fff",
   [theme.breakpoints.down('md')]: {
     padding:"0px 10px",
-    
+  },
+  [theme.breakpoints.down('sm')]: {
+    margin:"0px 10px"
   } 
-  }))
+}))
 function Block2() {
   const navigate = useNavigate()
    //-->redux setup
@@ -54,10 +56,12 @@ return true;
           ))}
         </Box>
       </Box>
-      {product&&product.products&&product.products.data&&product.products.data.length>0&&product.products.data.map((data)=>(
-    <Box sx={{paddingY:"10px"}} key={data.id}>
+
+      <Box sx={{paddingY:"10px"}}>
+        {product&&product.products&&product.products.data&&product.products.data.length>0&&product.products.data.map((data)=>(
   
       <Card sx={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"20px",gap:"30px",flexDirection:{md:"row",sm:"row",xs:"column-reverse"},textAlign:{md:"initial",sm:"initial",xs:'center'}}}>
+      <Box sx={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"20px",gap:"30px",flexDirection:{md:"row",sm:"row",xs:'column'}}}>
      
             <Box >
             <Typography sx={{fontSize:{md:"32px",sm:"24px",xs:"24px"},fontWeight:'600',}}>{data&&data.title&&data.title.shortTitle} ( {data&&data.subCategory} )</Typography>
@@ -70,6 +74,7 @@ return true;
               </Box>
                <Typography sx={{fontSize:"14px"}}>{data&&data.title&&data.title.longTitle}</Typography>
                   
+            </Box>
             </Box>
             <Box sx={{position:"relative",width:{md:300,sm:300,xs:"100%"},height:250}}>
             <CardMedia
@@ -84,12 +89,13 @@ return true;
                 }}} onClick={addToCart}>Add to Cart</Button>
           </Box>
           </Box>
-      </Card>
      
+      </Card>
+    ))} 
+    
     </Box>
-     ))} 
-        </StyleToolbar>
+  
+ </StyleToolbar>
   )
 }
-
 export default Block2

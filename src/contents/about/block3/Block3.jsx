@@ -1,5 +1,5 @@
 import React from 'react'
-import { Map } from '@googlemaps/react-wrapper'
+
 
 const Block3 = () => {
   return (

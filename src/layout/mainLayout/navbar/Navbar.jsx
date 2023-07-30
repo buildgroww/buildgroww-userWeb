@@ -297,7 +297,7 @@ export default function Navbar(props) {
              
             </NavLeft>
             <Box sx={{display:{md:Object.keys(user).length!==0 ? 'flex' : 'none',xs:'none'},alignItems:'center',position:'relative',"&:hover .list":{display:'flex'}}}>
-                <Avatar onClick={()=>{navigate('/account')}} {...stringAvatar(userName)} sx={{cursor:'pointer',background:'green'}}/>
+                <Avatar onClick={()=>{navigate('/account')}} {...stringAvatar(userName)} sx={{cursor:'pointer',background:'green'}} src={user &&user.avatar}/>
                 <Typography sx={{color:'black',fontSize:'16px',fontWeight:'500'}}>{user && user.name}</Typography>
 
                 <Box  className={'list'} sx={{position:'absolute',display:'none',flexDirection:'column',width:'250px',background:'white',right:'0px',height:'auto',  zIndex:'100',border:'1px solid rgba(0,0,0,0.3)',top:'32px',borderRadius:'5px'}}>

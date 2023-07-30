@@ -46,7 +46,7 @@ const Block2 = () => {
           <Box sx={{display:'flex',gap:'10px'}}>
 
           <Box sx={{width:'35%',padding:'10px'}}>
-                <img src='https://images.pexels.com/photos/8159/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600' style={{objectFit:'cover',width:'160px',height:'120px'}}/>
+                <img src={users.avatar} style={{objectFit:'cover',width:'160px',height:'120px'}}/>
             </Box>
 
             <Box sx={{width:'65%',display:'flex',flexDirection:'column',gap:'5px'}}>

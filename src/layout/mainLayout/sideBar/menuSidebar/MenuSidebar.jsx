@@ -52,7 +52,7 @@ export default function MenuSidebar() {
         <Divider light /> */}
         <ListItem button>
           <AccountCircleIcon/>
-          <ListItemText primary="My Account" />
+          <ListItemText onClick={()=>navigate('/account')} primary="My Account" />
         </ListItem>
         <Divider/>
         <ListItem button>

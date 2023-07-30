@@ -1,5 +1,5 @@
 import { ShoppingCart } from '@mui/icons-material'
-import {  Box, Button, TextField, Typography } from '@mui/material'
+import {  Box, Button, TextField, Typography, Dialog, Avatar, useMediaQuery } from '@mui/material'
 import { useFormik } from 'formik'
 import React from 'react'
 import { useDispatch, useSelector } from '../../redux/store/store'
@@ -7,7 +7,9 @@ import { getUser, updateUser } from '../../redux/slices/auth'
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import { useState } from 'react'
-import Avatar from 'react-avatar-edit'
+
+import axios from 'axios'
+import { useTheme } from '@emotion/react'
 
 const initialValues = {
     name:'',
@@ -18,9 +20,12 @@ const initialValues = {
 const Block1 = () => {
 const dispatch = useDispatch();
 const navigate = useNavigate();
-const [image,setImage] = useState('');
+const theme = useTheme()
+let image ;
 const [open,setOpen] = useState(false)
-const {user} = useSelector((state)=>state.auth)
+const {user} = useSelector((state)=>state.auth);
+
+
 
 const fetchUser = async () => {
   let result = await dispatch(getUser())
@@ -55,6 +60,36 @@ const fetchUser = async () => {
       useEffect(()=>{
           fetchUser();
       },[])
+
+  
+      const handleOpen = () => {
+        setOpen(true)
+      }
+      const handleClose = () => {
+        setOpen(false)
+      }
+
+      const fetchImage = (img) => {
+         image = img
+      }
+
+      const saveImage =  async (e) => {
+        try {
+        const formData = new FormData()
+        formData.append('files',image);
+       const {data}= await  axios.post('http://localhost:5000/admin/file/upload',formData);
+       let result = await dispatch(updateUser({avatar:data.data.uploadSuccess[0].path }, user.id))
+       console.log(result)
+       if(result){
+        setOpen(false)
+       }
+      } catch (error) {
+          console.log(error)
+      }
+          
+      }
+
+      const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
   return (
     <>
       <Box sx={{width:'100%',display:'flex',justifyContent:'center'}}>
@@ -74,7 +109,18 @@ const fetchUser = async () => {
                  </Box>
 
                  <Box sx={{display:'flex',gap:{md:'10px',sm:'10px',xs:'0px'},alignItems:'center'}}>
-                 <Avatar/>
+
+                  <Box>
+                    <Avatar sx={{cursor:'pointer'}} onClick={handleOpen} src={user && user.avatar} alt='U'/>
+
+
+                    <Dialog open={open} onClose={handleClose} fullScreen={fullScreen}>
+                      <Box sx={{height:'400px',width:'400px',display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'column',gap:'30px'}}>
+                       <input type='file' name='file' onChange={(e)=> fetchImage(e.target.files[0])}/>
+                      <Button onClick={saveImage} variant='contained'>Save</Button>
+                      </Box>
+                    </Dialog>
+                  </Box>
                     <Typography>{user && user.name}</Typography>
                  </Box>
             </Box>

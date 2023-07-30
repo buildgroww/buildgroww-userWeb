@@ -58,7 +58,7 @@ function App() {
         <Route exact path="/checkout" element={<CheckOut />} />
         <Route exact path="/orderdetails" element={<Orderdetails />} />
         <Route exact path="/category" element={<Category />} />
-        <Route exact path="/subcategory" element={<SubCategory />} />
+        <Route exact path="/subcategory/:workers" element={<SubCategory />} />
         <Route exact path="/cart" element={<Cart />} />
         <Route exact path="/orders" element={<Orders />} />
       </Routes>

@@ -12,6 +12,7 @@ const Block1 = () => {
   const navigate = useNavigate();
   const location = useLocation()
   const category = location.pathname.split("/")[2]
+  const {user} = useSelector((state)=> state.auth)
   console.log(category)
   const dispatch = useDispatch();
   const [ users,setUsers] = useState()
@@ -49,7 +50,7 @@ const Block1 = () => {
         <Box key={index} sx={{width:{md:'70%',sm:'90%'},border:'1px solid rgba(0,0,0,0.2)',height:'300px',padding:'20px',boxShadow: 'rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px',display:'flex',gap:{md:'20px', sm:'30px'}}}>
 
             <Box sx={{width:{md:'25%',sm:'20%'},display:'flex',alignItems:'center',height:'100%'}}>
-                <img src='https://images.pexels.com/photos/8159/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=600' style={{objectFit:'cover',width:'250px',height:'250px'}}/>
+                <img src={item.avatar} style={{objectFit:'cover',width:'250px',height:'250px'}} alt='Upload Image'/>
             </Box>
 
             <Box sx={{width:{md:'70%',sm:'75%'},display:'flex',flexDirection:'column',gap:'10px'}}>

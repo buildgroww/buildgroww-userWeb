@@ -11,6 +11,7 @@ const Img = styled("img")(({ theme }) => ({
 
 export default function Header({setOpen,setLogin}) {
     const theme = useTheme();
+    const {user} = useSelector((sate)=> sate.auth)
   return (
     
     <Stack sx={{flex:'1',width:'100%',minHeight:'56px',maxHeight:'60px', flexDirection:'row',alignItems:'center',justifyContent:'space-between',padding:'0 30px',boxShadow: 'rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px'}} >
@@ -26,7 +27,7 @@ export default function Header({setOpen,setLogin}) {
         <Typography>{user.currentUser.data.name
           ? user.currentUser.data.name
           : "TechPyro User"}</Typography>} */}
-          <Avatar/>
+          <Avatar src={user && user.avatar}/>
         {/* <Img src="/images/mainLogo/logo1.png" alt="logo"/> */}
 
     </Stack>

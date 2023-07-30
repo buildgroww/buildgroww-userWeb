@@ -104,7 +104,7 @@ const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
         <TextField variant='outlined' label='Password' type='password' name='password' value={values.password} onChange={handleChange} onBlur={handleBlur} sx={{width:'90%',"& fieldset": {borderRadius:'3px'}}}/>
 
         <Box sx={{width:'90%'}}>
-        <Button onClick={handleClick} variant='contained' type='submit' sx={{borderRadius:'3px',width:'100%',background:'black','&:hover':{background:'black'}}}>SIGNUP</Button>
+        <Button onClick={handleClick} variant='contained' type='submit' sx={{borderRadius:'3px',width:'100%',background:'black','&:hover':{background:'black'}}}>LOGIN</Button>
 
         <Backdrop open={backdrop}> 
           <CircularProgress  color="inherit"/>

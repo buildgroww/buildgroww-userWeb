@@ -69,11 +69,13 @@ let arr = [
 ]
 
 let workCategoryArr =[
-  {list:'plumber'},
-  {list:'elctrician'},
-  {list:'carpainter'},
-  {list:'painter'},
-  {list:'Engineer'}
+  {list:'Plumber'},
+  {list:'Elctrician'},
+  {list:'Carpainter'},
+  {list:'Painter'},
+  {list:'Engineer'},
+  {list:'Labour'},
+  {list:'Contractor'},
 ]
 
 const handleClick = () => {

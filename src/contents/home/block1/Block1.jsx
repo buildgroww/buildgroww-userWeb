@@ -2,6 +2,7 @@ import React from 'react'
 import Block from './slider/Block'
 import { Box, styled } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
 
 const Image = styled('img')(({theme})=>({
   width:'100%',
@@ -18,7 +19,13 @@ const Image = styled('img')(({theme})=>({
 }))
 
 function Block1() {
+  // const[query,setQuer] = useState()
   const navigate = useNavigate();
+
+  const handleClick = () => {
+   navigate(`/category`)
+   
+  }
   return (
     <>
         <Box sx={{display:'flex',flexDirection:{sm:'row',xs:'column'},gap:{sm:'20px',xs:'10px'},marginTop:{sm:'120px',xs:'90px'},padding:'22px'}}>

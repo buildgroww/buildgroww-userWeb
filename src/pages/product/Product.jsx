@@ -22,6 +22,9 @@ function Product() {
   useEffect(() => {
     fetchProduct();
   }, [])
+  // useEffect(() => {
+  //   fetchProduct();
+  // }, [])
   
   return (
     <>

@@ -1,9 +1,32 @@
 import { Avatar, Box } from '@mui/material'
 import React from 'react'
 import {Typography} from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { useDispatch } from 'react-redux';
+import { deleteCart } from '../../../redux/slices/carts';
+import { toast } from 'react-toastify';
 
 export default function Block1(props) {
-  console.log(props)
+    // Redux 
+    const dispatch = useDispatch();
+    // UseState
+    // const [refresh,setRefresh] = useState(false);
+    const handleDeleteCart = async(id) => {
+        try{
+          const result = await dispatch(deleteCart(id));
+          if(result){
+            props.setRefresh(true);
+              toast.success("Cart item Deleted Successfully")
+              return true;
+          }else{
+            toast.error("cart Item not delete")
+            return false;
+          }
+        }catch(error){
+          console.log(error)
+        }
+    }
+ 
   return (
     <Box sx={{width:"100%",height:"max-content",display:"flex",flexDirection:"column"}}>
         <Typography variant="h1" sx={{width:"100%",height:"50px",paddingX:"10px",fontWeight:"600",}}>
@@ -18,50 +41,39 @@ export default function Block1(props) {
         <Typography sx={{fontSize:{md:"18px",xs:"12px"},width:"200px",alignItems:"center",display:"flex",justifyContent:"center"}}>Total</Typography>
       </Box>
       <Box sx={{width:"100%",height:{md:"max-content",xs:"100%"},display:"flex",flexDirection:"column"}}>
-        <Box sx={{width:"100%",height:"200px",border:"1px solid black" ,display:"flex",alignItems:"center",marginBottom:"50px"}}>
-            <Box sx={{width:"300px",height:"100%",display:"flex",flexDirection:"column",alignItems:"center"}}>
-              <Avatar src="https://cementshop.in/wp-content/uploads/2021/06/karimnagar-bricks.jpg" alt="product_image"  sx={{width:{md:"200px",xs:"100px"},height:{md:"160px",xs:"80px"},mixBlendMode:"multiply"}}/>
-              <Typography sx={{fontWeight:"600",marginLeft:"10px",fontSize:{md:"20px",xs:"16px"}}}>Product Name</Typography>
-            </Box>
-            <Box  sx={{width:"250px" ,height:"100%",display:"flex",justifyContent:"center",alignItems:"center"}}>
-              <Typography sx={{fontWeight:"600",fontSize:{md:"20px",xs:"12px"}}}>Company pvt Ltd</Typography>
-            </Box>
-            <Box sx={{width:"150px" ,height:"100%",display:"flex",justifyContent:"center",alignItems:"center"}}>
-              <Typography sx={{fontWeight:"600",fontSize:{md:"20px",xs:"12px"}}}>₹ 999</Typography>
-            </Box>
-            <Box sx={{width:"250px" ,height:"100%",display:"flex",justifyContent:"center",alignItems:"center",flexDirection:"column"}}>
-              <Typography sx={{fontWeight:"600",fontSize:{md:"20px",xs:"12px"}}}>Quantity</Typography>
-             
-              <Box sx={{display:"flex",border:"1px solid black",borderRadius:"20px",width:{md:"80px",xs:"50px"},justifyContent:"center",gap:"10px"}}>
-              <Typography sx={{fontSize:{md:"20px",xs:"16px"}}}>+</Typography><Box sx={{fontSize:{md:"20px",xs:"16px"}}}>1</Box><Typography sx={{fontSize:{md:"20px",xs:"16px"}}}>-</Typography>
+      {
+            props.carts.length > 0 &&props.carts.map((data,index) => (
+            <Box key={index} sx={{width:"100%",height:"210px",border:"1px solid black" ,display:"flex",alignItems:"center",marginBottom:"50px"}}>
+              <Box sx={{width:"300px",height:"100%",display:"flex",flexDirection:"column",alignItems:"center"}}>
+                <Avatar src={data && data.products && data.products[0] && data.products[0].productId.image} alt="product_image"  sx={{width:{md:"200px",xs:"100px"},height:{md:"160px",xs:"80px"},mixBlendMode:"multiply",marginTop:"5px",borderRadius:"10px"}}/>
+                <Typography sx={{fontWeight:"600",marginLeft:"10px",fontSize:{md:"20px",xs:"16px"}}}> {data && data.products && data.products[0] && data.products[0].productId.title && data.products[0].productId.title.shortTitle}</Typography>
               </Box>
-            </Box>
-            <Box sx={{width:"200px",display:"flex",justifyContent:"center",alignItems:"center"}}>
-              <Typography sx={{fontWeight:"600",fontSize:{md:"18px",xs:"14px"}}}> Total price</Typography>
-            </Box>
-        </Box>
-        <Box sx={{width:"100%",height:"200px",border:"1px solid black" ,display:"flex",alignItems:"center",marginBottom:"50px"}}>
-            <Box sx={{width:"300px",height:"100%",display:"flex",flexDirection:"column",alignItems:"center"}}>
-              <Avatar src="https://cementshop.in/wp-content/uploads/2021/06/karimnagar-bricks.jpg" alt="product_image"  sx={{width:{md:"200px",xs:"100px"},height:{md:"160px",xs:"80px"},mixBlendMode:"multiply"}}/>
-              <Typography sx={{fontWeight:"600",marginLeft:"10px",fontSize:{md:"20px",xs:"16px"}}}>Product Name</Typography>
-            </Box>
-            <Box  sx={{width:"250px" ,height:"100%",display:"flex",justifyContent:"center",alignItems:"center"}}>
-              <Typography sx={{fontWeight:"600",fontSize:{md:"20px",xs:"12px"}}}>Company pvt Ltd</Typography>
-            </Box>
-            <Box sx={{width:"150px" ,height:"100%",display:"flex",justifyContent:"center",alignItems:"center"}}>
-              <Typography sx={{fontWeight:"600",fontSize:{md:"20px",xs:"12px"}}}>₹ 999</Typography>
-            </Box>
-            <Box sx={{width:"250px" ,height:"100%",display:"flex",justifyContent:"center",alignItems:"center",flexDirection:"column"}}>
-              <Typography sx={{fontWeight:"600",fontSize:{md:"20px",xs:"12px"}}}>Quantity</Typography>
-             
-              <Box sx={{display:"flex",border:"1px solid black",borderRadius:"20px",width:{md:"80px",xs:"50px"},justifyContent:"center",gap:"10px"}}>
-              <Typography sx={{fontSize:{md:"20px",xs:"16px"}}}>+</Typography><Box sx={{fontSize:{md:"20px",xs:"16px"}}}>1</Box><Typography sx={{fontSize:{md:"20px",xs:"16px"}}}>-</Typography>
+              <Box  sx={{width:"250px" ,height:"100%",display:"flex",justifyContent:"center",alignItems:"center"}}>
+                <Typography sx={{fontWeight:"600",fontSize:{md:"20px",xs:"12px"}}}>Company pvt Ltd</Typography>
               </Box>
-            </Box>
-            <Box sx={{width:"200px",display:"flex",justifyContent:"center",alignItems:"center"}}>
-              <Typography sx={{fontWeight:"600",fontSize:{md:"18px",xs:"14px"}}}> Total price</Typography>
-            </Box>
+              <Box sx={{width:"150px" ,height:"100%",display:"flex",justifyContent:"center",alignItems:"center"}}>
+                <Typography sx={{fontWeight:"600",fontSize:{md:"20px",xs:"12px"}}}>₹ {data && data.products && data.products[0] && data.products[0].productId.price && data.products[0].productId.price.mrp}</Typography>
+              </Box>
+              <Box sx={{width:"250px" ,height:"100%",display:"flex",justifyContent:"center",alignItems:"center",flexDirection:"column"}}>
+                <Typography sx={{fontWeight:"600",fontSize:{md:"20px",xs:"12px"}}}>{data && data.products && data.products[0] && data.products[0].qty}</Typography>
+                
+                <Box sx={{display:"flex",border:"1px solid black",borderRadius:"20px",width:{md:"80px",xs:"50px"},justifyContent:"center",gap:"10px"}}>
+                <Typography sx={{fontSize:{md:"20px",xs:"16px"}}}>-</Typography><Box sx={{fontSize:{md:"20px",xs:"16px"}}}>1</Box><Typography sx={{fontSize:{md:"20px",xs:"16px"}}}>+</Typography>
+                </Box>
+              </Box>
+              <div className='w-[220px] flex flex-col '>
+                <Box sx={{width:"100%",height:"105px",display:"flex",flexDirection:"column",justifyContent:"flex-end",alignItems:"center"}}>
+                  <Typography sx={{fontWeight:"600",fontSize:{md:"18px",xs:"14px"}}}>{ (data.products[0].productId.price.mrp) * (data.products[0].qty)}</Typography>
+                </Box>
+                <Box sx={{width:"100%",height:"105px",display:"flex",flexDirection:"column",justifyContent:"flex-end",alignItems:"center"}}>
+                  <button onClick = {() => handleDeleteCart(data.id)} className='bg-red-600 px-5 py-2 rounded-md mb-1 hover:bg-red-400 hover:scale-95 transition-all duration-200'><DeleteIcon/>Delete</button>
+                </Box>
+              </div>
         </Box>
+            ))
+          } 
+        
+        
       </Box>
     </Box> 
   )

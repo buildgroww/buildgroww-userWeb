@@ -7,6 +7,8 @@ import { Provider } from 'react-redux';
 import store from './redux/store/store';
 import { SnackbarProvider } from 'notistack';
 import "./index.css";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -16,6 +18,7 @@ root.render(
             <Provider store={store}>
               <CssBaseline/>
               <App />
+              <ToastContainer/>
             </Provider>
           </ThemeProviderWrapper>
         </SnackbarProvider>

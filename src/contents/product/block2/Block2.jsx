@@ -1,21 +1,50 @@
 import React from 'react'
 import { Add,  } from '@mui/icons-material'
 import { Box, Button, Card, CardMedia, Rating, Stack, Typography, styled } from '@mui/material'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { createCart } from '../../../redux/slices/cart'
+import { useNavigate } from 'react-router-dom'
 const StyleToolbar = styled(Box)(({theme})=>({
     padding:"0px 120px",
   textAlign:"justify",
   backgroundColor:"#fff",
   [theme.breakpoints.down('md')]: {
     padding:"0px 10px",
-    
+  },
+  [theme.breakpoints.down('sm')]: {
+    margin:"0px 10px"
   } 
-  }))
+}))
 function Block2() {
+  const navigate = useNavigate()
    //-->redux setup
    const product= useSelector((state)=>state.product)
 
    const productData = product&&product.products&&product.products.data&&product.products.data.length>0&&product.products.data[0].shop;
+
+   //-->Add to cart function
+   const dispatch = useDispatch()
+   const data ={
+    "userId":"64c5060adbdfded1b8a84968",
+    "products":[
+        {
+            "productId": "64c38b1dfbe11e10988ff1b5",
+            "qty": 1
+        }
+     ]
+}
+   const addToCart = ()=>{
+      const result =  dispatch(createCart(data))
+      if(result){
+navigate("/cart")
+console.log(result);
+return true;
+      }
+      else{
+        return false;
+      }
+
+   }
   return (
     <StyleToolbar>
       <Box sx={{paddingY:"10px",display:"flex",gap:"25px",alignItems:"center",flexWrap:"wrap"}}>
@@ -27,10 +56,12 @@ function Block2() {
           ))}
         </Box>
       </Box>
-      {product&&product.products&&product.products.data&&product.products.data.length>0&&product.products.data.map((data)=>(
-    <Box sx={{paddingY:"10px"}} key={data.id}>
+
+      <Box sx={{paddingY:"10px"}}>
+        {product&&product.products&&product.products.data&&product.products.data.length>0&&product.products.data.map((data)=>(
   
       <Card sx={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"20px",gap:"30px",flexDirection:{md:"row",sm:"row",xs:"column-reverse"},textAlign:{md:"initial",sm:"initial",xs:'center'}}}>
+      <Box sx={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"20px",gap:"30px",flexDirection:{md:"row",sm:"row",xs:'column'}}}>
      
             <Box >
             <Typography sx={{fontSize:{md:"32px",sm:"24px",xs:"24px"},fontWeight:'600',}}>{data&&data.title&&data.title.shortTitle} ( {data&&data.subCategory} )</Typography>
@@ -44,6 +75,7 @@ function Block2() {
                <Typography sx={{fontSize:"14px"}}>{data&&data.title&&data.title.longTitle}</Typography>
                   
             </Box>
+            </Box>
             <Box sx={{position:"relative",width:{md:300,sm:300,xs:"100%"},height:250}}>
             <CardMedia
             component="img"
@@ -54,15 +86,16 @@ function Block2() {
           <Box sx={{position:'absolute',bottom:'0px',width:"100%",display:"flex",justifyContent:'center',alignItems:'center'}}>
             <Button startIcon={<Add/>} sx={{color:"#fff",backgroundColor:"green",width:"100%",borderRadius:"0px","&:hover":{
                  backgroundColor:"#339D3A"
-                }}}>Add to Cart</Button>
+                }}} onClick={addToCart}>Add to Cart</Button>
           </Box>
           </Box>
-      </Card>
      
+      </Card>
+    ))} 
+    
     </Box>
-     ))} 
-        </StyleToolbar>
+  
+ </StyleToolbar>
   )
 }
-
 export default Block2

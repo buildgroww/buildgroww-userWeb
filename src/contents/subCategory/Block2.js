@@ -5,13 +5,15 @@ import { useEffect } from 'react';
 import { authApi } from '../../mocks/auth';
 import { useState } from 'react';
 import { useDispatch } from '../../redux/store/store';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Block2 = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const location = useLocation()
+  const category = location.pathname.split("/")[2]
   const [ users,setUsers] = useState()
-  const[filters,setFilters] = useState()
+  const[filters,setFilters] = useState({'workCategory':category})
  
 
 
@@ -33,7 +35,7 @@ const Block2 = () => {
   return (
     <>
        <Box sx={{display:{md:'none',sm:'none',xs:'block'},margin:'0px',padding:'0px'}}>
-        <Typography sx={{fontSize:'25px',fontWeight:'600',color:'black'}}>Best Workers</Typography>
+        <Typography sx={{fontSize:'25px',fontWeight:'600',color:'black'}}>Best {category}</Typography>
 
 
 

@@ -1,4 +1,4 @@
-import { AirportShuttle, Search } from '@mui/icons-material'
+import { AirportShuttle, Carpenter, Construction, Engineering, FormatPaint, Plumbing, Search, Tungsten } from '@mui/icons-material'
 import { Autocomplete, Box, TextField, Typography } from '@mui/material'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -62,22 +62,19 @@ const Block1 = () => {
 
      
         <Box sx={{display:'flex',flexDirection:'column',gap:'20px'}}>
-            <Typography onClick={() => navigate('/subcategory')} sx={{fontWeight:'600',fontSize:'18px',display:'flex',gap:'20px',alignItems:'center',cursor:'pointer'}}><AirportShuttle sx={{fontSize:'50px'}}/>Van</Typography>
-            <Typography sx={{fontWeight:'600',fontSize:'18px',display:'flex',gap:'20px',alignItems:'center'}}><AirportShuttle sx={{fontSize:'50px'}}/>Van</Typography>
-            <Typography sx={{fontWeight:'600',fontSize:'18px',display:'flex',gap:'20px',alignItems:'center'}}><AirportShuttle sx={{fontSize:'50px'}}/>Van</Typography>
-            <Typography sx={{fontWeight:'600',fontSize:'18px',display:'flex',gap:'20px',alignItems:'center'}}><AirportShuttle sx={{fontSize:'50px'}}/>Van</Typography>
+            <Typography onClick={() => navigate(`/subcategory/${'Painter'}`) }sx={{fontWeight:'600',fontSize:'18px',display:'flex',gap:'20px',alignItems:'center',cursor:'pointer'}}><FormatPaint sx={{fontSize:'50px'}}/>Painter</Typography>
+            <Typography onClick={() => navigate(`/subcategory/${'Engineer'}`) } sx={{fontWeight:'600',fontSize:'18px',display:'flex',gap:'20px',alignItems:'center',cursor:'pointer'}}><Engineering sx={{fontSize:'50px'}}/>Engineer</Typography>
+           
         </Box>
         <Box sx={{display:'flex',flexDirection:'column',gap:'20px'}}>
-            <Typography sx={{fontWeight:'600',fontSize:'18px',display:'flex',gap:'20px',alignItems:'center'}}><AirportShuttle sx={{fontSize:'50px'}}/>Van</Typography>
-            <Typography sx={{fontWeight:'600',fontSize:'18px',display:'flex',gap:'20px',alignItems:'center'}}><AirportShuttle sx={{fontSize:'50px'}}/>Van</Typography>
-            <Typography sx={{fontWeight:'600',fontSize:'18px',display:'flex',gap:'20px',alignItems:'center'}}><AirportShuttle sx={{fontSize:'50px'}}/>Van</Typography>
-            <Typography sx={{fontWeight:'600',fontSize:'18px',display:'flex',gap:'20px',alignItems:'center'}}><AirportShuttle sx={{fontSize:'50px'}}/>Van</Typography>
+            <Typography onClick={() => navigate(`/subcategory/${'Plumber'}`) } sx={{fontWeight:'600',fontSize:'18px',display:'flex',gap:'20px',alignItems:'center',cursor:'pointer'}}><Plumbing sx={{fontSize:'50px'}}/>Plumber</Typography>
+            <Typography onClick={() => navigate(`/subcategory/${'Electrician'}`) } sx={{fontWeight:'600',fontSize:'18px',display:'flex',gap:'20px',alignItems:'center',cursor:'pointer'}}><Tungsten sx={{fontSize:'50px'}}/>Electrician</Typography>
+          
         </Box>
         <Box sx={{width:{md:'400px',sm:'250px'},display:'flex',flexDirection:'column',gap:'20px'}}>
-            <Typography sx={{fontWeight:'600',fontSize:'18px',display:'flex',gap:'20px',alignItems:'center'}}><AirportShuttle sx={{fontSize:'50px'}}/>Van</Typography>
-            <Typography sx={{fontWeight:'600',fontSize:'18px',display:'flex',gap:'20px',alignItems:'center'}}><AirportShuttle sx={{fontSize:'50px'}}/>Van</Typography>
-            <Typography sx={{fontWeight:'600',fontSize:'18px',display:'flex',gap:'20px',alignItems:'center'}}><AirportShuttle sx={{fontSize:'50px'}}/>Van</Typography>
-            <Typography sx={{fontWeight:'600',fontSize:'18px',display:'flex',gap:'20px',alignItems:'center'}}><AirportShuttle sx={{fontSize:'50px'}}/>Van</Typography>
+            <Typography onClick={() => navigate(`/subcategory/${'Carpainter'}`) } sx={{fontWeight:'600',fontSize:'18px',display:'flex',gap:'20px',alignItems:'center',cursor:'pointer'}}><Carpenter sx={{fontSize:'50px'}}/>Carpenter</Typography>
+            <Typography onClick={() => navigate(`/subcategory/${'Labour'}`) } sx={{fontWeight:'600',fontSize:'18px',display:'flex',gap:'20px',alignItems:'center',cursor:'pointer'}}><Construction sx={{fontSize:'50px'}}/>Labour</Typography>
+           
         </Box>
     </Box>
 

@@ -1,12 +1,13 @@
 import { ShoppingCart } from '@mui/icons-material'
-import { Avatar, Box, Button, TextField, Typography } from '@mui/material'
+import {  Box, Button, TextField, Typography } from '@mui/material'
 import { useFormik } from 'formik'
 import React from 'react'
 import { useDispatch, useSelector } from '../../redux/store/store'
 import { getUser, updateUser } from '../../redux/slices/auth'
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
-
+import { useState } from 'react'
+import Avatar from 'react-avatar-edit'
 
 const initialValues = {
     name:'',
@@ -17,7 +18,8 @@ const initialValues = {
 const Block1 = () => {
 const dispatch = useDispatch();
 const navigate = useNavigate();
-
+const [image,setImage] = useState('');
+const [open,setOpen] = useState(false)
 const {user} = useSelector((state)=>state.auth)
 
 const fetchUser = async () => {
@@ -72,8 +74,7 @@ const fetchUser = async () => {
                  </Box>
 
                  <Box sx={{display:'flex',gap:{md:'10px',sm:'10px',xs:'0px'},alignItems:'center'}}>
-                   
-                    <Avatar sx={{background:'#F0F0F0',color:'black'}}/>
+                 <Avatar/>
                     <Typography>{user && user.name}</Typography>
                  </Box>
             </Box>

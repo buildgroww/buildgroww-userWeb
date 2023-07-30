@@ -1,7 +1,7 @@
 import { Call, FavoriteBorder, FavoriteOutlined, Message, ThumbUp } from '@mui/icons-material'
 import { Box, Button, Rating, Typography } from '@mui/material'
 import React from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from '../../redux/store/store';
 import { useState } from 'react';
 import { getUser } from '../../redux/slices/auth';
@@ -10,9 +10,12 @@ import { authApi } from '../../mocks/auth';
 
 const Block1 = () => {
   const navigate = useNavigate();
+  const location = useLocation()
+  const category = location.pathname.split("/")[2]
+  console.log(category)
   const dispatch = useDispatch();
   const [ users,setUsers] = useState()
-  const[filters,setFilters] = useState({'workCategory':users && users.data[0] && users.data[0].workCategory && users.data[0].workCategory})
+  const[filters,setFilters] = useState({"workCategory": category})
  
   console.log(filters)
 

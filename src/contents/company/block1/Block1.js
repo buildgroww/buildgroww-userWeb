@@ -1,6 +1,7 @@
 import {  ArrowDropDown, Close, Phone,  Reply, Tune, WhatsApp } from '@mui/icons-material';
 import {  Box, Button, Card,  CardMedia,  Rating, Stack, Typography, styled } from '@mui/material';
 import React, { useRef, useState } from 'react'
+import { useNavigate } from 'react-router';
 
 import {
   EmailIcon,
@@ -28,6 +29,7 @@ textAlign:"justify",
 
 function Block1({companyData}) {
   const catMenu = useRef(null);
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false)
   const [showNumber, setShowNumber] = useState(false);
   const location = window.location.pathname.split('/')[1]
@@ -72,14 +74,15 @@ const handleClose = () =>{
 {companyData.companyData && companyData.companyData.data && companyData.companyData.data.data && companyData.companyData.data.data.map((item,index)=>{
     return <Box key={index} sx={{paddingY:"30px"}}>
     <Card sx={{display:"flex",padding:"20px",gap:"30px",flexDirection:{md:"row",sm:"row",xs:'column'}}}>
-    <CardMedia
+        <CardMedia
+          onClick={()=>{navigate(`/${location}/${item && item.name}/${item && item.id}`)}}
           component="img"
-          sx={{ width:{md:180,sm:180,xs:"100%"},height:200,borderRadius:"5px" }}
+          sx={{ width:{md:180,sm:180,xs:"100%"},height:200,borderRadius:"5px",cursor:'pointer' }}
           image={`${item.logo}`}
           alt={`${item.name}`}
         />
           <Box >
-            <Typography sx={{fontSize:{md:"24px",sm:"24px",xs:"18px"},fontWeight:"600",}}>
+            <Typography onClick={()=>{navigate(`/${location}/${item && item.name}/${item && item.id}`)}} sx={{fontSize:{md:"24px",sm:"24px",xs:"18px"},fontWeight:"600",cursor:'pointer','&:hover':{color:'#65cb7a'}}}>
                 {item.name}
             </Typography>
             <Box sx={{display:"flex",gap:"10px",paddingY:"10px",alignItems:"center",flexWrap:"wrap"}}>

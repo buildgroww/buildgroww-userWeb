@@ -33,6 +33,7 @@ import WestIcon from '@mui/icons-material/West';
 import Siderbar from '../sideBar/Siderbar.jsx'
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import MyLocationIcon from '@mui/icons-material/MyLocation';
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 
 
@@ -44,6 +45,7 @@ import { useSnackbar } from 'notistack';
 import { useSelector } from '../../../redux/store/store';
 import { getUser, logoutUser } from '../../../redux/slices/auth';
 import Cookies from 'js-cookie';
+import { getCurrentLocation, getLocation } from '../../../redux/slices/location';
 
   const StyleToolbar = styled(Toolbar)(({theme}) => ({
       display: 'flex',
@@ -131,6 +133,7 @@ export default function Navbar(props) {
     const [loca,setLoca] = useState(null);
 
     const {user} = useSelector((state) => state.auth)
+    const location = useSelector((state) => state.location)
 
     const fetchUser = async () => {
       let result = await dispatch(getUser())
@@ -194,6 +197,44 @@ export default function Navbar(props) {
             console.log(error);
         }
            
+      }
+
+      const handleCurrLocation = ()=>{
+        if(Object.keys(user).length===0){
+            setLogin(true);
+        }
+        else{
+          if((location.currentLocation===null)||((location.currentLocation && location.currentLocation.latitude!==undefined) && (location.currentLocation && location.currentLocation.longitude!==undefined))){
+            if(navigator.geolocation){
+                navigator.geolocation.getCurrentPosition((position)=>{
+                  const {latitude,longitude} = position.coords;
+                  dispatch(getCurrentLocation({latitude,longitude}))
+                  dispatch(getLocation(latitude,longitude))
+                },(error)=>{
+                  dispatch(getCurrentLocation({code:error.code,message:error.message}))
+                  console.log(error)
+                })
+              }
+              else{
+                alert('Your Browser is not supporting geoLocation, Please Update your browser');
+              }
+        }
+        // else if(user.currentLocation.latitude!=undefined&&user.currentLocation.longitude!=undefined){
+        //     getPosition(user.currentLocation.latitude,user.currentLocation.longitude)
+        // }
+        else{
+            // enqueueSnackbar(`${user.currentLocation.code}`==='1'?'User Blocked Loaction, Please unblocked and reload ':`${user.currentLocation.message}`, {
+            //     variant: 'error',
+            //     anchorOrigin: {
+            //       vertical: 'top',
+            //       horizontal: 'center'
+            //     },
+            //     TransitionComponent: Zoom
+            //     });
+        }
+        }
+        setShowSearch(false)
+        
       }
 
       let userName= `${user && user.name}`
@@ -271,10 +312,11 @@ export default function Navbar(props) {
                               borderColor:'#3E96DF',
                               borderRadius:'21px'
                             }}
+                            ref={catMenu}
                             component="nav"
                             aria-label="mailbox folders"
                           >
-                            <StyledListItem sx={{ gap: "15px",color:'#1700ff !important' }}
+                            <StyledListItem onClick={handleCurrLocation} sx={{ gap: "15px",color:'#1700ff !important' }}
                                 button><MyLocationIcon/><ListItemText primary={`Current Location`} /></StyledListItem>
                         {loca && loca.map((item, index) => (
                               <StyledListItem
@@ -291,18 +333,18 @@ export default function Navbar(props) {
                         
                         }
 
-                        {!showSearch && <Button size='small' onClick={()=>{setShowSearch(true)}} sx={{display:'flex',fontSize:'16px',fontWeight:400,padding:{md:'13px 15px 13px 29px',sm:'10px 10px 10px 24px',xs:'6px 0px 6px 14px'}, backgroundColor:'rgba(217, 217, 217, 0.39)',color:'#000000',justifyContent:'flex-start',gap:'10px',boxShadow:'0px 4px 4px rgba(0, 0, 0, 0.25)',borderRadius:'21px',width:{md:'270px',sm:'180px',xs:'130px'},}}><LocationOnIcon/>Haridwar</Button>}
+                        {!showSearch && <Button size='small' onClick={()=>{setShowSearch(true)}} sx={{display:'flex',fontSize:'16px',fontWeight:400,padding:{md:'13px 15px 13px 29px',sm:'10px 10px 10px 24px',xs:'6px 0px 6px 14px'}, backgroundColor:'rgba(217, 217, 217, 0.39)',color:'#000000',justifyContent:'flex-start',gap:'10px',boxShadow:'0px 4px 4px rgba(0, 0, 0, 0.25)',borderRadius:'21px',width:{md:'270px',sm:'180px',xs:'130px'},}}><LocationOnIcon/>{location.location && location.location.city && location.location.city}</Button>}
 
                 
                 <SearchBar/>
              
             </NavLeft>
-            <Box sx={{display:{md:Object.keys(user).length!==0 ? 'flex' : 'none',xs:'none'},alignItems:'center',position:'relative',"&:hover .list":{display:'flex'}}}>
-                <Avatar onClick={()=>{navigate('/account')}} {...stringAvatar(userName)} sx={{cursor:'pointer',background:'green'}} src={user &&user.avatar}/>
-                <Typography sx={{color:'black',fontSize:'16px',fontWeight:'500'}}>{user && user.name}</Typography>
 
-                <Box  className={'list'} sx={{position:'absolute',display:'none',flexDirection:'column',width:'250px',background:'white',right:'0px',height:'auto',  zIndex:'100',border:'1px solid rgba(0,0,0,0.3)',top:'32px',borderRadius:'5px'}}>
-                 <Box sx={{margin:'20px'}}>
+            <Box sx={{display:{md:Object.keys(user).length===0 ? 'flex' : 'none',xs:'none'},alignItems:'center',position:'relative',"&:hover .list":{display:'flex'},marginRight:'50px',"&:hover >div >svg":{transform: "rotate(180deg)"}}}>
+                <Typography sx={{color:'black',fontSize:'18px',fontWeight:'500',cursor:'pointer',height:'50px',display:'flex',alignItems:'center',justifyContent:'center'}}>More<ExpandMoreIcon sx={{marginTop:'5px',fontSize:'20px'}}/></Typography>
+
+                <Box  className={'list'} sx={{position:'absolute',display:'none',flexDirection:'column',width:'200px',background:'white',right:'0px',height:'auto',  zIndex:'100',border:'1px solid rgba(0,0,0,0.3)',top:'32px',borderRadius:'5px'}}>
+                 {/* <Box sx={{margin:'20px'}}>
                  <Typography sx={{color:'black',fontSize:'16px',fontWeight:'600'}}>Welcome {user && user.name} !</Typography>
                 <Box sx={{display:'flex',gap:'10px'}}>
                    
@@ -312,19 +354,46 @@ export default function Navbar(props) {
                 </Box>
 
                  </Box>
+                <Divider/> */}
+                <Typography onClick={()=> navigate("/about")} sx={{cursor:"pointer",fontWeight:'600',fontSize:'16px',padding:'15px',color:'black'}}>About us</Typography>
                 <Divider/>
-                <Typography  sx={{fontWeight:'600',fontSize:'16px',padding:'15px',color:'black'}}>Orders</Typography>
+
+                 <Typography onClick={()=> navigate("/contact")} sx={{fontWeight:'600',fontSize:'16px',padding:'15px',color:'black',cursor:'pointer'}}>Contact Us</Typography>
+                <Divider/>
+
+                   <Typography  sx={{fontWeight:'600',fontSize:'16px',padding:'15px',color:'black',cursor:'pointer'}}>FAQs</Typography>
+                <Divider/>
+
+                </Box>
+            </Box>
+            <Box sx={{display:{md:Object.keys(user).length!==0 ? 'flex' : 'none',xs:'none'},alignItems:'center',position:'relative',"&:hover .list":{display:'flex'}}}>
+                <Avatar onClick={()=>{navigate('/account')}} {...stringAvatar(userName)} sx={{cursor:'pointer',background:'green'}} src={user &&user.avatar}/>
+                <Typography sx={{color:'black',fontSize:'16px',fontWeight:'500'}}>{user && user.name}</Typography>
+
+                <Box  className={'list'} sx={{position:'absolute',display:'none',flexDirection:'column',width:'250px',background:'white',right:'0px',height:'auto',  zIndex:'100',border:'1px solid rgba(0,0,0,0.3)',top:'32px',borderRadius:'5px'}}>
+                 <Box sx={{margin:'20px'}}>
+                 <Typography sx={{color:'black',fontSize:'16px',fontWeight:'600'}}>Welcome {user && user.name} !</Typography>
+                <Box sx={{display:'flex',gap:'10px'}}>
+                   
+                   <Button onClick={()=>navigate('/account')}  variant='outlined' sx={{cursor:'pointer',color:'black',fontSize:'12px',height:'35px',borderRadius:'5px'}}>MyAccount</Button>
+                   <Button onClick={handleLogout} variant='outlined' sx={{cursor:'pointer',color:'black',fontSize:'12px',height:'35px',borderRadius:'5px'}}>Logout</Button>
+                   
+                </Box>
+
+                 </Box>
+                <Divider/>
+                <Typography  sx={{fontWeight:'600',fontSize:'16px',padding:'15px',color:'black',cursor:'pointer'}}>Orders</Typography>
                 <Divider/>
                 <Typography onClick={()=> navigate("/cart")} sx={{cursor:"pointer",fontWeight:'600',fontSize:'16px',padding:'15px',color:'black'}}>Carts</Typography>
                 <Divider/>
 
-                <Typography sx={{fontWeight:'600',fontSize:'16px',padding:'15px',color:'black'}}>Saved Address</Typography>
+                <Typography sx={{fontWeight:'600',fontSize:'16px',padding:'15px',color:'black',cursor:'pointer'}}>Saved Address</Typography>
                 <Divider/>
 
-                 <Typography sx={{fontWeight:'600',fontSize:'16px',padding:'15px',color:'black'}}>Contact Us</Typography>
+                 <Typography onClick={()=> navigate("/contact")} sx={{cursor:'pointer',fontWeight:'600',fontSize:'16px',padding:'15px',color:'black'}}>Contact Us</Typography>
                 <Divider/>
 
-                   <Typography  sx={{fontWeight:'600',fontSize:'16px',padding:'15px',color:'black'}}>FAQs</Typography>
+                   <Typography  sx={{fontWeight:'600',fontSize:'16px',padding:'15px',color:'black',cursor:'pointer'}}>FAQs</Typography>
                 <Divider/>
 
                 </Box>

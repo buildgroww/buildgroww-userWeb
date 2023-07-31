@@ -8,7 +8,6 @@ import Block3 from '../../contents/home/block3/Block3'
 import Block4 from '../../contents/home/block4/Block4' 
 import Block5 from '../../contents/home/block5/Block5'
 import Block6 from '../../contents/home/block6/Block6'
-import Block17 from '../../contents/home/block17/Block17'
 import Footer from '../../components/footer/Footer'
 import LandingPage from '../../components/loading/LandingPage'
 

@@ -20,11 +20,12 @@ function Company() {
   useEffect(() => {
     
     let fetchData = async()=>{
-      let query = {"$and":[{"address.city":{"$regex":`${location}`},"$options":"i"},{"$or":[{"name":{"$regex":`${search?search:''}`},"$options":"i"},{"title":{"$regex":`${search?search:''}`},"$options":"i"}]}]}
+      let query = {"$and":[{"address.city":{"$regex":`${location}`,"$options":"i"}},{"$or":[{"name":{"$regex":`${search?search:''}`,"$options":"i"}},{"title":{"$regex":`${search?search:''}`,"$options":"i"}}]}]}
       let sort = {"name":1}
       dispatch(getCompanyData(query,sort,page))
     }
     fetchData();
+    console.log("object");
   }, [loc.pathname])
   
 

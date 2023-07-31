@@ -1,6 +1,7 @@
 import { Box, Typography, styled } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router";
+import { useSelector } from "../../../redux/store/store";
 
 const Image = styled('img')(({theme})=>({
   width:'100%',
@@ -16,9 +17,10 @@ const Image = styled('img')(({theme})=>({
 
 function Block6() {
   const navigate = useNavigate();
+  const {location} = useSelector(state => state.location)
 
   const handleClick = (item)=>{
-    navigate(`/location/${item}`)
+    navigate(`/${location && location.city && location.city}/${item}`)
 
   }
   return (

@@ -68,13 +68,14 @@ import { useEffect } from "react";
     const catMenu = useRef(null);
     const dispatch = useDispatch();
     const searchProducts = useSelector((state) => state.search);
+    const location = useSelector((state) => state.location);
   
     const searchHandler = () => {
       setShowSearch("flex");
     };
     const handleEnter = (e) => {
       if (e.target.value !== "" && e.key === "Enter") {
-            navigate(`/haridwar/${e.target.value}`)
+            navigate(`/${location.location && location.location.city}/${e.target.value}`)
         }
       };
     const handleChange = async (e) => {

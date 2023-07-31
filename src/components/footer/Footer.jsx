@@ -5,6 +5,7 @@ import {IoLogoFacebook, IoLogoLinkedin, IoLogoPinterest, IoLogoYoutube} from "re
 import {FaInstagramSquare} from "react-icons/fa"
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { useSelector } from '../../redux/store/store';
 const Button = styled("button")(({theme})=>({
 background:"#5a3535",
 fontFamily:"Roboto",
@@ -116,6 +117,7 @@ const Paragraph = styled(Typography)(({theme})=>({
 
 const Footer = () => {
   const navigate = useNavigate()
+  const {location} = useSelector(state => state.location)
   // const handleScrollToTop = () =>{
   //       Window.scrollTo({top:0, behaviour:"smooth"})
   // };
@@ -174,11 +176,11 @@ const Footer = () => {
           <Typography sx={{color:"#7C6151", fontSize:"16px", fontWeight:"500"}} > Category</Typography>
 
           <LinkContainer>
-          <Link to="/location/brick" style={{color:"white", textDecoration:"none"}} >Bricks</Link>
-          <Link to="/location/cement"  style={{color:"white", textDecoration:"none"}} >Cements</Link>
-          <Link to="/location/wood"  style={{color:"white", textDecoration:"none"}} >Wood</Link>
-          <Link to="/location/plastic" style={{color:"white", textDecoration:"none"}} >Plastic</Link>
-          <Link to="/location/metal"  style={{color:"white", textDecoration:"none"}} >Metal</Link>
+          <Link to={`/${location && location.city && location.city}/brick`} style={{color:"white", textDecoration:"none"}} >Bricks</Link>
+          <Link to={`/${location && location.city && location.city}/cement`}  style={{color:"white", textDecoration:"none"}} >Cements</Link>
+          <Link to={`/${location && location.city && location.city}/wood`}  style={{color:"white", textDecoration:"none"}} >Wood</Link>
+          <Link to={`/${location && location.city && location.city}/plastic`} style={{color:"white", textDecoration:"none"}} >Plastic</Link>
+          <Link to={`/${location && location.city && location.city}/metal`}  style={{color:"white", textDecoration:"none"}} >Metal</Link>
           </LinkContainer>
         </Box2>
         <Box3>
@@ -187,7 +189,6 @@ const Footer = () => {
           <Link style={{color:"white", textDecoration:"none"}} >Electrical Services</Link>
           <Link style={{color:"white", textDecoration:"none"}} >Home Renovation Services</Link>
           <Link style={{color:"white", textDecoration:"none"}} >Home Cleaning Services</Link>
-          <Link style={{color:"white", textDecoration:"none"}} >Food &Restaurant</Link>
           <Link style={{color:"white", textDecoration:"none"}} >Painting Services</Link>
           <Link style={{color:"white", textDecoration:"none"}} >Home Repair and Maintenance Services</Link>
           <Link style={{color:"white", textDecoration:"none"}} >Plumbing Services</Link>

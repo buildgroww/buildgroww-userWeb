@@ -16,6 +16,7 @@ import LandingPage from '../../components/loading/LandingPage'
 
 
 import { Box } from '@mui/material'
+import Content from '../../components/content/Content'
 
   
 
@@ -133,7 +134,7 @@ const Home = ({loading, setLoading}) => {
           <Block5/>
           <Block6/>
       </Box>
-     
+     <Content/>
       {/* <Block17/> */}
       <Footer/>
     </div> 

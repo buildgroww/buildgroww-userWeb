@@ -182,16 +182,17 @@ export default function Navbar(props) {
       }, [])
 
       const handleLocationChange = async (e)=>{
-        // try {
-        //     const data = await fetch(`https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${e.target.value}&key=AIzaSyCKGZHeJAtVP9Poo7O8SGbf1KdooaMwbhE`)
-        //     const location = await data.json();
-        //     console.log(location);
-        //     if(location.status==='OK'){
-        //         setLoca(location.predictions)
-        //     }
-        // } catch (error) {
-        //     console.log(error);
-        // }
+        try {
+            const data = await fetch(`https://maps.googleapis.com/maps/api/place/autocomplete/json?input=${e.target.value}&key=AIzaSyCKGZHeJAtVP9Poo7O8SGbf1KdooaMwbhE`)
+            console.log(data);
+            const location = await data.json();
+            console.log(location);
+            if(location.status==='OK'){
+                setLoca(location.predictions)
+            }
+        } catch (error) {
+            console.log(error);
+        }
            
       }
 

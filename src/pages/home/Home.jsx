@@ -20,6 +20,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from '../../redux/store/store'
 import { getUser } from '../../redux/slices/auth'
 import Cookies from 'js-cookie'
+import Content from '../../components/content/Content'
 
   
 
@@ -138,7 +139,7 @@ const fetchUser = async() => {
           <Block5/>
           <Block6/>
       </Box>
-     
+     <Content/>
       {/* <Block17/> */}
       <Footer/>
     </div> 

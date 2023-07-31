@@ -6,88 +6,118 @@ const Content = () => {
 
 
   return (
-    <Box sx={{margin:"20px 20px 0px 20px ", borderTop:"1px solid #EEEEEE" , borderBottom:"1px solid #EEEEEE" }}>
+    <Box sx={{margin:"20px 20px 0px 20px ", borderTop:"1px solid #EEEEEE" , borderBottom:"1px solid #EEEEEE",color:'#000' }}>
     <Typography variant="h6" sx={{fontSize:"16px", fontWeight:"550", marginTop:"20px", color:"#878787"}} >
-    TechPyro: Make your business simple solution
+      Welcome to "BuildGrow" - Your One-Stop Platform for All Your Home Improvement Needs!
     </Typography>
     <Typography variant="body2" sx={{color:"#878787",fontSize:"12px", marginBottom:"20px" }} gutterBottom>
-    E-commerce is revolutionizing the way we all shop in India. Why do you want to hop from one store to another in search of the latest phone when you can find it on the Internet in a single click? Not only mobiles. Flipkart houses everything you can possibly imagine, from trending electronics like laptops, tablets, smartphones, and mobile accessories to in-vogue fashion staples like shoes, clothing and lifestyle accessories; from modern furniture like sofa sets, dining tables, and wardrobes to appliances that make your life easy like washing machines, TVs, ACs, mixer grinder juicers and other time-saving kitchen and small appliances; from home furnishings like cushion covers, mattresses and bedsheets to toys and musical instruments, we got them all covered. You name it, and you can stay assured about finding them all here. For those of you with erratic working hours, Flipkart is your best bet. Shop in your PJs, at night or in the wee hours of the morning. This e-commerce never shuts down.What's more, with our year-round shopping festivals and events, our prices are irresistible. We're sure you'll find yourself picking up more than what you had in mind. If you are wondering why you should shop from Flipkart when there are multiple options available to you, well, the below will answer your question.
+        At Build & Grow, we have designed a revolutionary website that connects sellers, buyers, and skilled
+        workers, creating a seamless ecosystem for all your home improvement requirements. Whether you're a
+        homeowner looking to spruce up your living space or a professional seeking new opportunities, we've got
+        you covered.
       </Typography>
       <Typography variant="h6" sx={{fontSize:"16px", fontWeight:"550", marginBottom:"5px", color:"#878787"}} >
-    No Cost EMI
+      “OUR ENGINEERS”
     </Typography>
     <Typography variant="body2" sx={{color:"#878787",fontSize:"12px",marginBottom:"20px" }} gutterBottom>
-    In an attempt to make high-end products accessible to all, our No Cost EMI plan enables you to shop with us under EMI, without shelling out any processing fee. Applicable on select mobiles, laptops, large and small appliances, furniture, electronics and watches, you can now shop without burning a hole in your pocket. If you've been eyeing a product for a long time, chances are it may be up for a no cost EMI. Take a look ASAP! Terms and conditions apply.
+    "Our Engineers are the epitome of hard work and excellence. With relentless dedication and unwavering
+passion, they tackle challenges head-on, crafting innovative solutions. Their expertise and creativity shine
+through, delivering outstanding results. At the heart of our success, they are the driving force, ensuring
+brilliance in every endeavor."
+
       </Typography>
       <Typography variant="h6" sx={{fontSize:"16px", fontWeight:"550", marginBottom:"5px", color:"#878787"}} >
-      EMI on debit card
+      "OUR BUSINESS PARTNERS"
     </Typography>
     <Typography variant="body2" sx={{color:"#878787",fontSize:"12px",marginBottom:"40px" }} gutterBottom>
-    Did you know debit card holders account for 79.38 crore in the country, while there are only 3.14 crore credit card holders? After enabling EMI on Credit Cards, in another attempt to make online shopping accessible to everyone, Flipkart introduces EMI on Debit Cards, empowering you to shop confidently with us without having to worry about pauses in monthly cash flow. At present, we have partnered with Axis Bank, HDFC Bank, State Bank of India and ICICI Bank for this facility. More power to all our shoppers! Terms and conditions apply.
+    "Our Business Partners: Trusted and Reliable. We collaborate with top-tier sellers, skilled workers, and
+industry experts. Quality products, excellent craftsmanship, and professional services are their hallmarks.
+With our partners' support, Build & Grow ensures a seamless experience, making your home
+improvement journey a success."
+      </Typography>
+      <Typography variant="h6" sx={{fontSize:"16px", fontWeight:"550", marginBottom:"5px", color:"#878787"}} >
+      "OUR WORKERS"
+    </Typography>
+    <Typography variant="body2" sx={{color:"#878787",fontSize:"12px",marginBottom:"40px" }} gutterBottom>
+    "Meet Our Skilled Workers: The backbone of Build & Grow. Our workers are highly trained, dedicated
+professionals with exceptional expertise in their respective fields. With a commitment to excellence,
+reliability, and customer satisfaction, they bring unmatched craftsmanship to every project. Experience the
+best-in-class service with our talented workforce."
       </Typography>
 
       <Typography variant="h6" sx={{fontSize:"16px", fontWeight:"550", marginBottom:"20px", color:"#878787"  }} >
-      what can you buy services from Techpyro?
+      what can you buy services from Build Groww?
     </Typography>
     <Typography variant="h6" sx={{fontSize:"16px", fontWeight:"550", marginBottom:"5px", color:"#878787"}} >
-    Website development
+    Home Services:
     </Typography>
     <Typography variant="body2" sx={{color:"#878787",fontSize:"12px",marginBottom:"20px" }} gutterBottom>
-    Did you know debit card holders account for 79.38 crore in the country, while there are only 3.14 crore credit card holders? After enabling EMI on Credit Cards, in another attempt to make online shopping accessible to everyone, Flipkart introduces EMI on Debit Cards, empowering you to shop confidently with us without having to worry about pauses in monthly cash flow. At present, we have partnered with Axis Bank, HDFC Bank, State Bank of India and ICICI Bank for this facility. More power to all our shoppers! Terms and conditions apply.
+    Experience hassle-free home improvements with professional assistance for repairs, renovations,
+plumbing, electrical work, painting, and more, along with convenient booking options and reliable
+services at your doorstep.
       </Typography>
 
 
       <Typography variant="h6" sx={{fontSize:"16px", fontWeight:"550", marginBottom:"5px", color:"#878787"}} >
-      Android app development
+      Equipment Rental:
     </Typography>
     <Typography variant="body2" sx={{color:"#878787",fontSize:"12px",marginBottom:"20px" }} gutterBottom>
-    Did you know debit card holders account for 79.38 crore in the country, while there are only 3.14 crore credit card holders? After enabling EMI on Credit Cards, in another attempt to make online shopping accessible to everyone, Flipkart introduces EMI on Debit Cards, empowering you to shop confidently with us without having to worry about pauses in monthly cash flow. At present, we have partnered with Axis Bank, HDFC Bank, State Bank of India and ICICI Bank for this facility. More power to all our shoppers! Terms and conditions apply.
+    Access a diverse selection of high-quality equipment for projects and tasks, offering flexible rentals at
+affordable rates, enhancing efficiency and productivity, and providing doorstep delivery and pickup
+services.
+
       </Typography>
 
       <Typography variant="h6" sx={{fontSize:"16px", fontWeight:"550", color:"#878787", marginBottom:"5px"}} >
-      Ios development
+      Project Management:
     </Typography>
     <Typography variant="body2" sx={{color:"#878787",fontSize:"12px",marginBottom:"20px" }} gutterBottom>
-    Did you know debit card holders account for 79.38 crore in the country, while there are only 3.14 crore credit card holders? After enabling EMI on Credit Cards, in another attempt to make online shopping accessible to everyone, Flipkart introduces EMI on Debit Cards, empowering you to shop confidently with us without having to worry about pauses in monthly cash flow. At present, we have partnered with Axis Bank, HDFC Bank, State Bank of India and ICICI Bank for this facility. More power to all our shoppers! Terms and conditions apply.
-      </Typography>
-
-
-      <Typography variant="h6" sx={{fontSize:"16px", fontWeight:"550", color:"#878787", marginBottom:"5px"}} >
-      UI/UX designing
-    </Typography>
-    <Typography variant="body2" sx={{color:"#878787",fontSize:"12px",marginBottom:"20px" }} gutterBottom>
-    Did you know debit card holders account for 79.38 crore in the country, while there are only 3.14 crore credit card holders? After enabling EMI on Credit Cards, in another attempt to make online shopping accessible to everyone, Flipkart introduces EMI on Debit Cards, empowering you to shop confidently with us without having to worry about pauses in monthly cash flow. At present, we have partnered with Axis Bank, HDFC Bank, State Bank of India and ICICI Bank for this facility. More power to all our shoppers! Terms and conditions apply.
+    Get expert project management services for timely and efficient completion of your projects with strategic
+planning, resource allocation, and transparent communication.
       </Typography>
 
 
       <Typography variant="h6" sx={{fontSize:"16px", fontWeight:"550", color:"#878787", marginBottom:"5px"}} >
-      Digital Marketing & SEO
+      Site Preparation Availability:
     </Typography>
     <Typography variant="body2" sx={{color:"#878787",fontSize:"12px",marginBottom:"20px" }} gutterBottom>
-    Did you know debit card holders account for 79.38 crore in the country, while there are only 3.14 crore credit card holders? After enabling EMI on Credit Cards, in another attempt to make online shopping accessible to everyone, Flipkart introduces EMI on Debit Cards, empowering you to shop confidently with us without having to worry about pauses in monthly cash flow. At present, we have partnered with Axis Bank, HDFC Bank, State Bank of India and ICICI Bank for this facility. More power to all our shoppers! Terms and conditions apply.
+    We offer comprehensive site preparation services for construction sites, including clearing, grading, and
+leveling, ensuring a solid foundation and optimal safety for successful project initiation.
       </Typography>
 
 
       <Typography variant="h6" sx={{fontSize:"16px", fontWeight:"550", color:"#878787", marginBottom:"5px"}} >
-      Graphics designing
+      Plumbing Service:
     </Typography>
     <Typography variant="body2" sx={{color:"#878787",fontSize:"12px",marginBottom:"20px" }} gutterBottom>
-    Did you know debit card holders account for 79.38 crore in the country, while there are only 3.14 crore credit card holders? After enabling EMI on Credit Cards, in another attempt to make online shopping accessible to everyone, Flipkart introduces EMI on Debit Cards, empowering you to shop confidently with us without having to worry about pauses in monthly cash flow. At present, we have partnered with Axis Bank, HDFC Bank, State Bank of India and ICICI Bank for this facility. More power to all our shoppers! Terms and conditions apply.
+    Experienced plumbers offering fast, reliable, and affordable plumbing services, including repairs,
+installations, and emergency support.
+      </Typography>
+
+
+      <Typography variant="h6" sx={{fontSize:"16px", fontWeight:"550", color:"#878787", marginBottom:"5px"}} >
+      Electrical Service:
+    </Typography>
+    <Typography variant="body2" sx={{color:"#878787",fontSize:"12px",marginBottom:"20px" }} gutterBottom>
+    Certified electricians provide safe, efficient electrical work, including installations, repairs, upgrades,
+energy-efficient solutions, and timely service with a safety focus.
+
       </Typography>
 
       <Typography variant="h6" sx={{fontSize:"16px", fontWeight:"550", color:"#878787", marginBottom:"5px"}} >
-      video editing & content writing
+      Coloring Services:
     </Typography>
     <Typography variant="body2" sx={{color:"#878787",fontSize:"12px",marginBottom:"20px" }} gutterBottom>
-    Did you know debit card holders account for 79.38 crore in the country, while there are only 3.14 crore credit card holders? After enabling EMI on Credit Cards, in another attempt to make online shopping accessible to everyone, Flipkart introduces EMI on Debit Cards, empowering you to shop confidently with us without having to worry about pauses in monthly cash flow. At present, we have partnered with Axis Bank, HDFC Bank, State Bank of India and ICICI Bank for this facility. More power to all our shoppers! Terms and conditions apply.
+    Transform your space with professional painters, expert color consultation, and high-quality paints for a
+fresh and lasting finish.
       </Typography>
 
-      <Typography variant="h6" sx={{fontSize:"16px", fontWeight:"550", color:"#878787", marginBottom:"5px"}} >
+      {/* <Typography variant="h6" sx={{fontSize:"16px", fontWeight:"550", color:"#878787", marginBottom:"5px"}} >
       Data analytics & Data scientist
     </Typography>
     <Typography variant="body2" sx={{color:"#878787",fontSize:"12px",marginBottom:"20px" }} gutterBottom>
     Did you know debit card holders account for 79.38 crore in the country, while there are only 3.14 crore credit card holders? After enabling EMI on Credit Cards, in another attempt to make online shopping accessible to everyone, Flipkart introduces EMI on Debit Cards, empowering you to shop confidently with us without having to worry about pauses in monthly cash flow. At present, we have partnered with Axis Bank, HDFC Bank, State Bank of India and ICICI Bank for this facility. More power to all our shoppers! Terms and conditions apply.
-      </Typography>
+      </Typography> */}
     </Box>
   )
 }

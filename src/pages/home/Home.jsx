@@ -16,35 +16,31 @@ import LandingPage from '../../components/loading/LandingPage'
 
 
 import { Box } from '@mui/material'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from '../../redux/store/store'
+import { getUser } from '../../redux/slices/auth'
+import Cookies from 'js-cookie'
 
   
 
 
 const Home = ({loading, setLoading}) => {
-  // const user = useSelector((state)=>state.user);
-  // const dispatch = useDispatch();
+
+
+  const {user} = useSelector((state)=>state.auth);
+  const dispatch = useDispatch();
   // const cart = useSelector(cartValue);
   // const order = useSelector(orderValue);
   // const [click,setClick] = useState(0)
 
-
-  // useEffect(()=>{    
-  //   const fetchData = async () =>{
-  //     let token = Cookies.get('authCookie')
-  //     if(token!==undefined && (user.currentUser===null||user.currentUser.data===null)){
-  //        const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/userapp/user/me`,{headers :{Authorization: `Bearer ${token}`}})
-  //          let result = res.data;
-  //          result.data.token = token;
-  //          dispatch(loginSuccess(result)) 
-  //          setClick(1);
-  //     }
-  //   }
-  //  fetchData();
-  //   setTimeout(()=>{
-  //     setLoading(false)
-  //   }, 1000)
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [])
+const fetchUser = async() => {
+  let result = await dispatch(getUser())
+  if(result){
+     return true
+  }
+  else
+  return false
+}
     
 
   // useEffect(() => {
@@ -66,13 +62,22 @@ const Home = ({loading, setLoading}) => {
 
   //     // eslint-disable-next-line react-hooks/exhaustive-deps
   // }, [click])
+  const fetchToken =async()=>{
 
-  // useEffect(() => {
-  //   const timer = setTimeout(()=> setLoading(false) ,500)
-  //   return () => {
-  //     clearTimeout(timer)
-  //   }
-  // }, [])
+ 
+    if(Object.keys(user).length==0){
+      let token = Cookies.get("authCookie");
+      if(token!==undefined){
+        localStorage.setItem("accessToken",token)
+        await getUser()
+      }
+    }
+  }
+
+  useEffect(() => {
+     fetchToken()
+     fetchUser()
+  }, [])
   
   // console.table(cart.products);
   // console.log(cart.quantity)

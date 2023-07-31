@@ -81,6 +81,14 @@ let workCategoryArr =[
 const handleClick = () => {
   setBackdrop(true)
 }
+
+const handleFirstPage = async () => {
+  setBackdrop(true)
+  window.open(`${process.env.REACT_APP_HOST}/auth/google`,"_self");
+  if(window.open()){
+    setBackdrop(false)
+  }
+   };
   return (
 
     <Box sx={{width:'100%',display:'flex',justifyContent:'center',alignItems:'center'}}>
@@ -161,7 +169,7 @@ const handleClick = () => {
  <Box sx={{width:'90%'}}>
         <Button onClick={handleClick} variant='contained' type='submit' sx={{borderRadius:'3px',width:'100%',background:'black','&:hover':{background:'black'}}}>SIGNUP</Button>
 
-        <Backdrop open={backdrop}> 
+        <Backdrop open={backdrop} sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}> 
           <CircularProgress  color="inherit"/>
         </Backdrop>
 
@@ -174,7 +182,11 @@ const handleClick = () => {
        </Box>
 
        <Box sx={{display:'flex',alignItems:'center',justifyContent:'center'}}>
-              <Button variant='outlined' sx={{borderRadius:'3px',color:'black',border:'1px solid green',display:'flex',gap:'5px'}}><Google sx={{color:'green'}}/>Google</Button>
+              <Button onClick={handleFirstPage} variant='outlined' sx={{borderRadius:'3px',color:'black',border:'1px solid green',display:'flex',gap:'5px'}}><Google sx={{color:'green'}}/>Google</Button>
+
+              <Backdrop open={backdrop} sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}> 
+          <CircularProgress  color="inherit"/>
+        </Backdrop>
        </Box>
 </Box>
 </Box>

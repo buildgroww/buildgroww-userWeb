@@ -1,12 +1,12 @@
 import { Call, FavoriteBorder, FavoriteOutlined, Message, ThumbUp } from '@mui/icons-material'
-import { Box, Button, Rating, Typography } from '@mui/material'
+import { Box, Button, Pagination, Rating, Skeleton, Typography } from '@mui/material'
 import React from 'react'
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from '../../redux/store/store';
 import { useState } from 'react';
-import { getUser } from '../../redux/slices/auth';
 import { useEffect } from 'react';
 import { authApi } from '../../mocks/auth';
+import Block3 from './Block3';
 
 const Block1 = () => {
   const navigate = useNavigate();
@@ -17,13 +17,16 @@ const Block1 = () => {
   const dispatch = useDispatch();
   const [ users,setUsers] = useState()
   const[filters,setFilters] = useState({"workCategory": category})
+  const[page,setPage] = useState(1)
+ const [limit,setLimit] = useState(10)
+ const[skeletonState,setSkeletonState] = useState(false)
  
-  console.log(filters)
-
   const fetchUserList = async() => {
-    let result = await authApi.getUserList(1,10,filters);
+    setSkeletonState(true)
+    let result = await authApi.getUserList(page,limit,filters);
     console.log(result)
     if(result){
+      setSkeletonState(false)
       setUsers(result)
     }
     else
@@ -33,16 +36,53 @@ const Block1 = () => {
   
   useEffect(()=>{
     fetchUserList()
-  },[])
+  },[page])
   console.log(users)
+
+  const handleChangePage = (event,value) =>{
+    console.log(value);
+    setPage(value);
+  }
+  console.log(users &&  users.data && users.data.data && users.data.data )
   return (
     <>
         <Box sx={{display:{md:'block',sm:'block',xs:'none'}}}>
       <Box sx={{width:'100%',height:'200px',backgroundImage:`url(${'https://img.freepik.com/free-photo/illustration-geometric-shapes-with-neon-laser-lights-great-backgrounds-wallpapers_181624-32746.jpg?size=626&ext=jpg&ga=GA1.2.669828460.1689154101&semt=ais'})`,backgroundRepeat:'no-repeat',backgroundSize:'cover'}}>
         
       </Box>
+{/* 
+      <Box sx={{display:Object.keys(users &&  users.data && users.data.data && users.data.data  ).length !== 0 ? 'none':'flex',justifyContent:'center',alignItems:'center',height:'300px'}}>
+        <Block3/>
+      </Box> */}
 
+
+
+{skeletonState ?
+            <Box sx={{width:'100%',display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center',marginTop:'70px',gap:'40px'}}>
+              {users && users.data && users.data.data && users.data.data.length>0 && users.data.data.map((item,index)=>(
+                  <Box sx={{width:{md:'70%',sm:'90%'},border:'1px solid rgba(0,0,0,0.2)',height:'300px',padding:'20px',display:'flex',gap:{md:'20px', sm:'30px'}}}>
+                    <Box sx={{display:'flex',gap:'40px'}}>
+                    <Skeleton variant='rectengular' sx={{width:'200px',height:'200px'}}/>
+                    <Box sx={{display:'flex',flexDirection:'column',gap:'25px'}}>
+                    <Skeleton variant='rectengular' sx={{width:'250px',height:'20px'}}/>
+                    <Skeleton variant='rectengular' sx={{width:'200px',height:'20px'}}/>
+                    <Skeleton variant='rectengular' sx={{width:'150px',height:'20px'}}/>
+                    <Skeleton variant='rectengular' sx={{width:'150px',height:'20px'}}/>
+                    <Box sx={{display:'flex',gap:'20px'}}>
+                    <Skeleton variant='rectengular' sx={{width:'200px',height:'30px'}}/>
+                    <Skeleton variant='rectengular' sx={{width:'200px',height:'30px'}}/>
+                      </Box>
+                    </Box>
+                    </Box>
+
+                    </Box>
+              ))}
+              </Box>
+:
       <Box sx={{width:'100%',display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center',marginTop:'70px',gap:'40px'}}>
+
+
+        
       
 
     {users && users.data && users.data.data && users.data.data.length>0 && users.data.data.map((item,index)=>(
@@ -86,7 +126,13 @@ const Block1 = () => {
 ))}
 
 
+
+
       </Box>
+}
+<Box sx={{margin:'50px 0px' ,display:'flex',justifyContent:'center'}}>
+<Pagination count={users &&  users.data && users.data.paginator && users.data.paginator.pageCount} page={page} onChange={handleChangePage}/>
+</Box>
       </Box>
     </>
   )

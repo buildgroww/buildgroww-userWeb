@@ -1,5 +1,5 @@
 import { ShoppingCart } from '@mui/icons-material'
-import {  Box, Button, TextField, Typography, Dialog, Avatar, useMediaQuery } from '@mui/material'
+import {  Box, Button, TextField, Typography, Dialog, Avatar, useMediaQuery, Backdrop, CircularProgress } from '@mui/material'
 import { useFormik } from 'formik'
 import React from 'react'
 import { useDispatch, useSelector } from '../../redux/store/store'
@@ -24,6 +24,7 @@ const theme = useTheme()
 let image ;
 const [open,setOpen] = useState(false)
 const {user} = useSelector((state)=>state.auth);
+const[backdrop,setBackdrop] = useState(false)
 
 
 
@@ -75,6 +76,7 @@ const fetchUser = async () => {
 
       const saveImage =  async (e) => {
         try {
+          setBackdrop(true)
         const formData = new FormData()
         formData.append('files',image);
        const {data}= await  axios.post('http://localhost:5000/admin/file/upload',formData);
@@ -82,6 +84,7 @@ const fetchUser = async () => {
        console.log(result)
        if(result){
         setOpen(false)
+        setBackdrop(false)
        }
       } catch (error) {
           console.log(error)
@@ -117,7 +120,12 @@ const fetchUser = async () => {
                     <Dialog open={open} onClose={handleClose} fullScreen={fullScreen}>
                       <Box sx={{height:'400px',width:'400px',display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'column',gap:'30px'}}>
                        <input type='file' name='file' onChange={(e)=> fetchImage(e.target.files[0])}/>
+                       <Box>
                       <Button onClick={saveImage} variant='contained'>Save</Button>
+                      <Backdrop open={backdrop} sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}> 
+          <CircularProgress  color="inherit"/>
+        </Backdrop>
+                       </Box>
                       </Box>
                     </Dialog>
                   </Box>

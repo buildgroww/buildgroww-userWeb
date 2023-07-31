@@ -1,5 +1,5 @@
 import { Call, Star, ThumbUp } from '@mui/icons-material'
-import { Box, Button, Typography } from '@mui/material'
+import { Box, Button, Skeleton, Typography } from '@mui/material'
 import React from 'react'
 import { useEffect } from 'react';
 import { authApi } from '../../mocks/auth';
@@ -14,13 +14,17 @@ const Block2 = () => {
   const category = location.pathname.split("/")[2]
   const [ users,setUsers] = useState()
   const[filters,setFilters] = useState({'workCategory':category})
+ const[skeletonState,setSkeletonState] = useState(false)
+
  
 
 
   const fetchUserList = async() => {
+    setSkeletonState(true)
     let result = await authApi.getUserList(1,10,filters);
     console.log(result)
     if(result){
+      setSkeletonState(false)
       setUsers(result)
     }
     else
@@ -37,8 +41,30 @@ const Block2 = () => {
        <Box sx={{display:{md:'none',sm:'none',xs:'block'},margin:'0px',padding:'0px'}}>
         <Typography sx={{fontSize:'25px',fontWeight:'600',color:'black'}}>Best {category}</Typography>
 
+        {skeletonState ?
+            <Box sx={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center',marginTop:'30px',}}>
+              {users && users.data && users.data.data && users.data.data.length>0 && users.data.data.map((item,index)=>(
+                  <Box sx={{border:'1px solid rgba(0,0,0,0.2)',display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center',padding:'20px 0px',margin:'5px'}}>
+                    <Box sx={{display:'flex',gap:'40px'}}>
+                    <Skeleton variant='rectengular' sx={{width:'160px',height:'120px'}}/>
+                    <Box sx={{display:'flex',flexDirection:'column',gap:'25px'}}>
+                    <Skeleton variant='rectengular' sx={{width:'230px',height:'20px'}}/>
+                    <Skeleton variant='rectengular' sx={{width:'180px',height:'20px'}}/>
+                    <Skeleton variant='rectengular' sx={{width:'150px',height:'20px'}}/>
+                    <Skeleton variant='rectengular' sx={{width:'150px',height:'20px'}}/>
+                    <Box sx={{display:'flex',gap:'20px'}}>
+                    <Skeleton variant='rectengular' sx={{width:'100px',height:'30px'}}/>
+                    <Skeleton variant='rectengular' sx={{width:'100px',height:'30px'}}/>
+                      </Box>
+                    </Box>
+                    </Box>
 
+                    </Box>
+              ))}
+              </Box>
 
+:
+<Box>
         {users && users.data && users.data.data && users.data.data.length>0 && users.data.data.map((item,index)=>(
 
        <Box key={index} sx={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center',marginTop:'30px',height:'230px',}}>
@@ -46,7 +72,7 @@ const Block2 = () => {
           <Box sx={{display:'flex',gap:'10px'}}>
 
           <Box sx={{width:'35%',padding:'10px'}}>
-                <img src={users.avatar} style={{objectFit:'cover',width:'160px',height:'120px'}}/>
+                <img src={item.avatar} style={{objectFit:'cover',width:'160px',height:'120px'}}/>
             </Box>
 
             <Box sx={{width:'65%',display:'flex',flexDirection:'column',gap:'5px'}}>
@@ -74,7 +100,10 @@ const Block2 = () => {
 
        </Box>
         ))}
+        </Box>
+}
        </Box>
+        
     </>
   )
 }

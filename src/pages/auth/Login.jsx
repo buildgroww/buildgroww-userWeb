@@ -78,6 +78,14 @@ const handleClick = () => {
   setBackdrop(true)
 }
 const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
+
+const handleFirstPage = async () => {
+  setBackdrop(true)
+  window.open(`${process.env.REACT_APP_HOST}/auth/google`,"_self");
+  if(window.open()){
+    setBackdrop(false)
+  }
+   };
   return (
 
     <Box sx={{width:'100%',display:'flex',justifyContent:'center',alignItems:'center'}}>
@@ -106,7 +114,7 @@ const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
         <Box sx={{width:'90%'}}>
         <Button onClick={handleClick} variant='contained' type='submit' sx={{borderRadius:'3px',width:'100%',background:'black','&:hover':{background:'black'}}}>LOGIN</Button>
 
-        <Backdrop open={backdrop}> 
+        <Backdrop open={backdrop} sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}> 
           <CircularProgress  color="inherit"/>
         </Backdrop>
 
@@ -119,7 +127,11 @@ const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
        </Box>
 
        <Box sx={{display:'flex',alignItems:'center',justifyContent:'center'}}>
-              <Button variant='outlined' sx={{borderRadius:'3px',color:'black',border:'1px solid green',display:'flex',gap:'5px'}}><Google sx={{color:'green'}}/>Google</Button>
+              <Button onClick={handleFirstPage} variant='outlined' sx={{borderRadius:'3px',color:'black',border:'1px solid green',display:'flex',gap:'5px'}}><Google sx={{color:'green'}}/>Google</Button>
+
+              <Backdrop open={backdrop} sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}> 
+          <CircularProgress  color="inherit"/>
+        </Backdrop>
        </Box>
         <Box sx={{display:'flex',justifyContent:'center',marginTop:'30px'}}>
        <Typography onClick={handleOpen} sx={{color:'black',cursor:'pointer'}}>Don't have an account?Register | </Typography>

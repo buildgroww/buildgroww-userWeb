@@ -3,8 +3,7 @@ import Home from "./pages/home/Home";
 import {
   BrowserRouter as Router,
   Routes,
-  Route,
-  useLocation
+  Route
 } from "react-router-dom";
 
 
@@ -18,33 +17,15 @@ import Cart from "./pages/cart/Cart"
 import CheckOut from "./pages/checkout/CheckOut";
 import Orders from "./pages/orders/Orders";
 import Orderdetails from "./pages/orderdetails/Orderdetails";
-import { useDispatch } from "react-redux";
-import { getProducts } from "./redux/slices/products";
-import { useEffect } from "react";
 import Category from "./pages/category/category/Category";
 import SubCategory from "./pages/category/subcategory/SubCategory";
 import About from "./pages/about/About";
 import Contact from "./pages/contact/Contact";
-import { useSelector } from "./redux/store/store";
-// import { Search } from "@mui/icons-material";
+import Status404 from "./pages/status/404/404"
+
 
 
 function App() {
-  // const id ="64c3873cfbe11e10988ff1ab";
-  const location = useSelector(state => state.location);
-  // const dispatch =useDispatch()
-  // const fetchProduct = async()=>{
-  //   const query = {
-  //     "shop":id
-  //   }
-  // const result =  await dispatch(getProducts(query))
-  // console.log(result);
-  // }
-
-
-  // useEffect(() => {
-  //   fetchProduct();
-  // }, [])
   return (
     <>
       
@@ -63,6 +44,7 @@ function App() {
         <Route exact path="/subcategory/:workers" element={<SubCategory />} />
         <Route exact path="/cart" element={<Cart />} />
         <Route exact path="/orders" element={<Orders />} />
+        <Route exact path="/:nitish" element={<Status404 />} />
       </Routes>
     </Router>
 

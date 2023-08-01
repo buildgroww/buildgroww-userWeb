@@ -28,15 +28,18 @@ const MainContent = styled(Box)(
 );
 
 const TopWrapper = styled(Box)(
-  ({ theme }) => `
-  display: flex;
-  width: 100%;
-  flex: 1;
-  align-items: center;
-  justify-content: center;
-  padding: ${theme.spacing(6)};
-`
-);
+  ({ theme }) => ({
+  display: "flex",
+  width: "100%",
+  flex: 1,
+  alignItems:'center',
+  justifyContent: "center",
+  padding: `${theme.spacing(6)}`,
+  [theme.breakpoints.down("sm")]:{
+    padding: `${theme.spacing(2)}`,
+  }
+
+}));
 
 const OutlinedInputWrapper = styled(OutlinedInput)(
   ({ theme }) => `
@@ -62,9 +65,9 @@ function Status404() {
       <MainContent>
         <TopWrapper>
           <Container maxWidth="md">
-            <Box textAlign="center">
+            <Box sx={{display:'flex',alignItems:'center',justifyContent:'center',flexDirection:'column'}} textAlign="center">
               <img alt="404" height={180} src="/images/status/404.svg" />
-              <Typography variant="h2" sx={{ my: 2 }}>
+              <Typography variant="h2" sx={{ my: 2,fontSize:{md:'40px',sm:'35px',xs:'23px'} }}>
                 {t("The page you were looking for doesn't exist.")}
               </Typography>
               <Typography
@@ -79,7 +82,7 @@ function Status404() {
               </Typography>
             </Box>
             <Container maxWidth="sm">
-              <Card sx={{ textAlign: 'center', mt: 3, p: 4 }}>
+              <Card sx={{ textAlign: 'center', marginTop:{sm:'30px',xs:'0px'},padding:{sm:'40px',xs:'20px'} }}>
                 {/* <FormControl variant="outlined" fullWidth>
                   <OutlinedInputWrapper
                     type="text"

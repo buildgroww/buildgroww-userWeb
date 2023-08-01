@@ -17,11 +17,9 @@ const slice=createSlice({
 
 export const {reducer} =slice;
 
-export const getProducts = (query)=>async(dispatch)=>{
+export const getProducts = (query,page)=>async(dispatch)=>{
     try {
-        
-   
-    const result = await productApi.getProduct(query)
+    const result = await productApi.getProduct(query,page)
     if(result){
         dispatch(slice.actions.getProducts(result))
         return true

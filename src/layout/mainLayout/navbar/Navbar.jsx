@@ -390,6 +390,8 @@ export default function Navbar(props) {
                 <Typography sx={{fontWeight:'600',fontSize:'16px',padding:'15px',color:'black',cursor:'pointer'}}>Saved Address</Typography>
                 <Divider/>
 
+                 <Typography onClick={()=> navigate("/about")} sx={{cursor:'pointer',fontWeight:'600',fontSize:'16px',padding:'15px',color:'black'}}>About Us</Typography>
+                <Divider/>
                  <Typography onClick={()=> navigate("/contact")} sx={{cursor:'pointer',fontWeight:'600',fontSize:'16px',padding:'15px',color:'black'}}>Contact Us</Typography>
                 <Divider/>
 

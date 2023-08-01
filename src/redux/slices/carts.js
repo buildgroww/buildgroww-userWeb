@@ -46,7 +46,7 @@ export const deleteCart = (id) => async(dispatch) => {
         const result = await cartsApi.deleteCart(id);
 
         if(result){
-            await dispatch(slice.actions.deleteCart(result))
+            await dispatch(slice.actions.deleteCart(id))
             return true
         }
 

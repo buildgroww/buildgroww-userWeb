@@ -1,17 +1,17 @@
 import axios from "axios";
 
 class ProductApi{
-    async getProduct (query){
+    async getProduct (query,page){
         const data ={
             "query":query,
             "options": {
               "collation": "",
               "sort": {"name":1},
-              "populate": "shop",
+              "populate": "shop shop.owner",
               "projection": "",
               "lean": false,
               "leanWithId": true,
-              "page": 1,
+              "page": page,
               "limit": 9,
               "pagination": true,
               "useEstimatedCount": false,
@@ -22,11 +22,8 @@ class ProductApi{
             },
             "isCountOnly": false
           }
-       const res =await axios.post(`${process.env.REACT_APP_POST}/userapp/product/list`,data,{
-        method:"post",
-        headers: {
-            "Authorization": `Bearer ${localStorage.getItem("accessToken")}`
-        }
+       const res =await axios.post(`${process.env.REACT_APP_HOST}/userapp/product/list`,data,{
+        method:"post"
        })
        if(res.data.status==="SUCCESS")
        return res.data;

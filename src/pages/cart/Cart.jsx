@@ -37,7 +37,7 @@ export default function Cart() {
         }
     }
     handleCartList();
-  },[dispatch, refresh])
+  },[dispatch])
 
   if(carts && carts.carts && carts.carts.length() === 0){
     toast.warn("No items in carts")

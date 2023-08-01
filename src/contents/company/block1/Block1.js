@@ -1,53 +1,27 @@
-import {  ArrowDropDown, Close, Phone,  Reply, Tune, WhatsApp } from '@mui/icons-material';
-import {  Box, Button, Card,  CardMedia,  Rating, Stack, Typography, styled } from '@mui/material';
-import React, { useRef, useState } from 'react'
+import {  ArrowDropDown, Phone, Tune, WhatsApp } from '@mui/icons-material';
+import {  Box, Button, Card,  CardMedia, Divider, Pagination, Stack, Typography, styled } from '@mui/material';
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router';
 
-import {
-  EmailIcon,
-  EmailShareButton,
-  FacebookIcon,
-  FacebookShareButton,
-  LinkedinIcon,
-  LinkedinShareButton,
-  PinterestIcon,
-  PinterestShareButton,
-  TelegramIcon,
-  TelegramShareButton,
-  TwitterIcon,
-  TwitterShareButton,
-  WhatsappIcon,
-  WhatsappShareButton,
-} from "react-share";
+
 
 
 
 const StyleToolbar = styled(Box)(({theme})=>({
 backgroundColor:"#FFFFFF",
 textAlign:"justify",
+position:'relative',
+paddingBottom:'80px'
 }))
 
-function Block1({companyData}) {
-  const catMenu = useRef(null);
+function Block1({companyData,page,setPage}) {
   const navigate = useNavigate();
-  const [open, setOpen] = useState(false)
   const [showNumber, setShowNumber] = useState(false);
   const location = window.location.pathname.split('/')[1]
   const search = window.location.pathname.split('/')[2].replace("%20"," ");
+  const count = companyData.companyData && companyData.companyData.data && companyData.companyData.data.paginator && companyData.companyData.data.paginator.pageCount
 
 
-  const closeOpenMenus = (e)=>{
-    if(catMenu.current && open && !catMenu.current.contains(e.target)){
-        setOpen(false)
-    }
-}
-document.addEventListener('mousedown',closeOpenMenus);
-const handleOpen = () =>{
-  setOpen(true)
-}
-const handleClose = () =>{
-  setOpen(false)
-}
 
   return (
     <StyleToolbar>
@@ -85,7 +59,7 @@ const handleClose = () =>{
             <Typography onClick={()=>{navigate(`/${location}/${item && item.name}/${item && item.id}`)}} sx={{fontSize:{md:"24px",sm:"24px",xs:"18px"},fontWeight:"600",cursor:'pointer','&:hover':{color:'#65cb7a'}}}>
                 {item.name}
             </Typography>
-            <Box sx={{display:"flex",gap:"10px",paddingY:"10px",alignItems:"center",flexWrap:"wrap"}}>
+            {/* <Box sx={{display:"flex",gap:"10px",paddingY:"10px",alignItems:"center",flexWrap:"wrap"}}>
               <Box>
                 <Button sx={{backgroundColor:"#339D3A",color:"#fff",padding:"1px 3px",minWidth:"30px",borderRadius:"5px"}}>3.5</Button>
               </Box>
@@ -93,11 +67,11 @@ const handleClose = () =>{
               <Rating name="half-rating" defaultValue={3.5} precision={0.5} />
               </Stack>
               <Typography>15 Rating</Typography>
-            </Box>
+            </Box> */}
             <Typography sx={{fontSize:{md:"18px",sm:"18px",xs:"16px"},paddingY:'5px'}}>{item.title}  
             {/* <span style={{fontSize:"14px"}}>4.4km</span> */}
                  </Typography>
-              <Typography sx={{fontSize:"16px"}}><span style={{color:"#339D3A"}}>Open</span> Until 9:30 pm</Typography>
+              {/* <Typography sx={{fontSize:"16px"}}><span style={{color:"#339D3A"}}>Open</span> Until 9:30 pm</Typography> */}
               <Typography sx={{fontSize:"16px"}}>{item && item.address && item.address[0] && item.address[0].locality},{item && item.address && item.address[0] && item.address[0].city},{item && item.address && item.address[0] && item.address[0].state},{item && item.address && item.address[0] && item.address[0].country}-{item && item.address && item.address[0] && item.address[0].zipcode}</Typography>
               <Box sx={{display:'flex',alignItems:'center',flexWrap:'wrap',gap:'10px',marginY:'10px'}}>
               {item.productCategory.slice(0,5).map((i,ind)=>{
@@ -120,88 +94,18 @@ const handleClose = () =>{
                    backgroundColor:"#F7F7F7"
                   }}}>Chat</Button>
                 </a>
-                {/* <Box sx={{ display: 'flex', alignItems: "center", gap: "10px", position:"relative" }}>
-                  <Button onClick={handleOpen} startIcon={<Reply sx={{rotate:"360deg"}}/>} sx={{color:"#000",border:"1px solid #25D366",backgroundColor:"#fff","&:hover":{
-                   backgroundColor:"#F7F7F7"
-                  }}}>Share</Button>
-                    <Box sx={{width:"300px", zIndex:1,height:"230px", background:"#fff", boxShadow: "0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)", position:"absolute", bottom:0, right:"0", padding:"10px" , borderRadius:"8px"}} display={open ? "block" : "none"}>
-                    <Typography variant='h5' sx={{fontSize:"12px", padding:"5px 10px 15px 10px ", display:"flex", justifyContent:"space-between",textAlign:"center"}}  > Share with your friends and family to help grow online <Close onClick={handleClose} sx={{color:"gray", padding:"0px", cursor:"pointer"}} /> </Typography>
-                
-                <Box sx={{display:"flex", gap:"20px", justifyContent:"center", alignItems:"center",flexWrap:"wrap",width:"100%"}}  ref={catMenu} >
-
-            <FacebookShareButton
-              url={`https://buildgroww.com/${item && item.id}`}
-              quote={"Digital Service ka sahi partner"}
-              hashtag='#website#Apps#dashboard#CRM'
-              >
-              <FacebookIcon size={40} round={true} />
-              <Typography>Facebook</Typography>
-            </FacebookShareButton>
-            
-            <WhatsappShareButton
-              url={`https://buildgroww.com/${item && item.id}`}
-              title={"Techpyro | Digital Service ka sahi partner"}
-              separator={'  '}
-              >
-              <WhatsappIcon size={40} round={true} />
-              <Typography>Whatsapp</Typography>
-            </WhatsappShareButton>
-
-            <EmailShareButton
-              url={`https://buildgroww.com/${item && item.id}`}
-              subject={"Techpyro | Digital Service ka sahi partner"}
-              body={"Get everything digitized with us! We are a platform providing services like website, application, dashboard, UI/UX design, digital marketing, graphic designing, logo design, presentations, and content writing for stores, hotels, restaurants, hospitals, and institutes."}
-              >
-              <EmailIcon size={40} round={true} />
-              <Typography>Email</Typography>
-            </EmailShareButton>
-
-            <LinkedinShareButton
-              url={`https://buildgroww.com/${item && item.id}`}
-              title={"Digital Service ka sahi partner"}
-              summary={'Get everything digitized with us! We are a platform providing services like website, application, dashboard, UI/UX design, digital marketing, graphic designing, logo design, presentations, and content writing for stores, hotels, restaurants, hospitals, and institutes.'}
-              source='Techpyro.com'
-              >
-              <LinkedinIcon size={40} round={true} />
-              <Typography>LinkedIn</Typography>
-            </LinkedinShareButton>
-
-            <PinterestShareButton
-              url={`https://buildgroww.com/${item && item.id}`}
-              media={"https://techpyro.com"}
-            description='Get everything digitized with us! We are a platform providing services like website, application, dashboard, UI/UX design, digital marketing, graphic designing, logo design, presentations, and content writing for stores, hotels, restaurants, hospitals, and institutes.'
-              >
-              <PinterestIcon size={40} round={true} />
-              <Typography>PinInterest</Typography>
-            </PinterestShareButton>
-            
-            <TwitterShareButton
-              url={`https://buildgroww.com/${item && item.id}`}
-              title={"Digital Service ka sahi partner"}
-              hashtag={['#website','#Apps','#dashboard','#CRM','#digitalagency','#graphics', '#logo']}
-
-              >
-              <TwitterIcon size={40} round={true} />
-              <Typography>Twitter</Typography>
-            </TwitterShareButton>
-
-            
-            <TelegramShareButton
-              url={`https://buildgroww.com/${item && item.id}`}
-              title={"Digital Service ka sahi partner"}
-              >
-              <TelegramIcon size={40} round={true} />
-              <Typography>Telegram</Typography>
-            </TelegramShareButton>
-              </Box>
-              </Box>
-              </Box> */}
               </Box>
           </Box>
         
     </Card>
   </Box>
 })}
+<Stack sx={{display:"flex", justifyContent:"center",  width:"100%",height:"100px", alignItems:"center", position:"absolute", bottom:"0px"}} >
+        <Divider/>
+        <Typography variant='h5' >Page 1 of {count}</Typography>
+      <Pagination count={count} page={page} color="error" size='large' sx={{display:"flex", justifyContent:"center", padding:"20px 0px 0px 0px"}} onChange={(e, value) =>setPage(value)} />
+   
+      </Stack>
 
 
     </StyleToolbar>

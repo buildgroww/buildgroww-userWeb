@@ -30,21 +30,21 @@ import { useSelector } from "./redux/store/store";
 
 
 function App() {
-  const id ="64c3873cfbe11e10988ff1ab";
+  // const id ="64c3873cfbe11e10988ff1ab";
   const location = useSelector(state => state.location);
-  const dispatch =useDispatch()
-  const fetchProduct = async()=>{
-    const query = {
-      "shop":id
-    }
-  const result =  await dispatch(getProducts(query))
-  console.log(result);
-  }
+  // const dispatch =useDispatch()
+  // const fetchProduct = async()=>{
+  //   const query = {
+  //     "shop":id
+  //   }
+  // const result =  await dispatch(getProducts(query))
+  // console.log(result);
+  // }
 
 
-  useEffect(() => {
-    fetchProduct();
-  }, [])
+  // useEffect(() => {
+  //   fetchProduct();
+  // }, [])
   return (
     <>
       

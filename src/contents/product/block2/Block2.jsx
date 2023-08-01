@@ -1,26 +1,31 @@
 import React from 'react'
 import { Add,  } from '@mui/icons-material'
-import { Box, Button, Card, CardMedia, Rating, Stack, Typography, styled } from '@mui/material'
+import { Box, Button, Card, CardMedia, Divider, Pagination, Rating, Stack, Typography, styled } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
 import { createCart } from '../../../redux/slices/cart'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify';
+
 const StyleToolbar = styled(Box)(({theme})=>({
-    padding:"0px 120px",
+    padding:"0px 120px 100px 120px",
   textAlign:"justify",
   backgroundColor:"#fff",
+  position:'relative',
   [theme.breakpoints.down('md')]: {
-    padding:"0px 10px",
+    padding:"0px 10px 90px 10px",
   },
   [theme.breakpoints.down('sm')]: {
-    margin:"0px 10px"
+    padding:"0px 10px 90px 10px"
   } 
 }))
-function Block2() {
+function Block2({page,setPage}) {
   const navigate = useNavigate()
    //-->redux setup
    const product= useSelector((state)=>state.product)
+   const {user}= useSelector((state)=>state.auth)
 
    const productData = product&&product.products&&product.products.data&&product.products.data.length>0&&product.products.data[0].shop;
+   const count = product && product.products && product.products.data && product.products.data.paginator && product.products.data.paginator.pageCount
 
    //-->Add to cart function
    const dispatch = useDispatch()
@@ -34,15 +39,20 @@ function Block2() {
      ]
 }
    const addToCart = ()=>{
-      const result =  dispatch(createCart(data))
-      if(result){
-navigate("/cart")
-console.log(result);
-return true;
-      }
-      else{
-        return false;
-      }
+    if(Object.keys(user).length===0){
+      toast.success("Please login to add product in cart");
+    }
+    else{
+        const result =  dispatch(createCart(data))
+        if(result){
+          toast.success("Product added successfully in your cart");
+          navigate("/cart")
+        }
+        else{
+          toast.error("Some error occoured");
+          return false;
+        }
+    }
 
    }
   return (
@@ -94,6 +104,12 @@ return true;
     ))} 
     
     </Box>
+    <Stack sx={{display:"flex", justifyContent:"center",  width:"100%",height:"100px", alignItems:"center", position:"absolute", bottom:"0px",left:0}} >
+        <Divider/>
+        <Typography variant='h5' >Page 1 of {count}</Typography>
+      <Pagination count={count} page={page} color="error" size='large' sx={{display:"flex", justifyContent:"center", padding:"20px 0px 0px 0px"}} onChange={(e, value) =>setPage(value)} />
+   
+      </Stack>
   
  </StyleToolbar>
   )

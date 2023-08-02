@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Add,  } from '@mui/icons-material'
 import { Box, Button, Card, CardMedia, Divider, Pagination, Rating, Stack, Typography, styled } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
-import { createCart } from '../../../redux/slices/cart'
+import { createCart } from '../../../redux/slices/carts'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify';
 
@@ -18,35 +18,36 @@ const StyleToolbar = styled(Box)(({theme})=>({
     padding:"0px 10px 90px 10px"
   } 
 }))
-function Block2({page,setPage}) {
+function Block2({page,setPage,category,setCategory}) {
   const navigate = useNavigate()
    //-->redux setup
    const product= useSelector((state)=>state.product)
    const {user}= useSelector((state)=>state.auth)
+   const {companyData} = useSelector(state => state.company)
 
    const productData = product&&product.products&&product.products.data&&product.products.data.length>0&&product.products.data[0].shop;
    const count = product && product.products && product.products.data && product.products.data.paginator && product.products.data.paginator.pageCount
 
    //-->Add to cart function
    const dispatch = useDispatch()
-   const data ={
-    "userId":"64c5060adbdfded1b8a84968",
-    "products":[
-        {
-            "productId": "64c38b1dfbe11e10988ff1b5",
-            "qty": 1
-        }
-     ]
-}
-   const addToCart = ()=>{
+   
+   const addToCart = (id)=>{
     if(Object.keys(user).length===0){
-      toast.success("Please login to add product in cart");
+      toast.error("Please login to add product in cart");
     }
     else{
+      const data ={
+        "userId":`${user && user.id}`,
+        "products":[
+            {
+                "productId": `${id}`,
+                "qty": 1
+            }
+         ]
+      }
         const result =  dispatch(createCart(data))
         if(result){
           toast.success("Product added successfully in your cart");
-          navigate("/cart")
         }
         else{
           toast.error("Some error occoured");
@@ -60,9 +61,8 @@ function Block2({page,setPage}) {
       <Box sx={{paddingY:"10px",display:"flex",gap:"25px",alignItems:"center",flexWrap:"wrap"}}>
        <Typography sx={{fontSize:"24px",fontWeight:"600"}}>Our Categories:-</Typography>
         <Box  sx={{display:"flex",flexWrap:"wrap",gap:"10px"}}>
-          {productData&&productData.productCategory&& productData.productCategory.length>0&&productData.productCategory
-.map((item)=>(
-          <Button variant='contained' sx={{borderRadius:"2px",}} key={item.id}>{item&&item.name}</Button>
+          {companyData && companyData.data && companyData.data.productCategory && companyData.data.productCategory.length>0 &&companyData.data.productCategory.map((item)=>(
+          <Button onClick={()=> {setCategory(item && item.name);}} variant='contained' sx={{borderRadius:"2px",cursor:'pointer', boxShadow: category===item.name?"rgba(0, 0, 0, 0.35) 0px 5px 15px":"none",backgroundColor:category===item.name?"#eee":"none",color:category===item.name?"#000":"none","&:hover":{boxShadow: category===item.name?"rgba(0, 0, 0, 0.35) 0px 5px 15px":"none",backgroundColor:category===item.name?"#eee":"none",color:category===item.name?"#000":"none",}}} key={item.id}>{item&&item.name}</Button>
           ))}
         </Box>
       </Box>
@@ -70,7 +70,7 @@ function Block2({page,setPage}) {
       <Box sx={{paddingY:"10px"}}>
         {product&&product.products&&product.products.data&&product.products.data.length>0&&product.products.data.map((data)=>(
   
-      <Card sx={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"20px",gap:"30px",flexDirection:{md:"row",sm:"row",xs:"column-reverse"},textAlign:{md:"initial",sm:"initial",xs:'center'}}}>
+      <Card key={data.id} sx={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"20px",gap:"30px",flexDirection:{md:"row",sm:"row",xs:"column-reverse"},textAlign:{md:"initial",sm:"initial",xs:'center'}}}>
       <Box sx={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"20px",gap:"30px",flexDirection:{md:"row",sm:"row",xs:'column'}}}>
      
             <Box >
@@ -96,7 +96,7 @@ function Block2({page,setPage}) {
           <Box sx={{position:'absolute',bottom:'0px',width:"100%",display:"flex",justifyContent:'center',alignItems:'center'}}>
             <Button startIcon={<Add/>} sx={{color:"#fff",backgroundColor:"green",width:"100%",borderRadius:"0px","&:hover":{
                  backgroundColor:"#339D3A"
-                }}} onClick={addToCart}>Add to Cart</Button>
+                }}} onClick={()=>addToCart(data && data.id)}>Add to Cart</Button>
           </Box>
           </Box>
      
@@ -104,12 +104,12 @@ function Block2({page,setPage}) {
     ))} 
     
     </Box>
-    <Stack sx={{display:"flex", justifyContent:"center",  width:"100%",height:"100px", alignItems:"center", position:"absolute", bottom:"0px",left:0}} >
+    {product&&product.products&&product.products.data&&product.products.data.length>0 && <Stack sx={{display:"flex", justifyContent:"center",  width:"100%",height:"100px", alignItems:"center", position:"absolute", bottom:"0px",left:0}} >
         <Divider/>
         <Typography variant='h5' >Page 1 of {count}</Typography>
       <Pagination count={count} page={page} color="error" size='large' sx={{display:"flex", justifyContent:"center", padding:"20px 0px 0px 0px"}} onChange={(e, value) =>setPage(value)} />
    
-      </Stack>
+      </Stack>}
   
  </StyleToolbar>
   )

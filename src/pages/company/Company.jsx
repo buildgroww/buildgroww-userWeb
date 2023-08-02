@@ -55,11 +55,32 @@ function Company() {
           let sort = {"name":1}
           dispatch(getCompanyData(query,sort,page))
         }
+        Window.scrollTo({top:0, behaviour:"smooth"})
       }
-    if(page!==0)
-        fetchData();
+      const goToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
+      };
+      
+    if(page!==1){
+      fetchData();
+      goToTop();
+    }
 
   }, [page])
+
+  useEffect(() => {
+    const goToTop = () => {
+      window.scrollTo({
+          top: 0,
+          behavior: 'smooth',
+      });
+    };
+    goToTop();
+  }, [])
+  
   
 
   return (

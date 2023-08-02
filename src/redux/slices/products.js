@@ -20,11 +20,13 @@ export const {reducer} =slice;
 export const getProducts = (query,page)=>async(dispatch)=>{
     try {
     const result = await productApi.getProduct(query,page)
+    console.log(result);
     if(result){
         dispatch(slice.actions.getProducts(result))
         return true
     }
     else{
+        dispatch(slice.actions.getProducts({}))
         return false
     }
 } catch (error) {

@@ -24,7 +24,7 @@ class CartsApi{
     // Create the Carts function
     async createCart(data){
         try{
-            const response = await axios.post(`${process.env.REACT_APP_HOST}/user/cart/create`,data,{
+            const response = await axios.post(`${process.env.REACT_APP_HOST}/userapp/cart/create`,data,{
                 method:"POST",
                 "Authorization":`Bearer ${localStorage.getItem("accessToken")}`
             })

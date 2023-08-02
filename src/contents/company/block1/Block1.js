@@ -75,7 +75,7 @@ function Block1({companyData,page,setPage}) {
               <Typography sx={{fontSize:"16px"}}>{item && item.address && item.address[0] && item.address[0].locality},{item && item.address && item.address[0] && item.address[0].city},{item && item.address && item.address[0] && item.address[0].state},{item && item.address && item.address[0] && item.address[0].country}-{item && item.address && item.address[0] && item.address[0].zipcode}</Typography>
               <Box sx={{display:'flex',alignItems:'center',flexWrap:'wrap',gap:'10px',marginY:'10px'}}>
               {item.productCategory.slice(0,5).map((i,ind)=>{
-                return <Box key={ind} sx={{border:'1px solid #ccc',padding:'2px 15px',borderRadius:'10px',backgroundColor:'#eee',fontSize:'14px',cursor:'pointer'}}>
+                return <Box key={ind} onClick={()=>{navigate(`/${location}/${item && item.name}/${item && item.id}?category=${i && i.name}`)}} sx={{border:'1px solid #ccc',padding:'2px 15px',borderRadius:'10px',backgroundColor:'#eee',fontSize:'14px',cursor:'pointer'}}>
                     {i && i.name}
                 </Box>
               })}
@@ -100,12 +100,12 @@ function Block1({companyData,page,setPage}) {
     </Card>
   </Box>
 })}
-<Stack sx={{display:"flex", justifyContent:"center",  width:"100%",height:"100px", alignItems:"center", position:"absolute", bottom:"0px"}} >
+{companyData.companyData && companyData.companyData.data && companyData.companyData.data.data && <Stack sx={{display:"flex", justifyContent:"center",  width:"100%",height:"100px", alignItems:"center", position:"absolute", bottom:"0px"}} >
         <Divider/>
         <Typography variant='h5' >Page 1 of {count}</Typography>
       <Pagination count={count} page={page} color="error" size='large' sx={{display:"flex", justifyContent:"center", padding:"20px 0px 0px 0px"}} onChange={(e, value) =>setPage(value)} />
    
-      </Stack>
+      </Stack>}
 
 
     </StyleToolbar>

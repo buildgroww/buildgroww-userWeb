@@ -117,7 +117,8 @@ const Paragraph = styled(Typography)(({theme})=>({
 
 const Footer = () => {
   const navigate = useNavigate()
-  const {location} = useSelector(state => state.location)
+  const location = JSON.parse(localStorage.getItem("location"))
+  const {user} = useSelector(state => state.auth)
   // const handleScrollToTop = () =>{
   //       Window.scrollTo({top:0, behaviour:"smooth"})
   // };
@@ -176,11 +177,11 @@ const Footer = () => {
           <Typography sx={{color:"#7C6151", fontSize:"16px", fontWeight:"500"}} > Category</Typography>
 
           <LinkContainer>
-          <Link to={`/${location && location.city && location.city}/brick`} style={{color:"white", textDecoration:"none"}} >Bricks</Link>
-          <Link to={`/${location && location.city && location.city}/cement`}  style={{color:"white", textDecoration:"none"}} >Cements</Link>
-          <Link to={`/${location && location.city && location.city}/wood`}  style={{color:"white", textDecoration:"none"}} >Wood</Link>
-          <Link to={`/${location && location.city && location.city}/plastic`} style={{color:"white", textDecoration:"none"}} >Plastic</Link>
-          <Link to={`/${location && location.city && location.city}/metal`}  style={{color:"white", textDecoration:"none"}} >Metal</Link>
+          <Link to={`/${location !==null ? (location && location.city && location.city):(Object.keys(user).length>0 ? (user && user.address.length >0 ? (user.address[0] && user.address[0].city && user.address[0].city) : "haridwar"):"haridwar")}/brick`} style={{color:"white", textDecoration:"none"}} >Bricks</Link>
+          <Link to={`/${location !==null ? (location && location.city && location.city):(Object.keys(user).length>0 ? (user && user.address.length >0 ? (user.address[0] && user.address[0].city && user.address[0].city) : "haridwar"):"haridwar")}/cement`}  style={{color:"white", textDecoration:"none"}} >Cements</Link>
+          <Link to={`/${location !==null ? (location && location.city && location.city):(Object.keys(user).length>0 ? (user && user.address.length >0 ? (user.address[0] && user.address[0].city && user.address[0].city) : "haridwar"):"haridwar")}/wood`}  style={{color:"white", textDecoration:"none"}} >Wood</Link>
+          <Link to={`/${location !==null ? (location && location.city && location.city):(Object.keys(user).length>0 ? (user && user.address.length >0 ? (user.address[0] && user.address[0].city && user.address[0].city) : "haridwar"):"haridwar")}/plastic`} style={{color:"white", textDecoration:"none"}} >Plastic</Link>
+          <Link to={`/${location !==null ? (location && location.city && location.city):(Object.keys(user).length>0 ? (user && user.address.length >0 ? (user.address[0] && user.address[0].city && user.address[0].city) : "haridwar"):"haridwar")}/metal`}  style={{color:"white", textDecoration:"none"}} >Metal</Link>
           </LinkContainer>
         </Box2>
         <Box3>

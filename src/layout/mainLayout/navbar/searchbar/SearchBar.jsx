@@ -68,14 +68,15 @@ import { useEffect } from "react";
     const catMenu = useRef(null);
     const dispatch = useDispatch();
     const searchProducts = useSelector((state) => state.search);
-    const location = useSelector((state) => state.location);
+    const {user} = useSelector((state) => state.auth);
+    const location = JSON.parse(localStorage.getItem("location"))
   
     const searchHandler = () => {
       setShowSearch("flex");
     };
     const handleEnter = (e) => {
       if (e.target.value !== "" && e.key === "Enter") {
-            navigate(`/${location.location && location.location.city}/${e.target.value}`)
+            navigate(`/${location !==null ? (location && location.city && location.city):(Object.keys(user).length>0 ? (user && user.address.length >0 ? (user.address[0] && user.address[0].city && user.address[0].city) : "haridwar"):"haridwar")}/${e.target.value}`)
         }
       };
     const handleChange = async (e) => {

@@ -37,6 +37,20 @@ class CompanyApi{
        
     }
 
+    async getShopData(id){
+        try {
+            const response = await axios.get(`${process.env.REACT_APP_HOST}/userapp/shop/get/${id}`);
+               if(response.data.status==='SUCCESS'){
+                    return response.data;
+               }
+               else
+                    return false;
+        } catch (error) {
+            return false
+        }
+       
+    }
+
 }
 
 export const companyApi = new CompanyApi();

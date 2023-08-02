@@ -35,13 +35,20 @@ export default function Cart() {
           toast.error("Request failed")
           console.log(error); 
         }
+        
     }
     handleCartList();
   },[dispatch])
+  useEffect(() => {
+    const check = ()=>{
+      if(carts && carts.length === 0){
+        toast.warn("No items in carts")
+      }
+    }
+    check();
+  }, [])
+  
 
-  if(carts && carts.carts && carts.carts.length() === 0){
-    toast.warn("No items in carts")
-  }
 
   return (
     <>

@@ -1,5 +1,5 @@
 import React,{useEffect, useRef, useState} from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import SearchBar from './searchbar/SearchBar'
 
 import {
@@ -46,6 +46,7 @@ import { useSelector } from '../../../redux/store/store';
 import { getUser, logoutUser } from '../../../redux/slices/auth';
 import Cookies from 'js-cookie';
 import { getCurrentLocation, getLocation } from '../../../redux/slices/location';
+import { toast } from 'react-toastify';
 
   const StyleToolbar = styled(Toolbar)(({theme}) => ({
       display: 'flex',
@@ -133,7 +134,7 @@ export default function Navbar(props) {
     const [loca,setLoca] = useState(null);
 
     const {user} = useSelector((state) => state.auth)
-    const location = useSelector((state) => state.location)
+    const location = JSON.parse(localStorage.getItem("location"))
 
     const fetchUser = async () => {
       let result = await dispatch(getUser())
@@ -204,7 +205,7 @@ export default function Navbar(props) {
             setLogin(true);
         }
         else{
-          if((location.currentLocation===null)||((location.currentLocation && location.currentLocation.latitude!==undefined) && (location.currentLocation && location.currentLocation.longitude!==undefined))){
+          if((location === null || location.code===undefined)){
             if(navigator.geolocation){
                 navigator.geolocation.getCurrentPosition((position)=>{
                   const {latitude,longitude} = position.coords;
@@ -212,6 +213,7 @@ export default function Navbar(props) {
                   dispatch(getLocation(latitude,longitude))
                 },(error)=>{
                   dispatch(getCurrentLocation({code:error.code,message:error.message}))
+                  localStorage.setItem("location",JSON.stringify({code:error.code,message:error.message}))
                   console.log(error)
                 })
               }
@@ -231,6 +233,7 @@ export default function Navbar(props) {
             //     },
             //     TransitionComponent: Zoom
             //     });
+            toast.error(`${location.code}`==='1'?'User Blocked Loaction, Please unblocked and reload ':`${location.message}`)
         }
         }
         setShowSearch(false)
@@ -333,7 +336,7 @@ export default function Navbar(props) {
                         
                         }
 
-                        {!showSearch && <Button size='small' onClick={()=>{setShowSearch(true)}} sx={{display:'flex',fontSize:'16px',fontWeight:400,padding:{md:'13px 15px 13px 29px',sm:'10px 10px 10px 24px',xs:'6px 0px 6px 14px'}, backgroundColor:'rgba(217, 217, 217, 0.39)',color:'#000000',justifyContent:'flex-start',gap:'10px',boxShadow:'0px 4px 4px rgba(0, 0, 0, 0.25)',borderRadius:'21px',width:{md:'270px',sm:'180px',xs:'130px'},}}><LocationOnIcon/>{location.location && location.location.city && location.location.city}</Button>}
+                        {!showSearch && <Button size='small' onClick={()=>{setShowSearch(true)}} sx={{display:'flex',fontSize:'16px',fontWeight:400,padding:{md:'13px 15px 13px 29px',sm:'10px 10px 10px 24px',xs:'6px 0px 6px 14px'}, backgroundColor:'rgba(217, 217, 217, 0.39)',color:'#000000',justifyContent:'flex-start',gap:'10px',boxShadow:'0px 4px 4px rgba(0, 0, 0, 0.25)',borderRadius:'21px',width:{md:'270px',sm:'180px',xs:'130px'},}}><LocationOnIcon/>{location !==null ? (location && location.city && location.city):(Object.keys(user).length>0 ? (user && user.address.length >0 ? (user.address[0] && user.address[0].city && user.address[0].city) : "haridwar"):"haridwar")}</Button>}
 
                 
                 <SearchBar/>
@@ -382,7 +385,7 @@ export default function Navbar(props) {
 
                  </Box>
                 <Divider/>
-                <Typography  sx={{fontWeight:'600',fontSize:'16px',padding:'15px',color:'black',cursor:'pointer'}}>Orders</Typography>
+                <Typography  onClick={()=> navigate("/orders")} sx={{fontWeight:'600',fontSize:'16px',padding:'15px',color:'black',cursor:'pointer'}}>Orders</Typography>
                 <Divider/>
                 <Typography onClick={()=> navigate("/cart")} sx={{cursor:"pointer",fontWeight:'600',fontSize:'16px',padding:'15px',color:'black'}}>Carts</Typography>
                 <Divider/>

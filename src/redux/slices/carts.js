@@ -4,7 +4,6 @@ import {createSlice} from "@reduxjs/toolkit"
 // initial State
 const initialState = {
     carts : [],
-    // cartsPaginator:{}
 }
 
 // create a slice
@@ -16,8 +15,10 @@ const slice = createSlice({
         createCart(state,action){
             if(action.payload.data){
                 state.carts = [action.payload.data,...state.carts]
+                console.log(state.carts);
                 // state.cartsPaginator = {...state.cartsPaginator,itemCount:state.cartsPaginator.itemCount+1};
             }
+            console.log(action.payload);
         },
         // cart's List Reducers
         cartsList(state,action){
@@ -77,7 +78,8 @@ export const createCart =(data) => async (dispatch) => {
     try{
         const result = await cartsApi.createCart(data);
         if(result){
-            await dispatch(slice.actions.createCart(result.data))
+            console.log(result);
+            await dispatch(slice.actions.createCart(result))
         }else{
             return false
         }

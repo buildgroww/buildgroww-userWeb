@@ -31,10 +31,12 @@ const StyleToolbar = styled(Box)(({theme})=>({
 function Block1() {
   const catMenu = useRef(null);
   const product= useSelector((state)=>state.product)
+  const {companyData} = useSelector(state => state.company)
   const [showNumber, setShowNumber] = useState(false)
   const [open, setOpen] = useState(false)
 
-  const shop = product&&product.products.data&&product.products.data.length>0&&product?.products?.data[0].shop;
+  const shop = companyData && companyData.data;
+  console.log(shop);
 
   const closeOpenMenus = (e)=>{
     if(catMenu.current && open && !catMenu.current.contains(e.target)){
@@ -169,7 +171,7 @@ document.addEventListener('mousedown',closeOpenMenus);
         <CardMedia
             component="img"
             sx={{ width:{md:400,sm:400,xs:"100%"},height:200,borderRadius:"5px" }}
-            image={product&&product.products&&product.products.data&&product.products.data.length>0&&product.products.data&&product.products.data[0].shop&&product.products.data[0].shop.logo}
+            image={shop && shop.logo}
 
             alt="Live from space album cover"
           />

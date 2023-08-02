@@ -29,6 +29,7 @@ export const getLocation = (lat,lon) => async (dispatch) =>{
     console.log(result);
     if(result){
         await dispatch(slice.actions.getLocation(result && result.data))
+        localStorage.setItem("location",JSON.stringify(result.data))
         return true
     }
     return false

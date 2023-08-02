@@ -30,8 +30,20 @@ export const getCompanyData = (query,sort,page)=> async (dispatch) =>{
     } catch (error) {
         return false
     }
-    
-    
+}
+
+export const getShopData = (id)=> async (dispatch) =>{
+    try {
+        const result = await companyApi.getShopData(id);
+        console.log(result)
+        if(result){
+            await dispatch(slice.actions.addCompanyData(result))
+            return true
+        }
+        return false
+    } catch (error) {
+        return false
+    }
 }
 
 export default slice;

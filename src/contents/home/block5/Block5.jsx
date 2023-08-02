@@ -19,10 +19,11 @@ const Image = styled('img')(({theme})=>({
 
 function Block5() {
   const navigate = useNavigate();
-  const {location} = useSelector(state => state.location)
+  const location = JSON.parse(localStorage.getItem("location"))
+  const {user} = useSelector(state => state.auth)
 
   const handleClick = (item)=>{
-    navigate(`/${location && location.city && location.city}/${item}`)
+    navigate(`/${location !==null ? (location && location.city && location.city):(Object.keys(user).length>0 ? (user && user.address.length >0 ? (user.address[0] && user.address[0].city && user.address[0].city) : "haridwar"):"haridwar")}/${item}`)
 
   }
   return (

@@ -267,12 +267,7 @@ export default function Navbar(props) {
             </MenuButton>
             <NavLeft sx={{flex:'4'}}>
                 <Logo onClick={()=>{navigate('/')}} sx={{display:'flex',gap:{md:'10px',xs:'7px'},cursor:{md:'pointer',xs:'none'},marginRight:'10px'}}>
-                    <Paragraph   component="div" sx={{color:'#60360F',fontSize: {md:'40px',sm:'25px',xs:'20px'},}}>
-                        {props.logo.split(' ').slice(0,1)}
-                    </Paragraph>
-                    <Paragraph component="div" sx={{color:'#548F25',fontSize: {md:'40px',sm:'25px',xs:'20px'},}}>
-                    {props.logo.split(' ').slice(1)}
-                    </Paragraph>
+                 <img src='/images/logobg.png' alt='BuildGroww' style={{height:'160px'}}/>
                 </Logo>
 
                 {/* {res && res.city && <Button sx={{display:{sm:'flex',xs:'none'},backgroundColor:'rgba(217, 217, 217, 0.39)',color:'#000000',justifyContent:'flex-start',gap:'30px',padding:'13px 15px',boxShadow:'0px 4px 4px rgba(0, 0, 0, 0.25)',borderRadius:'21px',width:'270px',minWidth:'160px'}}><LocationOnIcon/>{res.city}</Button>} */}

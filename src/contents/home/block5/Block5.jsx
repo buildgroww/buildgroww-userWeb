@@ -33,11 +33,11 @@ function Block5() {
 
             <Box sx={{display:'flex',flexDirection:{sm:'row',xs:'column'},gap:'10px',justifyContent:'space-between',alignItems:'center',marginTop:'10px'}}>
 
-                <Box onClick={()=>handleClick('Equipment-rental')} sx={{width:{md:'317px',xs:'100%'},textAlign:'center',fontSize:'20px',fontWeight:400,cursor:'pointer'}}> <Image alt='Our Engineer' src="/images/category/carousel/engineer.jpg"/>Equipment rental</Box>
+                <Box onClick={()=>handleClick('Equipment-rental')} sx={{width:{md:'317px',xs:'100%'},textAlign:'center',fontSize:'20px',fontWeight:400,cursor:'pointer'}}> <Image alt='Our Engineer' src="/images/category/home/blcok5/tools1.jpg"/>Equipment rental</Box>
 
-                <Box onClick={()=>handleClick('Project-management')} sx={{width:{md:'317px',xs:'100%'},textAlign:'center',fontSize:'20px',fontWeight:400,cursor:'pointer'}}> <Image alt='Our Engineer'  src="/images/category/carousel/engineer.jpg"/>Project management</Box>
+                <Box onClick={()=>handleClick('Project-management')} sx={{width:{md:'317px',xs:'100%'},textAlign:'center',fontSize:'20px',fontWeight:400,cursor:'pointer'}}> <Image alt='Our Engineer'  src="/images/category/home/blcok5/project.jpg"/>Project management</Box>
 
-                <Box onClick={()=>handleClick('Site-preparation')} sx={{width:{md:'317px',xs:'100%'},textAlign:'center',fontSize:'20px',fontWeight:400,cursor:'pointer'}}> <Image alt='Our Engineer'  src="/images/category/carousel/engineer.jpg"/>Site preparation</Box>
+                <Box onClick={()=>handleClick('Site-preparation')} sx={{width:{md:'317px',xs:'100%'},textAlign:'center',fontSize:'20px',fontWeight:400,cursor:'pointer'}}> <Image alt='Our Engineer'  src="/images/category/home/blcok5/site.webp"/>Site preparation</Box>
             </Box>
         </Box>
     </Box>

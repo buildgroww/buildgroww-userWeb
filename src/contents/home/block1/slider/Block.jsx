@@ -110,25 +110,25 @@ const theme = useTheme();
     <Slider {...settings1}>
       <Item>
       <PageLink to={'/websites'}>
-        <Img src='/images/category/carousel/construction1.jpg' />
+        <Img src='/images/category/home/block1/concriate mix.jpg' />
         {/* <Head>upto 40% off</Head> */}
       </PageLink>
       </Item>
     <Item>
       <PageLink to={'/apps'}>
-      <Img src='/images/category/carousel/construction2.jpg' />
+      <Img src='/images/category/home/block1/home1.png' />
       {/* <Head>upto 40% off</Head> */}
     </PageLink>
     </Item>
     <Item>
     <PageLink to={'/digitalMarketing'}>
-      <Img src='/images/category/carousel/construction3.jpg' />
+      <Img src='/images/category/home/block1/acservice.png' />
       {/* <Head>upto 40% off</Head> */}
     </PageLink>
     </Item>
     <Item>
     <PageLink to={'/graphicDesign'}>
-      <Img src='/images/category/carousel/construction4.jpg' />
+      <Img src='/images/category/home/block1/home.png' />
       {/* <Head>upto 40% off</Head> */}
     </PageLink>
     </Item>

@@ -56,7 +56,7 @@ function Block6() {
           </Typography>{" "}
           <Image
             alt="Our Engineer"
-            src="/images/category/carousel/engineer.jpg"
+            src="/images/category/home/block6/plumbing.jpg"
           />
         </Box>
         <Box
@@ -78,7 +78,7 @@ function Block6() {
           </Typography>{" "}
           <Image
             alt="Our Engineer"
-            src="/images/category/carousel/engineer.jpg"
+            src="/images/category/home/block6/electical.webp"
           />
         </Box>
         <Box
@@ -100,7 +100,7 @@ function Block6() {
           </Typography>{" "}
           <Image
             alt="Our Engineer"
-            src="/images/category/carousel/engineer.jpg"
+            src="/images/category/home/block6/penter.webp"
           />
         </Box>
       </Box>

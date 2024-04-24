@@ -46,22 +46,82 @@ function Block3() {
         <Box sx={{border:'1px solid rgba(0, 0, 0, 0.42)',borderRadius:'40px',padding:{sm:'20px 0 20px 36px',xs:'20px 0 20px 20px'}}}>
             <Box sx={{}}><Typography sx={{fontSize:{md:'36px',sm:'30px',xs:'25px'},fontWeight:300,fontFamily:'Roboto'}}>During Construction</Typography></Box>
             <IconsContainer >
-                <Icons> <img style={{width:'50%',height:'50%'}} alt='before construction image' src='/images/category/home/block2/img1.png' /> </Icons>
-                <Icons> <img style={{width:'50%',height:'50%'}} alt='before construction image' src='/images/category/home/block2/img1.png' /> </Icons>
-                <Icons> <img style={{width:'50%',height:'50%'}} alt='before construction image' src='/images/category/home/block2/img1.png' /> </Icons>
-                <Icons> <img style={{width:'50%',height:'50%'}} alt='before construction image' src='/images/category/home/block2/img1.png' /> </Icons>
-                <Icons> <img style={{width:'50%',height:'50%'}} alt='before construction image' src='/images/category/home/block2/img1.png' /> </Icons>
-                <Icons> <img style={{width:'50%',height:'50%'}} alt='before construction image' src='/images/category/home/block2/img1.png' /> </Icons>
-                <Icons> <img style={{width:'50%',height:'50%'}} alt='before construction image' src='/images/category/home/block2/img1.png' /> </Icons>
-                <Icons> <img style={{width:'50%',height:'50%'}} alt='before construction image' src='/images/category/home/block2/img1.png' /> </Icons>
-                <Icons> <img style={{width:'50%',height:'50%'}} alt='before construction image' src='/images/category/home/block2/img1.png' /> </Icons>
-                <Icons> <img style={{width:'50%',height:'50%'}} alt='before construction image' src='/images/category/home/block2/img1.png' /> </Icons>
-                <Icons> <img style={{width:'50%',height:'50%'}} alt='before construction image' src='/images/category/home/block2/img1.png' /> </Icons>
-                <Icons> <img style={{width:'50%',height:'50%'}} alt='before construction image' src='/images/category/home/block2/img1.png' /> </Icons>
-                <Icons> <img style={{width:'50%',height:'50%'}} alt='before construction image' src='/images/category/home/block2/img1.png' /> </Icons>
-                <Icons> <img style={{width:'50%',height:'50%'}} alt='before construction image' src='/images/category/home/block2/img1.png' /> </Icons>
-                <Icons> <img style={{width:'50%',height:'50%'}} alt='before construction image' src='/images/category/home/block2/img1.png' /> </Icons>
-                <Icons> <img style={{width:'50%',height:'50%'}} alt='before construction image' src='/images/category/home/block2/img1.png' /> </Icons>
+            <Box sx={{width:{xs:'65px',sm:'90px',md:'104px'}}}>
+                <Icons><img style={{width:'50%',height:'50%'}} alt='before construction image' src='/images/category/home/block3/construction.png' /></Icons>
+                  <Typography sx={{textAlign:'center'}}>Worker</Typography>
+            </Box>
+            <Box sx={{width:{xs:'65px',sm:'90px',md:'104px'}}}>
+                <Icons><img style={{width:'50%',height:'50%'}} alt='before construction image' src='/images/category/home/block3/concrete-mixer.png' /></Icons>
+                  <Typography sx={{textAlign:'center'}}>Concrete-Mixer</Typography>
+            </Box>
+            <Box sx={{width:{xs:'65px',sm:'90px',md:'104px'}}}>
+                <Icons><img style={{width:'50%',height:'50%'}} alt='before construction image' src='/images/category/home/block3/concrete-mix.png' /></Icons>
+                  <Typography sx={{textAlign:'center'}}>Concrete-mixer</Typography>
+            </Box>
+             <Box sx={{width:{xs:'65px',sm:'90px',md:'104px'}}}>
+                <Icons><img style={{width:'50%',height:'50%'}} alt='before construction image' src='/images/category/home/block3/bricks.png' /></Icons>
+                  <Typography sx={{textAlign:'center'}}>Bricks</Typography>
+            </Box>
+            <Box sx={{width:{xs:'65px',sm:'90px',md:'104px'}}}>
+                <Icons><img style={{width:'50%',height:'50%'}} alt='before construction image' src='/images/category/home/block3/blocks.png' /></Icons>
+                  <Typography sx={{textAlign:'center'}}>Blocks</Typography>
+            </Box>
+            <Box sx={{width:{xs:'65px',sm:'90px',md:'104px'}}}>
+                <Icons><img style={{width:'50%',height:'50%'}} alt='before construction image' src='/images/category/home/block3/cement.png' /></Icons>
+                  <Typography sx={{textAlign:'center'}}>Cement</Typography>
+            </Box>
+            <Box sx={{width:{xs:'65px',sm:'90px',md:'104px'}}}>
+                <Icons><img style={{width:'50%',height:'50%'}} alt='before construction image' src='/images/category/home/block3/iron-bar.png' /></Icons>
+                  <Typography sx={{textAlign:'center'}}>Iron-bar</Typography>
+            </Box>
+            <Box sx={{width:{xs:'65px',sm:'90px',md:'104px'}}}>
+                <Icons><img style={{width:'50%',height:'50%'}} alt='before construction image' src='/images/category/home/block3/beam.png' /></Icons>
+                  <Typography sx={{textAlign:'center'}}>Beam</Typography>
+            </Box>
+            <Box sx={{width:{xs:'65px',sm:'90px',md:'104px'}}}>
+                <Icons><img style={{width:'50%',height:'50%'}} alt='before construction image' src='/images/category/home/block3/sand.png' /></Icons>
+                  <Typography sx={{textAlign:'center'}}>Sand</Typography>
+            </Box>
+             <Box sx={{width:{xs:'65px',sm:'90px',md:'104px'}}}>
+                <Icons><img style={{width:'50%',height:'50%'}} alt='before construction image' src='/images/category/home/block3/soil.png' /></Icons>
+                  <Typography sx={{textAlign:'center'}}>Soil</Typography>
+            </Box>
+            <Box sx={{width:{xs:'65px',sm:'90px',md:'104px'}}}>
+                <Icons><img style={{width:'50%',height:'50%'}} alt='before construction image' src='/images/category/home/block3/window.png' /></Icons>
+                  <Typography sx={{textAlign:'center'}}>Windows</Typography>
+            </Box>
+            <Box sx={{width:{xs:'65px',sm:'90px',md:'104px'}}}>
+                <Icons><img style={{width:'50%',height:'50%'}} alt='before construction image' src='/images/category/home/block3/door.png' /></Icons>
+                  <Typography sx={{textAlign:'center'}}>Doors</Typography>
+            </Box>
+            <Box sx={{width:{xs:'65px',sm:'90px',md:'104px'}}}>
+                <Icons><img style={{width:'50%',height:'50%'}} alt='before construction image' src='/images/category/home/block3/gate.png' /></Icons>
+                  <Typography sx={{textAlign:'center'}}>Gate</Typography>
+            </Box>
+            <Box sx={{width:{xs:'65px',sm:'90px',md:'104px'}}}>
+                <Icons><img style={{width:'50%',height:'50%'}} alt='before construction image' src='/images/category/home/block3/stairs.png' /></Icons>
+                  <Typography sx={{textAlign:'center'}}>Stairs</Typography>
+            </Box>
+            <Box sx={{width:{xs:'65px',sm:'90px',md:'104px'}}}>
+                <Icons><img style={{width:'50%',height:'50%'}} alt='before construction image' src='/images/category/home/block3/tiles.png' /></Icons>
+                  <Typography sx={{textAlign:'center'}}>Tiles</Typography>
+            </Box>
+            <Box sx={{width:{xs:'65px',sm:'90px',md:'104px'}}}>
+                <Icons><img style={{width:'50%',height:'50%'}} alt='before construction image' src='/images/category/home/block3/granite.png' /></Icons>
+                  <Typography sx={{textAlign:'center'}}>Granite</Typography>
+            </Box>
+            <Box sx={{width:{xs:'65px',sm:'90px',md:'104px'}}}>
+                <Icons><img style={{width:'50%',height:'50%'}} alt='before construction image' src='/images/category/home/block3/marble.png' /></Icons>
+                  <Typography sx={{textAlign:'center'}}>Marble</Typography>
+            </Box>
+            <Box sx={{width:{xs:'65px',sm:'90px',md:'104px'}}}>
+                <Icons><img style={{width:'50%',height:'50%'}} alt='before construction image' src='/images/category/home/block3/stone.png' /></Icons>
+                  <Typography sx={{textAlign:'center'}}>Stone</Typography>
+            </Box>
+            <Box sx={{width:{xs:'65px',sm:'90px',md:'104px'}}}>
+                <Icons><img style={{width:'50%',height:'50%'}} alt='before construction image' src='/images/category/home/block3/roof1.png' /></Icons>
+                  <Typography sx={{textAlign:'center'}}>Roof Tiles</Typography>
+            </Box>
             </IconsContainer>
         </Box>
     </Box>
